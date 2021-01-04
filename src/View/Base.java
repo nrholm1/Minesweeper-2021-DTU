@@ -1,10 +1,13 @@
+package View;
+
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class JavaFxTest extends Application {
+public class Base  extends Application {
     public static void main(String[] args) {
         launch(args);
     }
@@ -12,12 +15,13 @@ public class JavaFxTest extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(event -> System.out.println("Hello World!"));
+
+        GridPane gameWindow = GameWindow.createGameWindow();
+        gameWindow.setAlignment(Pos.CENTER);
 
         StackPane root = new StackPane();
-        root.getChildren().add(btn);
+
+        root.getChildren().add(gameWindow);
         primaryStage.setScene(new Scene(root, 1000, 1000));
         primaryStage.show();
     }
