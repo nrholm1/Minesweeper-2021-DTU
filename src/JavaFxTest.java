@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Test extends Application {
+public class JavaFxTest extends Application {
     public static void main(String[] args) {
         launch(args);
     }
