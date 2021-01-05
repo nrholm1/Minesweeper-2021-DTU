@@ -16,13 +16,16 @@ public class Base  extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World!");
 
-        GridPane gameWindow = GameWindow.createGameWindow();
+        GridPane gameWindow = GameWindow.createGameWindow(20,20);
         gameWindow.setAlignment(Pos.CENTER);
 
         StackPane root = new StackPane();
 
         root.getChildren().add(gameWindow);
-        primaryStage.setScene(new Scene(root, 1000, 1000));
+        Scene scene = new Scene(root, 1000, 1000);
+        scene.getStylesheets().add("GameWindow.css");
+
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }

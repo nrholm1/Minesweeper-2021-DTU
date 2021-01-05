@@ -26,4 +26,36 @@ public class GameWindow {
 
         return root;
     }
+
+    public static GridPane createGameWindow(int rows, int cols) {
+        GridPane root = new GridPane();
+
+        // dynamic button sizing depending on dimensions
+        double width = rows < cols ? 500.0 / rows : 500.0 / cols;
+        double height = rows > cols ? 500.0 / rows : 500.0 / cols;
+
+        System.out.println("w: " + width + " | h: " + height);
+
+        for(int r = 0; r < rows; r++)
+            for(int c = 0; c < cols; c++) {
+                Button btn = new Button();
+                btn.setMinSize(width, height);
+
+                setButtonStyle(btn);
+
+                GridPane.setRowIndex(btn, r);
+                GridPane.setColumnIndex(btn, c);
+                GridPane.setHalignment(btn, HPos.CENTER);
+                root.getChildren().add(btn);
+            }
+
+        return root;
+    }
+
+    public static void setButtonStyle(Button btn) {
+        btn.setStyle("-fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color; \n" +
+                "    -fx-background-insets: 0, 1, 2;\n" +
+                "    -fx-background-radius: 5, 4, 3;");
+    }
+
 }
