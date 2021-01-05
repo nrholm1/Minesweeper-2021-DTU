@@ -1,7 +1,7 @@
 package View;
 
+import MinesweeperTests.Board;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
@@ -27,6 +27,11 @@ public class GameWindow {
         return root;
     }
 
+    // might come in handy to just be able to pass in a board
+    public static GridPane createGameWindow(Board board) {
+        return createGameWindow(board.getRowLength(), board.getColLength());
+    }
+
     public static GridPane createGameWindow(int rows, int cols) {
         GridPane root = new GridPane();
 
@@ -34,7 +39,7 @@ public class GameWindow {
         double width = rows < cols ? 500.0 / rows : 500.0 / cols;
         double height = rows > cols ? 500.0 / rows : 500.0 / cols;
 
-        System.out.println("w: " + width + " | h: " + height);
+//        System.out.println("w: " + width + " | h: " + height);
 
         for(int r = 0; r < rows; r++)
             for(int c = 0; c < cols; c++) {

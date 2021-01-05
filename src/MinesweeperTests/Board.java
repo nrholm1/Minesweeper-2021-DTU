@@ -11,6 +11,14 @@ public class Board {
     int rowLength;
     int colLength;
 
+    public int getRowLength() {
+        return rowLength;
+    }
+
+    public int getColLength() {
+        return colLength;
+    }
+
     public Board(double _probability, int _rowLength, int _colLength) {
         this.probability = _probability;
         this.rowLength = _rowLength;
