@@ -16,7 +16,7 @@ public class Base  extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World!");
 
-        GridPane gameWindow = GameWindow.createGameWindow(20,20);
+        GridPane gameWindow = GameWindow.createGameWindow(40,40);
         gameWindow.setAlignment(Pos.CENTER);
 
         StackPane root = new StackPane();
