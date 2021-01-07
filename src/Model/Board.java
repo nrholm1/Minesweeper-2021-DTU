@@ -44,10 +44,11 @@ public class Board {
 
 
     private void setMines() {
-        int r = (int)(Math.random() * rowLength);
-        int c = (int)(Math.random() * colLength);
         int curMines = 0;
         while(curMines < this.amountMines) {
+            int r = (int)(Math.random() * rowLength);
+            int c = (int)(Math.random() * colLength);
+
             if (!minefield[r][c].isMine()) {
                 minefield[r][c].toggleIsMine();
                 curMines++;
