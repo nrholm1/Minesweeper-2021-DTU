@@ -2,9 +2,9 @@ package Model;
 
 public class Board {
     private Field[][] minefield;
-    private double probability;
-    private int rowLength;
-    private int colLength;
+    private final int amountMines;
+    private final int rowLength;
+    private final int colLength;
 
 
     public Field getField(int r, int c) {
@@ -23,30 +23,36 @@ public class Board {
         return colLength;
     }
 
-    private void setBombs(int bombs) {
-        for(int i = 0; i < bombs; i++) {
-            minefield[(int)(Math.random() * rowLength)][(int)(Math.random() * colLength)].setMine(true);
-        }
-    }
-
-    public Board(double _probability, int _rowLength, int _colLength) {
-        this.probability = _probability;
+    public Board(int _amountMines, int _rowLength, int _colLength) {
+        this.amountMines = _amountMines;
         this.rowLength = _rowLength;
         this.colLength = _colLength;
 
         makeMinefieldWithDimensions();
+        setMines();
+        setAdjacentMineCounters();
     }
 
     public void makeMinefieldWithDimensions() {
         minefield = new Field[this.colLength][this.rowLength];
 
         for(int row = 0; row < minefield.length; row++)
-            for(int col = 0; col < minefield[row].length; col++) {
-                boolean _isMine = (Math.random() < this.probability);
-                minefield[row][col] = new Field(_isMine);
-            }
+            for(int col = 0; col < minefield[row].length; col++)
+                minefield[row][col] = new Field();
 
-        setAdjacentMineCounters();
+    }
+
+
+    private void setMines() {
+        int r = (int)(Math.random() * rowLength);
+        int c = (int)(Math.random() * colLength);
+        int curMines = 0;
+        while(curMines < this.amountMines) {
+            if (!minefield[r][c].isMine()) {
+                minefield[r][c].toggleIsMine();
+                curMines++;
+            }
+        }
     }
 
     private void setAdjacentMineCounters() {

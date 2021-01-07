@@ -3,18 +3,18 @@ package Model.Util;
 import Model.Board;
 
 public class BoardBuilder {
-    double probability;
+    int amountMines;
     int rowLength;
     int colLength;
 
     public Board build() {
-        return new Board(this.probability, this.rowLength, this.colLength);
+        return new Board(this.amountMines, this.rowLength, this.colLength);
     }
 
-    public BoardBuilder withProbability(double _probability) {
-        if (probability > 1 || probability < 0)
+    public BoardBuilder withAmountMines(int _amountMines) {
+        if (_amountMines > 1 || _amountMines < 0)
             throw new IllegalArgumentException("Value outside of valid range (0 - 1)");
-        this.probability = _probability;
+        this.amountMines = _amountMines;
 
         return this;
     }

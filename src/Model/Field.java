@@ -5,9 +5,9 @@ public class Field {
     private boolean isMine;
     private int adjacentMines;
 
-    public Field(boolean _isMine) {
+    public Field() {
         this.state = State.UNFLAGGED;
-        this.isMine = _isMine;
+        this.isMine = false;
         this.adjacentMines = 0;
     }
 
