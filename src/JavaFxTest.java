@@ -1,3 +1,4 @@
+import View.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,14 +12,12 @@ public class JavaFxTest extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Hello World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(event -> System.out.println("Hello World!"));
+        Stage window = primaryStage;
+        window.setTitle("MineSwoop");
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+        Scene pregame = new MainMenu(new int[]{1000, 600}).getScene();
+
+        window.setScene(pregame);
+        window.show();
     }
 }

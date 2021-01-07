@@ -1,11 +1,10 @@
 package Model;
 
 public class Board {
-    Field[][] minefield;
-
-    double probability;
-    int rowLength;
-    int colLength;
+    private Field[][] minefield;
+    private double probability;
+    private int rowLength;
+    private int colLength;
 
 
     public Field getField(int r, int c) {
@@ -22,6 +21,12 @@ public class Board {
 
     public int getColLength() {
         return colLength;
+    }
+
+    private void setBombs(int bombs) {
+        for(int i = 0; i < bombs; i++) {
+            minefield[(int)(Math.random() * rowLength)][(int)(Math.random() * colLength)].setMine(true);
+        }
     }
 
     public Board(double _probability, int _rowLength, int _colLength) {
