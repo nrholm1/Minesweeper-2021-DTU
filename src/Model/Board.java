@@ -11,8 +11,8 @@ public class Board {
         return minefield[r][c];
     }
 
-    public void setFieldState(int r, int c) {
-        // set field state when pressed
+    public void setFieldState(int r, int c, Field.State state) {
+        getField(r,c).setState(state);
     }
 
     public int getRowLength() {
