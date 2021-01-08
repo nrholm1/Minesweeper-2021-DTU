@@ -39,16 +39,6 @@ public class Field {
         this.adjacentMines++;
     }
 
-    public String toString() {
-        String retval = "";
-
-        retval += this.isMine ?
-                "X" : (this.adjacentMines > 0 ?
-                    this.adjacentMines : " ");
-
-        return retval;
-    }
-
     public enum State {
         FLAGGED,
         UNFLAGGED,
