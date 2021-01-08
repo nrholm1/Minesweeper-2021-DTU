@@ -12,7 +12,7 @@ public class DiffSlider {
 
     static VBox diffElement;
 
-    static final String diffUrl = "images/diff-icon.png";
+    static final String diffUrl = "Images/diff-icon.png";
 
     public DiffSlider(int[] stagedims){
         //Difficulty

@@ -17,7 +17,7 @@ public class TimeCounter {
     private Timer timer;
     private int timeElapsed = 0;
 
-    private static String timeUrl = "images/counter-icon.png";
+    private static String timeUrl = "Images/counter-icon.png";
 
     public TimeCounter(){
         //Setup timer for top

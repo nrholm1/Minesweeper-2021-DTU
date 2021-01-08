@@ -12,7 +12,7 @@ public class SizeSlider {
 
     static VBox sizeElement;
 
-    static final String sizeUrl = "images/size-icon.png";
+    static final String sizeUrl = "Images/size-icon.png";
 
     public SizeSlider(int[] stagedims){
         //Size

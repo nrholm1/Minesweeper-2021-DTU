@@ -14,9 +14,9 @@ public class Tile {
 
     private Rectangle tile;
 
-    private final String tileBasicURL = "images/tile-grass.jpg";
-    private final String tileHoverURL = "images/tile-grass-hover.jpg";
-    private final String tileClickedURL = "images/tile-dirt.jpg";
+    private final String tileBasicURL = "Images/tile-grass.jpg";
+    private final String tileHoverURL = "Images/tile-grass-hover.jpg";
+    private final String tileClickedURL = "Images/tile-dirt.jpg";
 
     private String value;
     private boolean clicked;

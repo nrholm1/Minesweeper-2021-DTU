@@ -11,7 +11,7 @@ public class PregameMenu {
     static Scene scene;
     static VBox menu;
 
-    static final String titleURL = "images/premenu-title.png";
+    static final String titleURL = "Images/premenu-title.png";
 
     public PregameMenu(int[] stagedims){
         menu = new VBox((double) stagedims[1]/20);

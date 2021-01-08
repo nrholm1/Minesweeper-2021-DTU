@@ -7,7 +7,7 @@ import sample.Main;
 
 public class StartButton {
 
-    static final String startUrl = "images/premenu-start-game.png";
+    static final String startUrl = "Images/premenu-start-game.png";
     static Rectangle startbutton;
 
     public StartButton() {

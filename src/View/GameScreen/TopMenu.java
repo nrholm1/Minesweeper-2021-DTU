@@ -15,9 +15,9 @@ public class TopMenu<calcTimeString> {
 
     private HBox top;
 
-    static final String titleURL = "images/title.png";
-    static final String newGameURL = "images/new-game.png";
-    static final String newGameHoverURL = "images/new-game-hover.png";
+    static final String titleURL = "Images/title.png";
+    static final String newGameURL = "Images/new-game.png";
+    static final String newGameHoverURL = "Images/new-game-hover.png";
 
     public TopMenu(int stagewidth, Stage stage, Scene scene) {
         top = new HBox(stagewidth/8);
