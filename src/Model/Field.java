@@ -1,30 +1,35 @@
 package Model;
 
 public class Field {
-    private State state;
-    private boolean isMine;
+    private boolean mine;
+    private boolean flagged;
+    private boolean clicked;
+
     private int adjacentMines;
 
-    public Field() {
-        this.state = State.UNFLAGGED;
-        this.isMine = false;
-        this.adjacentMines = 0;
+    private int x;
+    private int y;
+
+    public Field(int x, int y) {
+        this.clicked = false;
+        this.flagged = false;
+        this.mine = false;
     }
 
-    public State getState() {
-        return this.state;
-    }
-
-    public void setState(State _state) {
-        this.state = _state;
+    public boolean isFlagged() {
+        return flagged;
     }
 
     public boolean isMine() {
-        return this.isMine;
+        return mine;
+    }
+
+    public boolean isClicked() {
+        return clicked;
     }
 
     public void toggleIsMine() {
-        this.isMine = !this.isMine;
+        this.mine = !this.mine;
     }
 
     public int getAdjacentMines() {
@@ -39,9 +44,11 @@ public class Field {
         this.adjacentMines++;
     }
 
-    public enum State {
-        FLAGGED,
-        UNFLAGGED,
-        PRESSED
+    public void click() {
+        if(!flagged) clicked = true;
+    }
+
+    public void flag() {
+        if(!clicked) flagged = !flagged;
     }
 }
