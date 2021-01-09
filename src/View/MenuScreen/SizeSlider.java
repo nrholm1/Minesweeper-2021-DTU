@@ -9,21 +9,19 @@ import javafx.scene.text.Text;
 
 public class SizeSlider extends VBox{
 
-    static VBox sizeElement;
-
-    static final String sizeUrl = "Images/size-icon.png";
+    private final String sizeUrl = "Images/size-icon.png";
+    private Slider sizeSlider;
 
     public SizeSlider(int width){
         super(12);
 
         //Size
-        Slider sizeSlider = new Slider();
+        sizeSlider = new Slider();
         sizeSlider.setMin(10);
         sizeSlider.setMax(50);
         sizeSlider.setMaxWidth(width/4);
 
         sizeSlider.setValue(30);
-        //Main.setGamesize(30);
 
         String initialText = "Size: " + sizeSlider.getValue();
         Text sizeValueText = new Text(initialText.substring(0,initialText.length() -2));
@@ -33,11 +31,14 @@ public class SizeSlider extends VBox{
 
         sizeSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             sizeValueText.setText("Size: " + newValue.intValue());
-            //Main.setGamesize(newValue.intValue());
         });
 
         super.setAlignment(Pos.CENTER);
         super.getChildren().addAll(sizeValueText, sizeSlider);
 
+    }
+
+    public int getSize() {
+        return (int)sizeSlider.getValue();
     }
 }

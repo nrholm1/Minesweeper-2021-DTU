@@ -6,18 +6,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
-public class HexagonalBoard {
-    private int size = 4;
-
+public class HexagonalBoard extends HBox{
     private double sideLength;
 
-    static private HBox board;
-
-    public HexagonalBoard(int stagewidth, int inset){
-
-        board = new HBox();
-        board.setPadding(new Insets(inset,inset,inset,inset));
-        board.setAlignment(Pos.CENTER);
+    public HexagonalBoard(int stagewidth, int inset, int size){
+        super();
+        super.setPadding(new Insets(inset,inset,inset,inset));
+        super.setAlignment(Pos.CENTER);
 
         sideLength = (stagewidth/1.5 - 2*inset)/(4*size + 2);
 
@@ -36,19 +31,14 @@ public class HexagonalBoard {
             //Dette for-loop skaber HexTilesne
             for(int row = 0; row<=2*size-Math.abs(col); row++ ){
                 //Skaber ny hextile og tilfoejer dens visual til kolonnen
-                //sample.GameScreen.HexTile currTile = new sample.GameScreen.HexTile(sideLength, new int[]{col + size, row});
-                //currCol.getChildren().add(currTile.visual());
+                HexTile currTile = new HexTile(col + size, row, sideLength);
+                currCol.getChildren().add(currTile);
             }
 
             //Hver gang en kolonne er skabt blir den tilfoejet til raekkerne
             verticalAxis.getChildren().add(currCol);
         }
 
-        board.getChildren().add(verticalAxis);
-
-    }
-
-    public HBox visual(){
-        return board;
+        super.getChildren().add(verticalAxis);
     }
 }

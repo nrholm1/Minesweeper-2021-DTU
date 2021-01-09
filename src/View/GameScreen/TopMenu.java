@@ -8,18 +8,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
-public class TopMenu<calcTimeString> {
-
-    private HBox top;
+public class TopMenu<calcTimeString> extends HBox{
 
     static final String titleURL = "Images/title.png";
     static final String newGameURL = "Images/new-game.png";
     static final String newGameHoverURL = "Images/new-game-hover.png";
 
-    public TopMenu(int stagewidth, Stage stage, Scene scene) {
-        top = new HBox(stagewidth/8);
+    public TopMenu(int stagewidth) {
+        super(stagewidth/8);
+
         ImageView title = new ImageView();
         title.setImage(new Image(titleURL));
         title.setFitWidth(256);
@@ -37,11 +35,7 @@ public class TopMenu<calcTimeString> {
         StackPane filler2 = new StackPane();
         filler2.getChildren().add(title);
 
-        top.setAlignment(Pos.CENTER);
-        //top.getChildren().addAll(filler1, filler2, new sample.GameScreen.TimeCounter().visual());
-    }
-
-    public HBox visual(){
-        return top;
+        super.setAlignment(Pos.CENTER);
+        super.getChildren().addAll(filler1, filler2, new TimeCounter());
     }
 }

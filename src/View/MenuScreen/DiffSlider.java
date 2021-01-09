@@ -9,20 +9,18 @@ import javafx.scene.text.Text;
 
 public class DiffSlider extends VBox{
 
-    static VBox diffElement;
-
     static final String diffUrl = "Images/diff-icon.png";
+    private Slider diffSlider;
 
     public DiffSlider(int width){
         super(12);
         //Difficulty
-        Slider diffSlider = new Slider();
+        diffSlider = new Slider();
         diffSlider.setMin(0);
         diffSlider.setMax(10);
         diffSlider.setMaxWidth(width/4);
 
         diffSlider.setValue(5);
-        //Main.setDifficulty(5);
 
         String initialText = "Difficulty: " + diffSlider.getValue();
         Text diffValueText = new Text(initialText.substring(0,initialText.length() -2));
@@ -32,11 +30,14 @@ public class DiffSlider extends VBox{
 
         diffSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             diffValueText.setText("Difficulty: " + newValue.intValue());
-            //Main.setDifficulty(newValue.intValue());
         });
 
         super.setAlignment(Pos.CENTER);
         super.getChildren().addAll(diffValueText, diffSlider);
+    }
+
+    public int getDifficulty() {
+        return (int)diffSlider.getValue();
     }
 
 }

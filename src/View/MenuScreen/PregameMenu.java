@@ -1,5 +1,7 @@
 package View.MenuScreen;
 
+import Controller.GameController;
+import View.GameScreen.Game;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -36,6 +38,18 @@ public class PregameMenu extends Scene{
 
         super.setRoot(menu);
         super.getStylesheets().add(this.getClass().getResource("./MenuStyles.css").toExternalForm());
+    }
+
+    public int getSize() {
+        return sizeSlider.getSize();
+    }
+
+    public int getDifficulty() {
+        return  diffSlider.getDifficulty();
+    }
+
+    public void setController(GameController controller) {
+        startButton.setController(controller);
     }
 
 }

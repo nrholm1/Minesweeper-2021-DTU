@@ -10,9 +10,7 @@ import javafx.scene.text.Text;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TimeCounter {
-
-    private HBox counter;
+public class TimeCounter extends HBox{
 
     private Timer timer;
     private int timeElapsed = 0;
@@ -21,8 +19,8 @@ public class TimeCounter {
 
     public TimeCounter(){
         //Setup timer for top
-        counter = new HBox();
-        counter.setAlignment(Pos.CENTER);
+        super();
+        super.setAlignment(Pos.CENTER);
 
         ImageView timePic = new ImageView(new Image(timeUrl));
         timePic.setFitWidth(60);
@@ -42,9 +40,10 @@ public class TimeCounter {
         };
         timer.scheduleAtFixedRate(task, 1000l, 1000l);
 
-        counter.getChildren().addAll(timePic, counterText);
+        super.getChildren().addAll(timePic, counterText);
     }
-    public String calcTimeString(int time) {
+
+    private String calcTimeString(int time) {
         String stringTime = "";
         int secs = time;
         int mins = 0;
@@ -61,9 +60,5 @@ public class TimeCounter {
         stringTime += secs >= 10 ? secs : "0" + secs;
 
         return stringTime;
-    }
-
-    public HBox visual(){
-        return counter;
     }
 }
