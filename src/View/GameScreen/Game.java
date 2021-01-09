@@ -13,7 +13,6 @@ public class Game extends Scene {
     gameView.setTop(new TopMenu(width));
     gameView.setCenter(new HexagonalBoard(width, inset, size));
 
-
     super.setRoot(gameView);
   }
 }

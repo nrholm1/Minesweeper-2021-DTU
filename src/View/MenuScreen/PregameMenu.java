@@ -16,10 +16,14 @@ public class PregameMenu extends Scene{
     private SizeSlider sizeSlider;
     private DiffSlider diffSlider;
     private StartButton startButton;
+    private int width;
+    private int height;
 
 
     public PregameMenu(int width, int height){
         super(new VBox(), width, height);
+        this.width = width;
+        this.height = height;
 
         menu = new VBox((double) height/20);
         menu.setAlignment(Pos.CENTER);
@@ -41,11 +45,11 @@ public class PregameMenu extends Scene{
     }
 
     public int getSize() {
-        return sizeSlider.getSize();
+        return (int)((sizeSlider.getSize() - 10)*2.5/100*12 + 3);
     }
 
     public int getDifficulty() {
-        return  diffSlider.getDifficulty();
+        return diffSlider.getDifficulty();
     }
 
     public void setController(GameController controller) {

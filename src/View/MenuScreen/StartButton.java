@@ -13,11 +13,6 @@ public class StartButton extends Rectangle{
         super(200, 50);
         super.setFill(new ImagePattern(new Image(startUrl)));
         super.setId("pixelbutton");
-
-        super.setOnMouseClicked(e -> {
-            //Main.collectGameScene();
-            //Main.goToScene("game");
-        });
     }
 
     public void setController(GameController controller) {
