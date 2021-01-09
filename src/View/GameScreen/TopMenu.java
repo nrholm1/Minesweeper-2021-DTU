@@ -9,7 +9,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import sample.Main;
 
 public class TopMenu<calcTimeString> {
 
@@ -30,7 +29,7 @@ public class TopMenu<calcTimeString> {
         newgame.setFill(new ImagePattern(new Image(newGameURL)));
         newgame.setOnMouseEntered(e -> {newgame.setFill(new ImagePattern(new Image(newGameHoverURL)));});
         newgame.setOnMouseExited(e -> newgame.setFill(new ImagePattern(new Image(newGameURL))));
-        newgame.setOnMouseClicked(e -> Main.goToScene("pre"));
+        //newgame.setOnMouseClicked(e -> Main.goToScene("pre"));
 
         StackPane filler1 = new StackPane();
         filler1.getChildren().add(newgame);
@@ -39,7 +38,7 @@ public class TopMenu<calcTimeString> {
         filler2.getChildren().add(title);
 
         top.setAlignment(Pos.CENTER);
-        top.getChildren().addAll(filler1, filler2, new sample.GameScreen.TimeCounter().visual());
+        //top.getChildren().addAll(filler1, filler2, new sample.GameScreen.TimeCounter().visual());
     }
 
     public HBox visual(){

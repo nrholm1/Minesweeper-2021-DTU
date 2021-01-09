@@ -6,41 +6,37 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import sample.Main;
 
-public class DiffSlider {
+public class DiffSlider extends VBox{
 
     static VBox diffElement;
 
     static final String diffUrl = "Images/diff-icon.png";
 
-    public DiffSlider(int[] stagedims){
+    public DiffSlider(int width){
+        super(12);
         //Difficulty
         Slider diffSlider = new Slider();
         diffSlider.setMin(0);
         diffSlider.setMax(10);
-        diffSlider.setMaxWidth(stagedims[0]/4);
+        diffSlider.setMaxWidth(width/4);
 
         diffSlider.setValue(5);
-        Main.setDifficulty(5);
+        //Main.setDifficulty(5);
 
         String initialText = "Difficulty: " + diffSlider.getValue();
         Text diffValueText = new Text(initialText.substring(0,initialText.length() -2));
-        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
+        Font pixelfont = Font.loadFont(this.getClass().getResource("PressStart2P-Regular.ttf").toExternalForm(), 16);
         diffValueText.setFont(pixelfont);
         diffValueText.setFill(Color.WHITE);
 
         diffSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             diffValueText.setText("Difficulty: " + newValue.intValue());
-            Main.setDifficulty(newValue.intValue());
+            //Main.setDifficulty(newValue.intValue());
         });
 
-        diffElement = new VBox(12);
-        diffElement.setAlignment(Pos.CENTER);
-        diffElement.getChildren().addAll(diffValueText, diffSlider);
+        super.setAlignment(Pos.CENTER);
+        super.getChildren().addAll(diffValueText, diffSlider);
     }
 
-    public VBox visual(){
-        return diffElement;
-    }
 }

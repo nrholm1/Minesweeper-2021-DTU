@@ -36,8 +36,8 @@ public class HexagonalBoard {
             //Dette for-loop skaber HexTilesne
             for(int row = 0; row<=2*size-Math.abs(col); row++ ){
                 //Skaber ny hextile og tilfoejer dens visual til kolonnen
-                sample.GameScreen.HexTile currTile = new sample.GameScreen.HexTile(sideLength, new int[]{col + size, row});
-                currCol.getChildren().add(currTile.visual());
+                //sample.GameScreen.HexTile currTile = new sample.GameScreen.HexTile(sideLength, new int[]{col + size, row});
+                //currCol.getChildren().add(currTile.visual());
             }
 
             //Hver gang en kolonne er skabt blir den tilfoejet til raekkerne

@@ -8,12 +8,17 @@ import javafx.scene.layout.VBox;
 
 public class PregameMenu extends Scene{
 
-    static Scene scene;
-    static VBox menu;
+    private VBox menu;
 
-    static final String titleURL = "Images/premenu-title.png";
+    private final String titleURL = "Images/premenu-title.png";
+    private SizeSlider sizeSlider;
+    private DiffSlider diffSlider;
+    private StartButton startButton;
+
 
     public PregameMenu(int width, int height){
+        super(new VBox(), width, height);
+
         menu = new VBox((double) height/20);
         menu.setAlignment(Pos.CENTER);
         menu.setId("menu");
@@ -23,13 +28,14 @@ public class PregameMenu extends Scene{
         title.setFitWidth(600);
         title.setFitHeight(80);
 
-        menu.getChildren().addAll(title, new SizeSlider(stagedims).visual(), new DiffSlider(stagedims).visual(), new StartButton().visual());
-        scene = new Scene(menu, width, height);
-        scene.getStylesheets().add(this.getClass().getResource("./MenuStyles.css").toExternalForm());
-    }
+        sizeSlider = new SizeSlider(width);
+        diffSlider = new DiffSlider(width);
+        startButton = new StartButton();
 
-    public Scene getScene() {
-        return scene;
+        menu.getChildren().addAll(title, sizeSlider, diffSlider, startButton);
+
+        super.setRoot(menu);
+        super.getStylesheets().add(this.getClass().getResource("./MenuStyles.css").toExternalForm());
     }
 
 }

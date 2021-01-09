@@ -3,25 +3,20 @@ package View.MenuScreen;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import sample.Main;
 
-public class StartButton {
+public class StartButton extends Rectangle{
 
     static final String startUrl = "Images/premenu-start-game.png";
-    static Rectangle startbutton;
 
     public StartButton() {
-        startbutton = new Rectangle(200, 50);
-        startbutton.setFill(new ImagePattern(new Image(startUrl)));
-        startbutton.setId("pixelbutton");
+        super(200, 50);
+        super.setFill(new ImagePattern(new Image(startUrl)));
+        super.setId("pixelbutton");
 
-        startbutton.setOnMouseClicked(e -> {
-            Main.collectGameScene();
-            Main.goToScene("game");
+        super.setOnMouseClicked(e -> {
+            //Main.collectGameScene();
+            //Main.goToScene("game");
         });
     }
 
-    public Rectangle visual() {
-        return startbutton;
-    }
 }

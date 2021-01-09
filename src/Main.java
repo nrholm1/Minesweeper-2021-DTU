@@ -14,6 +14,7 @@ public class Main extends Application {
 
         Stage window = primaryStage;
         window.setTitle("MineSwoop");
+        window.setScene(mainMenuScreen);
         window.show();
     }
 

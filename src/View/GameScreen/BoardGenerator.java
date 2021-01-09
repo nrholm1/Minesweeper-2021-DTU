@@ -16,8 +16,8 @@ public class BoardGenerator {
             for(int col=0; col<dims[0]; col++) {
                 for (int row = 0; row < dims[1]; row++) {
                     double tilesize = calculateTilesize(dims, info);
-                    sample.GameScreen.Tile tile = new sample.GameScreen.Tile(new double[]{tilesize, tilesize}, new int[]{col, row}, "1");
-                    tileGrid.getChildren().add(tile.visual());
+                    //sample.GameScreen.Tile tile = new sample.GameScreen.Tile(new double[]{tilesize, tilesize}, new int[]{col, row}, "1");
+                    //tileGrid.getChildren().add(tile.visual());
                 }
             }
         }
