@@ -23,4 +23,12 @@ public class HexTile extends Polygon{
         );
         super.setFill(Color.RED);
     }
+
+    public int getX() {
+        return xpos;
+    }
+
+    public int getY() {
+        return ypos;
+    }
 }

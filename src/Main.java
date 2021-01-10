@@ -1,4 +1,5 @@
 import Controller.GameController;
+import Model.Board;
 import View.GameScreen.Game;
 import View.MenuScreen.PregameMenu;
 import javafx.application.Application;
