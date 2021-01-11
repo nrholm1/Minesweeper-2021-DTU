@@ -1,10 +1,9 @@
 package View.GameScreen;
 
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.util.Timer;
@@ -15,20 +14,15 @@ public class TimeCounter extends HBox{
     private Timer timer;
     private int timeElapsed = 0;
 
-    private static String timeUrl = "Images/counter-icon.png";
-
     public TimeCounter(){
         //Setup timer for top
         super();
         super.setAlignment(Pos.CENTER);
 
-        ImageView timePic = new ImageView(new Image(timeUrl));
-        timePic.setFitWidth(60);
-        timePic.setFitHeight(30);
-
         Text counterText = new Text("00:00");
-        counterText.setStyle("-fx-font-size: 16px;");
-        counterText.setFill(Color.GREEN);
+        Font pixelfont = Font.loadFont(this.getClass().getResource("../MenuScreen/PressStart2P-Regular.ttf").toExternalForm(), 16);
+        counterText.setFont(pixelfont);
+        counterText.setFill(Color.WHITE);
 
         timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -40,7 +34,7 @@ public class TimeCounter extends HBox{
         };
         timer.scheduleAtFixedRate(task, 1000l, 1000l);
 
-        super.getChildren().addAll(timePic, counterText);
+        super.getChildren().addAll(counterText);
     }
 
     private String calcTimeString(int time) {

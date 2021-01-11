@@ -7,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 
 public class StartButton extends Rectangle{
 
-    static final String startUrl = "Images/premenu-start-game.png";
+    static final String startUrl = "Images/pre-start-game.png";
 
     public StartButton() {
         super(200, 50);

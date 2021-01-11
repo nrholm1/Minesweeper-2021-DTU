@@ -4,83 +4,106 @@ import Controller.GameController;
 import Model.Field;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
-public class HexagonalBoard extends HBox{
+public class HexagonalBoard extends StackPane {
     private double sideLength;
-    private HexTile[][] hexTiles;
+    private int inset;
+    private int size;
+    private int diameter;
+
+    private HexTile[][] tileField;
+    static private HBox board;
+    static private VBox boat;
+
+    private final String tileUrl = "Images/hex-tile.png";
 
     public HexagonalBoard(int stagewidth, int inset, int size){
         super();
-        super.setPadding(new Insets(inset,inset,inset,inset));
-        super.setAlignment(Pos.CENTER);
 
-        sideLength = (stagewidth/1.5 - 2*inset)/(4*size + 2);
-        createFieldArray(size + 1);
+        this.inset = inset;
+        this.size = size;
+        this.diameter = 2*size + 1;
+        this.sideLength = (stagewidth/2 - 2*inset)/(4*size + 2);
 
-        HBox verticalAxis = new HBox(0);
+        createNewTileField();
+        createTileFieldVisual();
+        createBoatDecoration();
 
-        for(int col = -size; col<=size; col++){
+        super.getChildren().addAll(boat, board);
+    }
 
-            //Afstanden mellem alle hexagonerne er halvdelen af sidelaengden
+    public void createNewTileField(){
+
+        tileField = new HexTile[diameter][];
+        ImagePattern img = new ImagePattern(new Image(tileUrl));
+
+        for(int col = 0; col < diameter; col++){
+            tileField[col] = new HexTile[diameter - Math.abs(col-size)];
+
+            for(int row =0; row<tileField[col].length; row++){
+                tileField[col][row] = new HexTile(col, row, sideLength, img);
+            }
+        }
+    }
+
+    public void createTileFieldVisual(){
+
+        board = new HBox();
+        board.setPadding(new Insets(inset,inset,inset,inset));
+        board.setAlignment(Pos.CENTER);
+
+        for(int col = 0; col< tileField.length; col++){
+
             VBox currCol = new VBox(sideLength/2);
 
-            //Dette for-loop skaber pladsen der forskyder kolonnerne fra hinanden
-            for(int row = 0; row<Math.abs(col); row++){
+            //Skaber pladsen der forskyder kolonnerne fra hinanden
+            for(int row = 0; row < diameter - tileField[col].length; row++){
                 currCol.getChildren().add(new Rectangle(0,Math.sqrt(3)*sideLength/2 - sideLength/4));
             }
 
-            //Dette for-loop skaber HexTilesne
-            for(int row = 0; row<=2*size-Math.abs(col); row++ ){
-                //Skaber ny hextile og tilfoejer dens visual til kolonnen
-                HexTile currTile = new HexTile(col + size, row, sideLength);
-                hexTiles[col+size][row] = currTile;
-                int m = col+size;
-                int n = row;
-                hexTiles[col+size][row].setOnMouseClicked(e -> {
-                    System.out.println(m + ": " + n );
-                });
-                currCol.getChildren().add(currTile);
+            for(int row = 0; row < tileField[col].length; row++ ){
+                currCol.getChildren().add(tileField[col][row]);
             }
 
-            //Hver gang en kolonne er skabt blir den tilfoejet til raekkerne
-            verticalAxis.getChildren().add(currCol);
+            board.getChildren().add(currCol);
         }
-
-        super.getChildren().add(verticalAxis);
     }
 
-    private void createFieldArray(int height) {
-        int width = 2*height -1;
-        hexTiles = new HexTile[width][];
-        hexTiles[height-1] = new HexTile[width]; // Middle column is created
-        for(int x = 0; x <= height-2; x++) { // Other columns are created
-            hexTiles[x] = new HexTile[height+x];
-            hexTiles[width - 1 - x] = new HexTile[height+x];
-        }
+    public void createBoatDecoration(){
+        boat = new VBox(10);
+        boat.setPadding(new Insets(0,0,0,50));
+        boat.setAlignment(Pos.CENTER_LEFT);
 
-        System.out.println(hexTiles.length);
-        System.out.println("---");
-        for(int i = 0; i < hexTiles.length; i++) {
-            for(int o = 0; o < width-hexTiles[i].length; o++) {
-                System.out.print(" ");
-            }
-            for(int o = 0; o < hexTiles[i].length; o++) {
-                System.out.print("X ");
-            }
-            System.out.println(hexTiles[i].length);
-        }
+        Text boattext = new Text("Help me get through!\nFind all the mines!");
+        Font pixelfont = Font.loadFont(this.getClass().getResource("../MenuScreen/PressStart2P-Regular.ttf").toExternalForm(), 10);
+        boattext.setLineSpacing(5);
+        boattext.setFont(pixelfont);
+        boattext.setFill(Color.WHITE);
+
+        ImageView boatimage = new ImageView(new Image("Images/image_submarine.gif"));
+        boatimage.setFitWidth(160);
+        boatimage.setFitHeight(75);
+
+        boat.getChildren().addAll(boattext, boatimage);
     }
 
     public void setEvents(GameController controller) {
-        for(int i = 0; i < hexTiles.length; i++) {
-            for(int o = 0; o < hexTiles[i].length; o++) {
+        for(int i = 0; i < tileField.length; i++) {
+            for(int o = 0; o < tileField[i].length; o++) {
                 int x = i;
                 int y = o;
-                hexTiles[i][o].setOnMouseClicked(e -> {
-                    controller.clickField(hexTiles[x][y].getX(), hexTiles[x][y].getY());
+                tileField[i][o].setOnMouseClicked(e -> {
+                    controller.clickField(tileField[x][y].getX(), tileField[x][y].getY());
                 });
             }
         }

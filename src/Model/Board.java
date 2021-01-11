@@ -71,7 +71,7 @@ public class Board {
         for(int i = 0; i < fields.length; i++) {
             int tempx = fields[i][0];
             int tempy = fields[i][1];
-            if(tempx >= 0 && tempx < width && tempy >= 0 && tempy < minefield[tempx].length && minefield[tempx][tempy].isMine()) {
+            if(tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && minefield[tempx][tempy].isMine()) {
                 mines++;
             }
         }

@@ -20,7 +20,7 @@
 }
 
 #menu {
-    -fx-background-image: url(../../Images/premenu-back.jpg);
+    -fx-background-image: url(../../Images/pre-back.jpg);
     -fx-background-size: cover;
     -fx-background-position: center center;
 }

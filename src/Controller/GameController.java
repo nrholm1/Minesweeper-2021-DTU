@@ -21,8 +21,8 @@ public class GameController {
   }
 
   public void beginGame() {
-    b = new Board(menu.getSize() + 1, 10);
-    game = new Game((int)menu.getWidth(), 20, menu.getSize());
+    b = new Board(menu.getSize() + 1, 20);
+    game = new Game((int)menu.getWidth(), 30, menu.getSize());
     game.setController(this);
     root.setScene(game);
   }
