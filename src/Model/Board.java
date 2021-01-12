@@ -28,19 +28,6 @@ public class Board {
                 minefield[x][y] = new Field(x, y);
             }
         }
-
-        /*
-        System.out.println(minefield.length);
-        System.out.println("---");
-        for(int i = 0; i < minefield.length; i++) {
-            for(int o = 0; o < width-minefield[i].length; o++) {
-                System.out.print(" ");
-            }
-            for(int o = 0; o < minefield[i].length; o++) {
-                System.out.print("X ");
-            }
-            System.out.println( minefield[i].length);
-        } */
     }
 
 
@@ -63,6 +50,10 @@ public class Board {
                 minefield[x][y].setAdjacentMines(getSideMines(x, y));
             }
         }
+    }
+
+    public void setFieldState(int x, int y, Field.State state) {
+        getField(x,y).setState(state);
     }
 
     private int getSideMines(int x, int y) {
