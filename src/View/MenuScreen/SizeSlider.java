@@ -25,7 +25,7 @@ public class SizeSlider extends VBox{
 
         String initialText = "Size: " + sizeSlider.getValue();
         Text sizeValueText = new Text(initialText.substring(0,initialText.length() -2));
-        Font pixelfont = Font.loadFont(this.getClass().getResource("PressStart2P-Regular.ttf").toExternalForm(), 16);
+        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
         sizeValueText.setFont(pixelfont);
         sizeValueText.setFill(Color.WHITE);
 

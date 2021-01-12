@@ -20,7 +20,7 @@ public class TimeCounter extends HBox{
         super.setAlignment(Pos.CENTER);
 
         Text counterText = new Text("00:00");
-        Font pixelfont = Font.loadFont(this.getClass().getResource("../MenuScreen/PressStart2P-Regular.ttf").toExternalForm(), 16);
+        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
         counterText.setFont(pixelfont);
         counterText.setFill(Color.WHITE);
 

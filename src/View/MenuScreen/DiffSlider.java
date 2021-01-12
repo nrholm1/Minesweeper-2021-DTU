@@ -24,7 +24,7 @@ public class DiffSlider extends VBox{
 
         String initialText = "Difficulty: " + diffSlider.getValue();
         Text diffValueText = new Text(initialText.substring(0,initialText.length() -2));
-        Font pixelfont = Font.loadFont(this.getClass().getResource("PressStart2P-Regular.ttf").toExternalForm(), 16);
+        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
         diffValueText.setFont(pixelfont);
         diffValueText.setFill(Color.WHITE);
 

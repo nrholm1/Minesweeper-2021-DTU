@@ -85,7 +85,7 @@ public class HexagonalBoard extends StackPane {
         boat.setAlignment(Pos.CENTER_LEFT);
 
         Text boattext = new Text("Help me get through!\nFind all the mines!");
-        Font pixelfont = Font.loadFont(this.getClass().getResource("../MenuScreen/PressStart2P-Regular.ttf").toExternalForm(), 10);
+        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 10);
         boattext.setLineSpacing(5);
         boattext.setFont(pixelfont);
         boattext.setFill(Color.WHITE);
