@@ -6,10 +6,13 @@ public class Field {
 
     private int adjacentMines;
 
+    // do we actually use these
     private int x;
     private int y;
 
-    public Field(int x, int y) {
+    public Field(int _x, int _y) {
+        this.x = _x;
+        this.y = _y;
         this.state = State.UNFLAGGED;
         this.isMine = false;
     }
@@ -49,9 +52,10 @@ public class Field {
             this.state = State.PRESSED;
     }
 
-    public void flag() {
+    public void toggleFlag() {
         if (this.state != State.PRESSED)
-            this.state = State.FLAGGED;
+            this.state = this.state == State.UNFLAGGED ?
+                        State.FLAGGED : State.UNFLAGGED;
     }
 
     public enum State {

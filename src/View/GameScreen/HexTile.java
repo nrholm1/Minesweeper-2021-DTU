@@ -1,5 +1,6 @@
 package View.GameScreen;
 
+import Model.Field;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -25,6 +26,28 @@ public class HexTile extends Polygon{
         );
         super.setFill(img);
         super.setId("hextile");
+    }
+
+    public void renderTile(Field.State state) {
+        // UNFLAGGED -> unflagged tile img
+        // FLAGGED -> flagged tile img
+        // PRESSED -> pressed tile img
+
+        switch(state) {
+            case UNFLAGGED:
+                super.setFill(getTileImage("Images/hex-tile.png"));
+                break;
+            case FLAGGED:
+                super.setFill(getTileImage("Images/hex-flag-tile.png"));
+                break;
+            case PRESSED:
+                super.setFill(getTileImage("Images/temp-tile.png"));
+                break;
+        }
+    }
+
+    public ImagePattern getTileImage(String tileUrl) {
+        return new ImagePattern(new Image(tileUrl));
     }
 
     public int getX() {

@@ -30,7 +30,6 @@ public class Board {
         }
     }
 
-
     private void setMines() {
         int curMines = 0;
         while(curMines < this.amountMines) {
@@ -90,6 +89,6 @@ public class Board {
     }
 
     public void flagField(int x, int y)  {
-        minefield[x][y].flag();
+        minefield[x][y].toggleFlag();
     }
 }

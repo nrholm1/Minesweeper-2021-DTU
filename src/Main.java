@@ -15,10 +15,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        PregameMenu mainMenuScreen = new PregameMenu(stageWidth, stageHeight);
+        primaryStage.setTitle("MineSwoop");
 
-        Stage window = primaryStage;
-        window.setTitle("MineSwoop");
+        PregameMenu mainMenuScreen = new PregameMenu(stageWidth, stageHeight);
 
         GameController controller = new GameController(primaryStage, mainMenuScreen);
     }
