@@ -2,9 +2,9 @@ package Model;
 
 public class Board {
     private Field[][] minefield;
-    private int amountMines;
-    private int height; // Height is height of first column
-    private int width; // width is width of entire hexagon
+    private final int amountMines;
+    private final int height; // Height is height of first column
+    private final int width; // width is width of entire hexagon
 
     public Board(int height, int _amountMines) {
         this.amountMines = _amountMines;
@@ -59,10 +59,10 @@ public class Board {
     private int getSideMines(int x, int y) {
         int mines = 0;
         int[][] fields = {/*{x-1, y-1},*/ {x-1, y}, {x-1, y+1}, {x, y-1}, {x, y+1}, {x+1, y-1}, {x+1, y}/*, {x+1, y+1}*/};
-        for(int i = 0; i < fields.length; i++) {
-            int tempx = fields[i][0];
-            int tempy = fields[i][1];
-            if(tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && minefield[tempx][tempy].isMine()) {
+        for (int[] field : fields) {
+            int tempx = field[0];
+            int tempy = field[1];
+            if (tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && minefield[tempx][tempy].isMine()) {
                 mines++;
             }
         }
@@ -85,13 +85,11 @@ public class Board {
         return height;
     }
 
-    public void clickField(int x, int y) {
-        minefield[x][y].click();
-        //MainController.updateField(x, y);
+    public void pressField(int x, int y) {
+        minefield[x][y].press();
     }
 
     public void flagField(int x, int y)  {
         minefield[x][y].flag();
-        //MainController.updateField(x, y);
     }
 }
