@@ -55,13 +55,20 @@ public class Board {
         getField(x,y).setState(state);
     }
 
-    private int getSideMines(int x, int y) {
+    public int getAdjacentMines(int col, int row){
         int mines = 0;
-        int[][] fields = {/*{x-1, y-1},*/ {x-1, y}, {x-1, y+1}, {x, y-1}, {x, y+1}, {x+1, y-1}, {x+1, y}/*, {x+1, y+1}*/};
-        for (int[] field : fields) {
-            int tempx = field[0];
-            int tempy = field[1];
-            if (tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && minefield[tempx][tempy].isMine()) {
+        int[][] fields = {
+                {col, row-1},
+                {col+1, row},
+                {col, row+1},
+                {col-1, row},
+                {col-1, col > 5 ? row+1 : row-1},
+                {col+1, col < 5 ? row-1 : row+1}
+        };
+        for(int i = 0; i < fields.length; i++) {
+            int tempx = fields[i][0];
+            int tempy = fields[i][1];
+            if(tempx >= 0 && tempx < diameter && tempy >= 0 && tempy < tileField[tempx].length && tileField[tempx][tempy].isMine()) {
                 mines++;
             }
         }
