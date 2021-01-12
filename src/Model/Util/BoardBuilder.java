@@ -8,7 +8,7 @@ public class BoardBuilder {
     int colLength;
 
     public Board build() {
-        return new Board(this.amountMines, this.rowLength, this.colLength);
+        return new Board(this.rowLength, this.amountMines);
     }
 
     public BoardBuilder withAmountMines(int _amountMines) {

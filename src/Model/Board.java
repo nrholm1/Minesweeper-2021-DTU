@@ -2,31 +2,14 @@ package Model;
 
 public class Board {
     private Field[][] minefield;
-    private final int amountMines;
-    private final int rowLength;
-    private final int colLength;
+    private int amountMines;
+    private int height; // Height is height of first column
+    private int width; // width is width of entire hexagon
 
-
-    public Field getField(int r, int c) {
-        return minefield[r][c];
-    }
-
-    public void setFieldState(int r, int c, Field.State state) {
-        getField(r,c).setState(state);
-    }
-
-    public int getRowLength() {
-        return rowLength;
-    }
-
-    public int getColLength() {
-        return colLength;
-    }
-
-    public Board(int _amountMines, int _rowLength, int _colLength) {
+    public Board(int height, int _amountMines) {
         this.amountMines = _amountMines;
-        this.rowLength = _rowLength;
-        this.colLength = _colLength;
+        this.height = height;
+        this.width = 2*height -1;
 
         makeMinefieldWithDimensions();
         setMines();
@@ -34,49 +17,81 @@ public class Board {
     }
 
     public void makeMinefieldWithDimensions() {
-        minefield = new Field[this.colLength][this.rowLength];
-
-        for(int row = 0; row < minefield.length; row++)
-            for(int col = 0; col < minefield[row].length; col++)
-                minefield[row][col] = new Field();
-
+        minefield = new Field[width][];
+        minefield[height-1] = new Field[width]; // Middle column is created
+        for(int x = 0; x <= height-2; x++) { // Other columns are created
+            minefield[x] = new Field[height+x];
+            minefield[width - 1 - x] = new Field[height+x];
+        }
+        for(int x = 0; x < minefield.length; x++) { // Initiate each field
+            for(int y = 0; y < minefield[x].length; y++) {
+                minefield[x][y] = new Field(x, y);
+            }
+        }
     }
 
 
     private void setMines() {
         int curMines = 0;
         while(curMines < this.amountMines) {
-            int r = (int)(Math.random() * rowLength);
-            int c = (int)(Math.random() * colLength);
+            int x = (int)(Math.random() * width);
+            int y = (int)(Math.random() * minefield[x].length);
 
-            if (!minefield[r][c].isMine()) {
-                minefield[r][c].toggleIsMine();
+            if (!minefield[x][y].isMine()) {
+                minefield[x][y].toggleIsMine();
                 curMines++;
             }
         }
     }
 
     private void setAdjacentMineCounters() {
-        for(int c = 0; c < this.colLength; c++)
-            for(int r = 0; r < this.rowLength; r++)
-                if (minefield[c][r].isMine())
-                    incrementAdjacentFieldsAdjacentMineCounter(c, r);
-    }
-
-    private void incrementAdjacentFieldsAdjacentMineCounter(int col, int row) {
-        for(int c = -1; c <= 1; c++)
-            for(int r = -1; r <= 1; r++)
-                if (col + c >= 0 && col + c < this.colLength &&
-                        row + r >= 0 && row + r < this.rowLength &&
-                        (c != 0 || r != 0))
-                    minefield[col + c][row + r].incrementAdjacentMines();
-    }
-
-    public void printMinefield() {
-        for(Field[] row : this.minefield) {
-            for(Field i : row)
-                System.out.print(i + " ");
-            System.out.println();
+        for(int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                minefield[x][y].setAdjacentMines(getSideMines(x, y));
+            }
         }
+    }
+
+    public void setFieldState(int x, int y, Field.State state) {
+        getField(x,y).setState(state);
+    }
+
+    private int getSideMines(int x, int y) {
+        int mines = 0;
+        int[][] fields = {/*{x-1, y-1},*/ {x-1, y}, {x-1, y+1}, {x, y-1}, {x, y+1}, {x+1, y-1}, {x+1, y}/*, {x+1, y+1}*/};
+        for(int i = 0; i < fields.length; i++) {
+            int tempx = fields[i][0];
+            int tempy = fields[i][1];
+            if(tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && minefield[tempx][tempy].isMine()) {
+                mines++;
+            }
+        }
+        return mines;
+    }
+
+    public Field[][] getBoard() {
+        return minefield;
+    }
+
+    public Field getField(int x, int y) {
+        return minefield[x][y];
+    }
+
+    public int getBoardWidth() {
+        return width;
+    }
+
+    public int getBoardHeight() {
+        return height;
+    }
+
+    public void clickField(int x, int y) {
+        minefield[x][y].click();
+        //MainController.updateField(x, y);
+    }
+
+    public void flagField(int x, int y)  {
+        minefield[x][y].flag();
+        //MainController.updateField(x, y);
     }
 }

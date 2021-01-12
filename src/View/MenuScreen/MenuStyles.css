@@ -1,0 +1,33 @@
+
+.slider .thumb{
+    -fx-background-image: url(../../Images/knob-icon.png);
+}
+.slider .thumb:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+    -fx-cursor: hand;
+}
+
+.slider .track{
+    -fx-background: white;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(65,160,65);
+}
+
+#menu {
+    -fx-background-image: url(../../Images/pre-back.jpg);
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+#pixelbutton:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-scale-z: 1.05;
+    -fx-cursor: hand;
+}
