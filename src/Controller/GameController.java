@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Board;
 import Model.Field;
+import Model.Util.BoardBuilder;
 import View.GameScreen.Game;
 import View.GameScreen.HexTile;
 import View.GameScreen.HexagonalBoard;
@@ -27,7 +28,9 @@ public class GameController {
   }
 
   public void beginGame() {
-    board = new Board(menu.getSize() + 1, 20);
+    board = new BoardBuilder().withAmountMines(20)
+                              .withSideLength(menu.getSize() + 1)
+                              .build();
     game = new Game((int)menu.getWidth(), 30, menu.getSize());
     game.setController(this);
     root.setScene(game);
@@ -38,14 +41,13 @@ public class GameController {
   }
 
   public void pressField(int x, int y) {
-    Field field = board.getField(x, y);
-    field.press();
-    System.out.println(field.isMine() + " : " + field.getAdjacentMines());
+    board.pressField(x,y);
+    System.out.println(board.getField(x,y));
   }
 
   public void flagField(int x, int y) {
-    Field field = board.getField(x, y);
-    field.toggleFlag();
+    board.flagField(x,y);
+    System.out.println(board.getField(x,y));
   }
 
   public void updateTile(int x, int y) {

@@ -4,36 +4,24 @@ import Model.Board;
 
 public class BoardBuilder {
     int amountMines;
-    int rowLength;
-    int colLength;
+    int sideLength;
 
     public Board build() {
-        return new Board(this.rowLength, this.amountMines);
+        return new Board(this.sideLength, this.amountMines);
     }
 
     public BoardBuilder withAmountMines(int _amountMines) {
-        if (_amountMines > 1 || _amountMines < 0)
-            throw new IllegalArgumentException("Value outside of valid range (0 - 1)");
+        if (_amountMines < 0)
+            throw new IllegalArgumentException("Amount of mines must be greater than or equal to 0");
         this.amountMines = _amountMines;
 
         return this;
     }
 
-    public BoardBuilder withDimensions(int _rowLength, int _colLength) {
-        this.rowLength = _rowLength;
-        this.colLength = _colLength;
-
-        return this;
-    }
-
-    public BoardBuilder withRowLength(int _rowLength) {
-        this.rowLength = _rowLength;
-
-        return this;
-    }
-
-    public BoardBuilder withColLength(int _colLength) {
-        this.colLength = _colLength;
+    public BoardBuilder withSideLength(int _sideLength) {
+        if (_sideLength >= 5)
+            this.sideLength = _sideLength;
+        else throw new IllegalArgumentException("Side length must be greater than or equal to 5");
 
         return this;
     }

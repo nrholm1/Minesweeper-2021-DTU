@@ -28,7 +28,7 @@ public class HexagonalBoard extends StackPane {
 
     private final String tileUrl = "Images/hex-tile.png";
 
-    public HexagonalBoard(int stageWidth, int inset, int size){
+    public HexagonalBoard(int stageWidth, int inset, int size) {
         super();
 
         this.inset = inset;

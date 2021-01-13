@@ -6,9 +6,8 @@ public class Field {
 
     private int adjacentMines;
 
-    // do we actually use these
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public Field(int _x, int _y) {
         this.x = _x;
@@ -56,6 +55,10 @@ public class Field {
         if (this.state != State.PRESSED)
             this.state = this.state == State.UNFLAGGED ?
                         State.FLAGGED : State.UNFLAGGED;
+    }
+
+    public String toString() {
+        return "(" + x + ", " + y + ") " + state;
     }
 
     public enum State {
