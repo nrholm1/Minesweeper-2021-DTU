@@ -1,5 +1,6 @@
 package View.SinglePlayerMenu;
 
+import Controller.MainMenuController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,6 +12,8 @@ import View.Components.PixelButton;
 import View.Components.PixelSlider;
 
 public class SingleplayerMenuView extends Scene{
+    MainMenuController controller;
+
     static VBox menu;
     static VBox back;
     static StackPane whole;
@@ -18,6 +21,10 @@ public class SingleplayerMenuView extends Scene{
     static final String titleURL = "images/premenu-title.png";
     static final String backUrl = "images/back-icon.png";
     static final String startUrl = "images/pre-start-game.png";
+
+    PixelSlider size;
+    PixelSlider difficulty;
+    PixelButton startButton;
 
     public SingleplayerMenuView(int[] stageDims){
         super(new VBox(), stageDims[0], stageDims[1]);
@@ -32,11 +39,19 @@ public class SingleplayerMenuView extends Scene{
         title.setFitWidth(stageDims[0]/2.0);
         title.setFitHeight(stageDims[0]/15.0);
 
+        size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
+        difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
+        startButton = new PixelButton(startUrl, stageDims[0]/4, stageDims[0]/16);
+
+        startButton.setOnMouseClicked(e -> {
+            controller.beginSingleplayerGame();
+        });
+
         menu.getChildren()
                 .addAll(title,
-                        new PixelSlider(stageDims, new int[]{4,8,12}, "Size"),
-                        new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty"),
-                        new PixelButton(startUrl, stageDims[0]/4, stageDims[0]/16));
+                        size,
+                        difficulty,
+                        startButton);
 
 
         back = new VBox();
@@ -46,7 +61,9 @@ public class SingleplayerMenuView extends Scene{
         PixelButton backbutton = new PixelButton(backUrl,
                 stageDims[0]/10,
                 stageDims[0]/30);
-
+        backbutton.setOnMouseClicked(e -> {
+            controller.gotoMainMenu();
+        });
         back.getChildren().add(backbutton);
 
         whole = new StackPane();
@@ -58,5 +75,9 @@ public class SingleplayerMenuView extends Scene{
                 .add(this.getClass()
                       .getResource("./SingleStyles.css")
                       .toExternalForm());
+    }
+
+    public void setController(MainMenuController mainMenuController) {
+        this.controller = mainMenuController;
     }
 }

@@ -1,5 +1,6 @@
 package View.MultiPlayerMenu;
 
+import Controller.MainMenuController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,7 +15,8 @@ import javafx.scene.text.Text;
 import View.Components.PixelButton;
 import View.Components.PixelSlider;
 
-public class MultiPlayerMenu extends Scene {
+public class MultiPlayerMenuView extends Scene {
+    MainMenuController controller;
 
     static VBox menu;
     static VBox back;
@@ -24,7 +26,7 @@ public class MultiPlayerMenu extends Scene {
     static final String backUrl = "images/back-icon.png";
     static final String startUrl = "images/pre-start-game.png";
 
-    public MultiPlayerMenu(int[] stagedims){
+    public MultiPlayerMenuView(int[] stagedims){
         super(new StackPane(), stagedims[0], stagedims[1]);
 
         menu = new VBox((double) stagedims[1]/20);
@@ -64,6 +66,9 @@ public class MultiPlayerMenu extends Scene {
         back.setPadding(new Insets(inset,inset,inset,inset));
 
         PixelButton backbutton = new PixelButton(backUrl, stagedims[0]/10, stagedims[0]/30);
+        backbutton.setOnMouseClicked(e -> {
+            controller.gotoMainMenu();
+        });
         back.getChildren().add(backbutton);
 
         whole = new StackPane();
@@ -72,5 +77,9 @@ public class MultiPlayerMenu extends Scene {
 
         super.setRoot(whole);
         super.getStylesheets().add(this.getClass().getResource("./MultiStyles.css").toExternalForm());
+    }
+
+    public void setController(MainMenuController controller) {
+        this.controller = controller;
     }
 }

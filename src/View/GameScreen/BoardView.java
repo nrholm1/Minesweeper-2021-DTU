@@ -75,13 +75,11 @@ public class BoardView extends StackPane {
             VBox currCol = new VBox(sideLength / 2);
 
             //Skaber pladsen der forskyder kolonnerne fra hinanden
-            for (int row = 0; row < diameter - hexTiles.length; row++) {
+            for (int row = 0; row < diameter - hexTiles.length; row++)
                 currCol.getChildren().add(new Rectangle(0, Math.sqrt(3) * sideLength / 2 - sideLength / 4));
-            }
 
-            for (HexTile hexTile : hexTiles) {
+            for (HexTile hexTile : hexTiles)
                 currCol.getChildren().add(hexTile);
-            }
 
             board.getChildren().add(currCol);
         }

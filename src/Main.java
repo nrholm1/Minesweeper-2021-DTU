@@ -5,9 +5,14 @@ import Model.Board;
 import Model.Util.BoardBuilder;
 import View.GameScreen.SingleplayerView;
 import View.GameScreen.Util.SingleplayerViewBuilder;
-import View.MenuScreen.MainMenuView;
+import View.MainMenuScreen.MainMenuView2;
+import View.MultiPlayerMenu.MultiPlayerMenuView;
+import View.SinglePlayerMenu.SingleplayerMenuView;
 import javafx.application.Application;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+import java.util.concurrent.ThreadPoolExecutor;
 
 
 // Main class containing startup logic
@@ -19,9 +24,11 @@ public class Main extends Application {
     Board board;
 
     // Views
-    MainMenuView mainMenuView;
+    MainMenuView2 mainMenuView;
     SingleplayerView singleplayerView;
 //    MultiplayerView multiplayerView;
+    SingleplayerMenuView singleplayerMenuView;
+    MultiPlayerMenuView multiplayerMenuView;
 
     // Controllers
     NavigationController navigation;
@@ -33,8 +40,11 @@ public class Main extends Application {
         root.setTitle("MineSwoop");
 
         initializeMainMenuView();
+        initializeSingleplayerMenu();
+        initializeMultiplayerMenu();
         initializeSingleplayerView();
-        // initializeMultiplayerView();
+        System.out.println("bruh");
+        initializeMultiplayerView();
 
         initializeNavigation(root);
 
@@ -54,20 +64,32 @@ public class Main extends Application {
     void initializeMainMenuView() {
         int stageWidth = 1000;
         int stageHeight = 600;
-        mainMenuView = new MainMenuView(stageWidth, stageHeight);
+        mainMenuView = new MainMenuView2(getStageDims());
+    }
+
+    void initializeSingleplayerMenu() {
+        singleplayerMenuView = new SingleplayerMenuView(getStageDims());
+    }
+
+    void initializeMultiplayerMenu() {
+        multiplayerMenuView = new MultiPlayerMenuView(getStageDims());
     }
 
     void initializeSingleplayerView() {
         singleplayerView = new SingleplayerViewBuilder()
                 .withWidth((int)mainMenuView.getWidth())
                 .withInsetSize(30)
-                .withSize(mainMenuView.getSize())
+                .withSize(1)
                 .build();
     }
+
+    void initializeMultiplayerView() {}
 
     void initializeNavigation(Stage root) {
         navigation = new NavigationController(root);
         navigation.setMainMenuView(mainMenuView);
+        navigation.setSpMenuView(singleplayerMenuView);
+        navigation.setMpMenuView(multiplayerMenuView);
         navigation.setSingleplayerView(singleplayerView);
         // navigation.setMultiplayerView(multiplayerView);
     }
@@ -75,7 +97,7 @@ public class Main extends Application {
     void initializeBoard() {
         // temp
         board = new BoardBuilder().withAmountMines(20)
-                .withSideLength(mainMenuView.getSize() + 1)
+                .withSideLength(getStageDims()[0]) // Bruh
                 .build();
         // end temp
     }
@@ -96,11 +118,13 @@ public class Main extends Application {
     void linkControllersToViews() {
         singleplayerView.setController(gameController);
         mainMenuView.setController(mainMenuController);
+        singleplayerMenuView.setController(mainMenuController);
+        multiplayerMenuView.setController(mainMenuController);
     }
 
     private void linkComponents() {
         // temp
-        mainMenuView.configureStartButton();
+//        mainMenuView.configureStartButton();
         // end temp
     }
 
@@ -108,6 +132,21 @@ public class Main extends Application {
     public void stop() {
         // TODO kill all spawned threads
         System.out.println("Stopping Application");
+
+    }
+
+    // TODO refactor to not use int[]
+    int[] getStageDims() {
+        return new int[] {
+            (int) Screen
+                    .getPrimary()
+                    .getVisualBounds()
+                    .getWidth(),
+            (int) Screen
+                    .getPrimary()
+                    .getVisualBounds()
+                    .getHeight() - 35
+        };
     }
 
     public static void main(String[] args) {

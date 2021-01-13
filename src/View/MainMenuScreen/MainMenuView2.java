@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import View.Components.PixelButton;
 
 // new -> Massimo's class
-public class MainMenuView extends Scene {
+public class MainMenuView2 extends Scene {
     MainMenuController controller;
 
     static private VBox menu;
@@ -21,7 +21,7 @@ public class MainMenuView extends Scene {
     private final String singleURL = "Images/pre-single-game.png";
     private final String multiURL = "Images/pre-multi-game.png";
 
-    public MainMenuView(int[] stagedims ){
+    public MainMenuView2(int[] stagedims ){
         super(new StackPane(), stagedims[0], stagedims[1]);
 
         menu = new VBox((double) stagedims[1]/20);
@@ -31,25 +31,25 @@ public class MainMenuView extends Scene {
         title.setFitWidth(stagedims[0]/2.0);
         title.setFitHeight(stagedims[0]/15.0);
 
-        PixelButton singlebutton = new PixelButton(singleURL,
+        PixelButton singleButton = new PixelButton(singleURL,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
-        PixelButton multibutton = new PixelButton(multiURL,
+        PixelButton multiButton = new PixelButton(multiURL,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
-        singlebutton.setOnMouseClicked(e -> {
-            controller.beginSingleplayerGame();
+        singleButton.setOnMouseClicked(e -> {
+            controller.gotoSingleplayerMenu();
         });
-        multibutton.setOnMouseClicked(e -> {
-            controller.beginMultiplayerGame();
+        multiButton.setOnMouseClicked(e -> {
+            controller.gotoMultiplayerMenu();
         });
 
         menu.getChildren()
                 .addAll(title,
-                        singlebutton,
-                        multibutton);
+                        singleButton,
+                        multiButton);
 
         whole = new StackPane();
         whole.setId("menu");

@@ -1,14 +1,19 @@
 package Controller;
 
 import View.GameScreen.SingleplayerView;
+import View.MainMenuScreen.MainMenuView2;
 import View.MenuScreen.MainMenuView;
+import View.MultiPlayerMenu.MultiPlayerMenuView;
+import View.SinglePlayerMenu.SingleplayerMenuView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class NavigationController {
     SingleplayerView spView;
 //    MultiplayerView mpView;
-    MainMenuView mainMenuView;
+    MainMenuView2 mainMenuView;
+    SingleplayerMenuView spMenuView;
+    MultiPlayerMenuView mpMenuView;
 
     Stage root;
 
@@ -19,7 +24,6 @@ public class NavigationController {
     public void changeView(Scene _scene) {
         root.setScene(_scene);
     }
-
 
     public void gotoSingleplayerView() {
         changeView(spView);
@@ -39,21 +43,8 @@ public class NavigationController {
         changeView(spMenuView);
     }
 
-
     public void gotoMultiplayerMenuView() {
-
-    }
-
-    public SingleplayerView getSingleplayerView() {
-        return spView;
-    }
-
-//    public MultiplayerView getMultiplayerView() {
-//        return mpView;
-//    }
-
-    public MainMenuView getMainMenuView() {
-        return mainMenuView;
+        changeView(mpMenuView);
     }
 
     public void setSingleplayerView(SingleplayerView spView) {
@@ -64,7 +55,19 @@ public class NavigationController {
 //        this.mpView = mpView;
 //    }
 
-    public void setMainMenuView(MainMenuView mainMenuView) {
+    public void setSpView(SingleplayerView spView) {
+        this.spView = spView;
+    }
+
+    public void setMpMenuView(MultiPlayerMenuView mpMenuView) {
+        this.mpMenuView = mpMenuView;
+    }
+
+    public void setMainMenuView(MainMenuView2 mainMenuView) {
         this.mainMenuView = mainMenuView;
+    }
+
+    public void setSpMenuView(SingleplayerMenuView singleplayerMenuView) {
+        this.spMenuView = singleplayerMenuView;
     }
 }
