@@ -1,4 +1,4 @@
-package View.MenuScreen_old;
+package View.MenuScreen;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Slider;
@@ -18,7 +18,7 @@ public class DiffSlider extends VBox{
         diffSlider = new Slider();
         diffSlider.setMin(0);
         diffSlider.setMax(10);
-        diffSlider.setMaxWidth(width/4);
+        diffSlider.setMaxWidth(width/4.0);
 
         diffSlider.setValue(5);
 

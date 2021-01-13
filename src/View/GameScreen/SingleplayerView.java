@@ -27,7 +27,7 @@ public class SingleplayerView extends Scene {
     super.setRoot(gameView);
     super.getStylesheets()
          .add(this.getClass()
-                  .getResource("GameStyles.css")
+                  .getResource("./GameStyles.css")
                   .toExternalForm());
   }
 

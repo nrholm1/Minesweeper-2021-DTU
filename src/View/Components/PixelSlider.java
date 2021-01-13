@@ -6,11 +6,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import sample.Main;
 
 public class PixelSlider extends VBox{
-
-
     public PixelSlider(int[] stagedims, int[] vals, String type){
         super(12);
         //Size
@@ -21,9 +18,9 @@ public class PixelSlider extends VBox{
 
         slider.setValue(vals[1]);
         if (type == "Size") {
-            Main.setGamesize(vals[1]);
+            setGameSize(vals[1]);
         } else if(type == "Difficulty"){
-            Main.setDifficulty(vals[1]);
+            setDifficulty(vals[1]);
         }
 
         String initialText = type + ": " + slider.getValue();
@@ -35,14 +32,23 @@ public class PixelSlider extends VBox{
         slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             sliderText.setText("Size: " + newValue.intValue());
             if (type == "Size") {
-                Main.setGamesize(newValue.intValue());
+                setGameSize(newValue.intValue());
             } else if(type == "Difficulty"){
-                Main.setDifficulty(newValue.intValue());
+                setDifficulty(newValue.intValue());
             }
         });
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(sliderText, slider);
 
+    }
+
+
+    private void setDifficulty(int val) {
+        System.out.println("Difficulty set to " + val);
+    }
+
+    void setGameSize(int val) {
+        System.out.println("Game size set to " + val);
     }
 }

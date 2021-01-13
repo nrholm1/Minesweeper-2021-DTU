@@ -7,11 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import sample.Components.PixelButton;
-import sample.Components.PixelSlider;
+import View.Components.PixelButton;
+import View.Components.PixelSlider;
 
-public class SinglePlayerMenu extends Scene{
-
+public class SingleplayerMenuView extends Scene{
     static VBox menu;
     static VBox back;
     static StackPane whole;
@@ -20,27 +19,34 @@ public class SinglePlayerMenu extends Scene{
     static final String backUrl = "images/back-icon.png";
     static final String startUrl = "images/pre-start-game.png";
 
-    public SinglePlayerMenu(int[] stagedims){
-        super(new VBox(), stagedims[0], stagedims[1]);
+    public SingleplayerMenuView(int[] stageDims){
+        super(new VBox(), stageDims[0], stageDims[1]);
 
-        menu = new VBox((double) stagedims[1]/20);
+        menu = new VBox((double) stageDims[1]/20);
         menu.setAlignment(Pos.CENTER);
         menu.setStyle("-fx-background-color: null;");
         menu.setPickOnBounds(false);
 
         //Title
         ImageView title = new ImageView(new Image(titleURL));
-        title.setFitWidth(stagedims[0]/2);
-        title.setFitHeight(stagedims[0]/15);
+        title.setFitWidth(stageDims[0]/2.0);
+        title.setFitHeight(stageDims[0]/15.0);
 
-        menu.getChildren().addAll(title, new PixelSlider(stagedims, new int[]{4,8,12}, "Size"), new PixelSlider(stagedims, new int[]{1,5,10}, "Difficulty"), new PixelButton(startUrl, stagedims[0]/4, stagedims[0]/16, "game"));
+        menu.getChildren()
+                .addAll(title,
+                        new PixelSlider(stageDims, new int[]{4,8,12}, "Size"),
+                        new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty"),
+                        new PixelButton(startUrl, stageDims[0]/4, stageDims[0]/16));
 
 
         back = new VBox();
-        int inset = stagedims[0]/40;
+        int inset = stageDims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));
 
-        PixelButton backbutton = new PixelButton(backUrl, stagedims[0]/10, stagedims[0]/30, "main-menu");
+        PixelButton backbutton = new PixelButton(backUrl,
+                stageDims[0]/10,
+                stageDims[0]/30);
+
         back.getChildren().add(backbutton);
 
         whole = new StackPane();
@@ -48,6 +54,9 @@ public class SinglePlayerMenu extends Scene{
         whole.setId("menu");
 
         super.setRoot(whole);
-        super.getStylesheets().add(this.getClass().getResource("./SingleStyles.css").toExternalForm());
+        super.getStylesheets()
+                .add(this.getClass()
+                      .getResource("./SingleStyles.css")
+                      .toExternalForm());
     }
 }

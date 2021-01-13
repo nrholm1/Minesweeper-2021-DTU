@@ -1,4 +1,4 @@
-package View.MenuScreen_old;
+package View.MenuScreen;
 
 import Controller.GameController;
 import Controller.MainMenuController;
@@ -18,7 +18,7 @@ public class StartButton extends Rectangle{
     public void setController(MainMenuController controller) {
         super.setOnMouseClicked(e -> {
             System.out.println("Start game");
-            controller.beginGame();
+            controller.beginSingleplayerGame();
         });
     }
 

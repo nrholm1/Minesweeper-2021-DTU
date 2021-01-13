@@ -12,7 +12,15 @@ public class MainMenuController {
         navigation = _navigation;
     }
 
-    public void beginGame() {
+    public void gotoSingleplayerMenu() {
+        navigation.gotoSingleplayerMenuView();
+    }
+
+    public void beginSingleplayerGame() {
         navigation.gotoSingleplayerView();
+    }
+
+    public void beginMultiplayerGame() {
+        navigation.gotoMultiplayerView();
     }
 }

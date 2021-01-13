@@ -1,4 +1,4 @@
-package View.MenuScreen_old;
+package View.MenuScreen;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Slider;

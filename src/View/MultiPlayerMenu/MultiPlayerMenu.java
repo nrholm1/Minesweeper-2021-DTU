@@ -11,8 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import sample.Components.PixelButton;
-import sample.Components.PixelSlider;
+import View.Components.PixelButton;
+import View.Components.PixelSlider;
 
 public class MultiPlayerMenu extends Scene {
 
@@ -34,8 +34,8 @@ public class MultiPlayerMenu extends Scene {
 
         //Title
         ImageView title = new ImageView(new Image(titleURL));
-        title.setFitWidth(stagedims[0]/2);
-        title.setFitHeight(stagedims[0]/15);
+        title.setFitWidth(stagedims[0]/2.0);
+        title.setFitHeight(stagedims[0]/15.0);
 
         //Ip-address
         VBox wholeIp = new VBox(12);
@@ -47,20 +47,23 @@ public class MultiPlayerMenu extends Scene {
         ipText.setFill(Color.WHITE);
 
         TextField ipField = new TextField();
-        ipField.setMaxWidth(stagedims[0]/4);
+        ipField.setMaxWidth(stagedims[0]/4.0);
         ipField.setAlignment(Pos.CENTER);
         ipField.setFont(pixelfont);
 
         wholeIp.getChildren().addAll(ipText,ipField);
 
 
-        menu.getChildren().addAll(title, new PixelSlider(stagedims, new int[]{4,8,12}, "Size"), new PixelSlider(stagedims, new int[]{1,5,10}, "Difficulty"), wholeIp, new PixelButton(startUrl, stagedims[0]/5, stagedims[0]/15, "game"));
+        menu.getChildren().addAll(title,
+                new PixelSlider(stagedims, new int[]{4,8,12}, "Size"),
+                new PixelSlider(stagedims, new int[]{1,5,10}, "Difficulty"), wholeIp,
+                new PixelButton(startUrl, stagedims[0]/5, stagedims[0]/15));
 
         back = new VBox();
         int inset = stagedims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));
 
-        PixelButton backbutton = new PixelButton(backUrl, stagedims[0]/10, stagedims[0]/30, "main-menu");
+        PixelButton backbutton = new PixelButton(backUrl, stagedims[0]/10, stagedims[0]/30);
         back.getChildren().add(backbutton);
 
         whole = new StackPane();

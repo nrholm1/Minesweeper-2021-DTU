@@ -25,8 +25,23 @@ public class NavigationController {
         changeView(spView);
     }
 
+    public void gotoMultiplayerView() {
+        // TODO change to mpView
+        changeView(spView);
+    }
+
     public void gotoMainMenuView() {
         changeView(mainMenuView);
+    }
+
+
+    public void gotoSingleplayerMenuView() {
+        changeView(spMenuView);
+    }
+
+
+    public void gotoMultiplayerMenuView() {
+
     }
 
     public SingleplayerView getSingleplayerView() {

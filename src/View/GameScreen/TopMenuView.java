@@ -29,13 +29,12 @@ public class TopMenuView<calcTimeString> extends HBox{
 
         ImageView title = new ImageView();
         title.setImage(new Image(titleURL));
-        title.setFitWidth(360);
-        title.setFitHeight(45);
+        title.setFitWidth(stagewidth/3.0);
+        title.setFitHeight(stagewidth/22.0);
 
-        newGame = new Rectangle(180,40);
+        newGame = new Rectangle(stagewidth/6.0,stagewidth/27.0);
         newGame.setFill(new ImagePattern(new Image(newGameURL)));
-//        newGame.setOnMouseEntered(e -> {newGame.setFill(new ImagePattern(new Image(newGameHoverURL)));});
-//        newGame.setOnMouseExited(e -> newGame.setFill(new ImagePattern(new Image(newGameURL))));
+        newGame.setId("newgame-button");
         newGame.setOnMouseClicked(e -> {
             controller
                     .getNavigation()
