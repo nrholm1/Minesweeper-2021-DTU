@@ -82,6 +82,10 @@ public class Main extends Application {
     void initializeGameController() {
         gameController = new GameController(navigation);
         gameController.setBoardModel(board);
+        gameController.setBoardView(
+                // TODO this is temp, and should be different if multiplayer
+                singleplayerView.getBoardView()
+        );
     }
 
     void initializeMainMenuController() {

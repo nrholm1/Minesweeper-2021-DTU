@@ -26,6 +26,8 @@ public class BoardView extends StackPane {
     static private HBox board;
     static private VBox boat;
 
+    GameController controller;
+
     public BoardView(int stageWidth, int inset, int size) {
         super();
 
@@ -99,10 +101,7 @@ public class BoardView extends StackPane {
 
     // TODO refactor and clear up exactly what the architecture is?
     // set directly when creating tiles instead?
-    public void setEvents(GameController controller) {
-        // temp set here:
-        linkTileFieldToController(controller);
-
+    public void setEvents() {
         for(int i = 0; i < tileField.length; i++) {
             for(int o = 0; o < tileField[i].length; o++) {
                 int x = i;
@@ -117,19 +116,16 @@ public class BoardView extends StackPane {
         }
     }
 
-    // static/final
-    void linkTileFieldToController(GameController controller) {
-        controller.setBoardView(this);
+    public void setController(GameController _controller) {
+        controller = _controller;
     }
 
     void handleLeftClick(GameController controller, int x, int y) {
-        // bundle all methods to be called when a tile is leftclicked
         controller.pressField(x,y);
         controller.updateTile(x,y);
     }
 
     void handleRightClick(GameController controller, int x, int y) {
-        // bundle all methods to be called when a tile is rightclicked
         controller.flagField(x,y);
         controller.updateTile(x,y);
     }

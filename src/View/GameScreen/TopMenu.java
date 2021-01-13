@@ -17,6 +17,8 @@ public class TopMenu<calcTimeString> extends HBox{
     static final String newGameURL = "Images/pre-new-game.png";
     //static final String newGameHoverURL = "Images/new-game-hover.png";
 
+    GameController controller;
+
     Rectangle newGame;
 
     public TopMenu(int stagewidth, int inset) {
@@ -49,9 +51,14 @@ public class TopMenu<calcTimeString> extends HBox{
         super.getChildren().addAll(filler1, filler2, filler3);
     }
 
-    public void setEvents(GameController controller) {
-        newGame.setOnMouseClicked(e -> { controller.getNavigation()
-                                                   .gotoMainMenuView();
+    public void setController(GameController _controller) {
+        controller = _controller;
+    }
+
+    public void setEvents() {
+        newGame.setOnMouseClicked(e -> {
+            controller.getNavigation()
+                      .gotoMainMenuView();
         });
     }
 }
