@@ -48,7 +48,7 @@ public class BoardView extends StackPane {
         tileField = new HexTile[diameter][];
 
         for(int col = 0; col < diameter; col++){
-            tileField[col] = new HexTile[diameter - Math.abs(col-size)];
+            tileField[col] = new HexTile[diameter - Math.abs(col - size)];
 
             for(int row = 0; row < tileField[col].length; row++){
                 HexTile currentTile = new HexTile(col, row, sideLength);
@@ -68,9 +68,8 @@ public class BoardView extends StackPane {
     }
 
     public void createTileFieldVisual(){
-
         board = new HBox();
-        board.setPadding(new Insets(inset,inset,inset,inset));
+        board.setPadding(new Insets(inset, inset, inset, inset));
         board.setAlignment(Pos.CENTER);
 
         for (HexTile[] hexTiles : tileField) {

@@ -20,7 +20,6 @@ public class MainMenuView extends Scene{
     private int width;
     private int height;
 
-
     public MainMenuView(int width, int height){
         super(new VBox(), width, height);
         this.width = width;

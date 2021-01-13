@@ -100,7 +100,6 @@ public class Main extends Application {
 
     private void linkComponents() {
         // temp
-        singleplayerView.linkControllerToButtons();
         mainMenuView.configureStartButton();
         // end temp
     }
