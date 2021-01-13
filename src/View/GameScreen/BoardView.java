@@ -26,8 +26,6 @@ public class BoardView extends StackPane {
     static private HBox board;
     static private VBox boat;
 
-    private final String tileUrl = "Images/hex-tile.png";
-
     public BoardView(int stageWidth, int inset, int size) {
         super();
 
@@ -46,13 +44,12 @@ public class BoardView extends StackPane {
     public void createNewTileField(){
 
         tileField = new HexTile[diameter][];
-        ImagePattern img = new ImagePattern(new Image(tileUrl));
 
         for(int col = 0; col < diameter; col++){
             tileField[col] = new HexTile[diameter - Math.abs(col-size)];
 
             for(int row =0; row<tileField[col].length; row++){
-                tileField[col][row] = new HexTile(col, row, sideLength, img);
+                tileField[col][row] = new HexTile(col, row, sideLength);
             }
         }
     }

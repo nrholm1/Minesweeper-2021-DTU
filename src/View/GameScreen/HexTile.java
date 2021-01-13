@@ -7,7 +7,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
 public class HexTile extends Polygon{
-    public HexTile(int x, int y, double sideLength, ImagePattern img) {
+    public HexTile(int x, int y, double sideLength) {
         super();
 
         // TODO make readable
@@ -20,7 +20,7 @@ public class HexTile extends Polygon{
                 sideLength,Math.sqrt(3)*sideLength,
                 0.0,Math.sqrt(3)*sideLength,
                 -1*sideLength/2,Math.sqrt(3)*sideLength/2);
-        super.setFill(img);
+        super.setFill(getTileImage("hex-tile"));
         super.setId("hextile");
     }
 
