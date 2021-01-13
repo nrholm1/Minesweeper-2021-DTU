@@ -1,16 +1,17 @@
 package View.MenuScreen;
 
 import Controller.GameController;
-import View.GameScreen.Game;
+import Controller.MainMenuController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-public class PregameMenu extends Scene{
-
+public class MainMenuView extends Scene{
     private VBox menu;
+
+    MainMenuController controller;
 
     private final String titleURL = "Images/premenu-title.png";
     private SizeSlider sizeSlider;
@@ -20,7 +21,7 @@ public class PregameMenu extends Scene{
     private int height;
 
 
-    public PregameMenu(int width, int height){
+    public MainMenuView(int width, int height){
         super(new VBox(), width, height);
         this.width = width;
         this.height = height;
@@ -41,7 +42,10 @@ public class PregameMenu extends Scene{
         menu.getChildren().addAll(title, sizeSlider, diffSlider, startButton);
 
         super.setRoot(menu);
-        super.getStylesheets().add(this.getClass().getResource("./MenuStyles.css").toExternalForm());
+        super.getStylesheets()
+             .add(this.getClass()
+                      .getResource("./MenuStyles.css")
+                      .toExternalForm());
     }
 
     public int getSize() {
@@ -52,8 +56,12 @@ public class PregameMenu extends Scene{
         return diffSlider.getDifficulty();
     }
 
-    public void setController(GameController controller) {
-        startButton.setController(controller);
+    public void setController(MainMenuController _controller) {
+        controller = _controller;
     }
 
+    // TODO refactor?
+    public void configureStartButton() {
+        startButton.setController(controller);
+    }
 }

@@ -122,7 +122,7 @@ public class BoardView extends StackPane {
 
     // static/final
     void linkTileFieldToController(GameController controller) {
-        controller.setGuiBoard(this);
+        controller.setBoardView(this);
     }
 
     void handleLeftClick(GameController controller, int x, int y) {

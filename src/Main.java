@@ -1,9 +1,12 @@
 import Controller.GameController;
+import Controller.MainMenuController;
+import Controller.NavigationController;
 import Model.Board;
-import View.GameScreen.Game;
-import View.MenuScreen.PregameMenu;
+import Model.Util.BoardBuilder;
+import View.GameScreen.SingleplayerView;
+import View.GameScreen.Util.SingleplayerViewBuilder;
+import View.MenuScreen.MainMenuView;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
@@ -15,16 +18,46 @@ public class Main extends Application {
     private final int stageWidth = 1000;
     private final int stageHeight = 600;
 
-    private final int inset = 20;
-
+    // "Data storage"
+    Board board;
 
     @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("MineSwoop");
+    public void start(Stage root) {
+        root.setTitle("MineSwoop");
 
-        PregameMenu mainMenuScreen = new PregameMenu(stageWidth, stageHeight);
+        MainMenuView mainMenuView = new MainMenuView(stageWidth, stageHeight);
+        SingleplayerView singleplayerView = new SingleplayerViewBuilder()
+                .withWidth((int)mainMenuView.getWidth())
+                .withInsetSize(30)
+                .withSize(mainMenuView.getSize())
+                .build();
+        // MultiplayerView multiplayerView
 
-        GameController gameController = new GameController(primaryStage, mainMenuScreen);
+        NavigationController navigation = new NavigationController(root);
+        navigation.setMainMenuView(mainMenuView);
+        navigation.setSingleplayerView(singleplayerView);
+        // navigation.setMultiplayerView(multiplayerView);
+
+        // temp
+        board = new BoardBuilder().withAmountMines(20)
+                .withSideLength(mainMenuView.getSize() + 1)
+                .build();
+        // end temp
+
+        GameController gameController = new GameController(navigation);
+        gameController.setBoardModel(board);
+        MainMenuController mainMenuController = new MainMenuController(navigation);
+
+        singleplayerView.setController(gameController);
+        mainMenuView.setController(mainMenuController);
+
+        // temp
+        mainMenuView.configureStartButton();
+        // end temp
+
+        // set initial scene to main menu screen
+        root.setScene(mainMenuView);
+        root.show();
     }
 
     @Override

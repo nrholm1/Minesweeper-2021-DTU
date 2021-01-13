@@ -4,12 +4,12 @@ import Controller.GameController;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-public class Game extends Scene {
+public class SingleplayerView extends Scene {
   private BorderPane gameView;
   private BoardView boardView;
   private TopMenu topmenu;
 
-  public Game(int width, int inset, int size) {
+  public SingleplayerView(int width, int inset, int size) {
     super(new BorderPane());
 
     topmenu = new TopMenu(width, inset);
