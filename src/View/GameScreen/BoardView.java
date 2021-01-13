@@ -50,8 +50,19 @@ public class BoardView extends StackPane {
         for(int col = 0; col < diameter; col++){
             tileField[col] = new HexTile[diameter - Math.abs(col-size)];
 
-            for(int row =0; row<tileField[col].length; row++){
-                tileField[col][row] = new HexTile(col, row, sideLength);
+            for(int row = 0; row < tileField[col].length; row++){
+                HexTile currentTile = new HexTile(col, row, sideLength);
+                int x = col;
+                int y = row;
+
+                currentTile.setOnMouseClicked(e -> {
+                    if (e.getButton() == MouseButton.PRIMARY)
+                        handleLeftClick(controller, x, y);
+                    if (e.getButton() == MouseButton.SECONDARY)
+                        handleRightClick(controller, x, y);
+                });
+
+                tileField[col][row] = currentTile;
             }
         }
     }
@@ -97,23 +108,6 @@ public class BoardView extends StackPane {
         boatImage.setFitHeight(75);
 
         boat.getChildren().addAll(boatText, boatImage);
-    }
-
-    // TODO refactor and clear up exactly what the architecture is?
-    // set directly when creating tiles instead?
-    public void setEvents() {
-        for(int i = 0; i < tileField.length; i++) {
-            for(int o = 0; o < tileField[i].length; o++) {
-                int x = i;
-                int y = o;
-                tileField[i][o].setOnMouseClicked(e -> {
-                    if (e.getButton() == MouseButton.PRIMARY)
-                        handleLeftClick(controller, x, y);
-                    if (e.getButton() == MouseButton.SECONDARY)
-                        handleRightClick(controller, x, y);
-                });
-            }
-        }
     }
 
     public void setController(GameController _controller) {

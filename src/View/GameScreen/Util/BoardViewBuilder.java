@@ -1,7 +1,6 @@
 package View.GameScreen.Util;
 
 import View.GameScreen.BoardView;
-import View.GameScreen.SingleplayerView;
 
 public class BoardViewBuilder {
     int width;

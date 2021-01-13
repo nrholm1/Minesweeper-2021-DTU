@@ -52,7 +52,7 @@ public class SingleplayerView extends Scene {
 
   // temp
   public void linkControllerToButtons() {
-    boardView.setEvents();
+//    boardView.setEvents();
     topMenu.setEvents();
   }
 }

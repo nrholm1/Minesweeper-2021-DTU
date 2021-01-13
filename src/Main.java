@@ -43,6 +43,7 @@ public class Main extends Application {
         initializeGameController();
         initializeMainMenuController();
 
+        linkControllersToViews();
         linkComponents();
 
         // set initial scene to main menu screen
@@ -92,10 +93,12 @@ public class Main extends Application {
         mainMenuController = new MainMenuController(navigation);
     }
 
-    private void linkComponents() {
+    void linkControllersToViews() {
         singleplayerView.setController(gameController);
         mainMenuView.setController(mainMenuController);
+    }
 
+    private void linkComponents() {
         // temp
         singleplayerView.linkControllerToButtons();
         mainMenuView.configureStartButton();
