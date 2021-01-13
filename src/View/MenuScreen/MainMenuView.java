@@ -30,7 +30,6 @@ public class MainMenuView extends Scene{
         menu.setAlignment(Pos.CENTER);
         menu.setId("menu");
 
-        //Title
         ImageView title = new ImageView(new Image(titleURL));
         title.setFitWidth(600);
         title.setFitHeight(80);
@@ -48,6 +47,7 @@ public class MainMenuView extends Scene{
                       .toExternalForm());
     }
 
+    // TODO magic numbers?
     public int getSize() {
         return (int)((sizeSlider.getSize() - 10)*2.5/100*12 + 3);
     }

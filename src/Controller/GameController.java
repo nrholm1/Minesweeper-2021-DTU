@@ -2,18 +2,10 @@ package Controller;
 
 import Model.Board;
 import Model.Field;
-import Model.Util.BoardBuilder;
 import View.GameScreen.BoardView;
-import View.GameScreen.SingleplayerView;
 import View.GameScreen.HexTile;
-import View.MenuScreen.MainMenuView;
 
 public class GameController {
-  // TODO refactor first three
-  private MainMenuView menu;
-  private SingleplayerView game;
-  // ------------------------
-
   NavigationController navigation;
 
   private Board board; // board data - states, etc.
