@@ -1,27 +1,28 @@
-package View.GameScreen_old;
+package View.GameScreen_new;
 
 import Model.Field;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
-public class HexTile extends Polygon{
-    public HexTile(int x, int y, double sideLength) {
+public class HexTile extends Polygon {
+
+    public HexTile(double sideLength, int[] _pos) {
         super();
 
-        // TODO make readable
-        //Skaber sekskantens form
-        super.getPoints()
-             .addAll(
+        getPoints().addAll(
                 0.0,0.0,
                 sideLength,0.0,
-                3*sideLength/2,Math.sqrt(3)*sideLength/2,
-                sideLength,Math.sqrt(3)*sideLength,
-                0.0,Math.sqrt(3)*sideLength,
-                -1*sideLength/2,Math.sqrt(3)*sideLength/2);
-        super.setFill(getTileImage("hex-tile"));
-        super.setId("hextile");
+                3* sideLength /2,Math.sqrt(3)* sideLength /2,
+                sideLength,Math.sqrt(3)* sideLength,
+                0.0,Math.sqrt(3)* sideLength,
+                -1* sideLength /2,Math.sqrt(3)* sideLength /2
+        );
+
+        setFill(Color.DARKTURQUOISE);
+        setId("hextile");
     }
 
     public void render(Field.State state) {

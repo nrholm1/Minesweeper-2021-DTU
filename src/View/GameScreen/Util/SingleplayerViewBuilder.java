@@ -1,6 +1,6 @@
-package View.GameScreen_old.Util;
+package View.GameScreen.Util;
 
-import View.GameScreen_old.SingleplayerView;
+import View.GameScreen.SingleplayerView;
 
 public class SingleplayerViewBuilder {
     int width;

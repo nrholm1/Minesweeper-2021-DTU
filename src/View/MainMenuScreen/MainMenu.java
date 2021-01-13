@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import sample.Components.PixelButton;
+import View.Components.PixelButton;
 
 public class MainMenu extends Scene {
 

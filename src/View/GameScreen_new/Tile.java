@@ -1,4 +1,4 @@
-package View.GameScreen;
+package View.GameScreen_new;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;

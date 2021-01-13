@@ -1,4 +1,4 @@
-package View.GameScreen;
+package View.GameScreen_new;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import sample.Main;
 
 public class TopMenu {
 

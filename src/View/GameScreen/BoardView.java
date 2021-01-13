@@ -1,4 +1,4 @@
-package View.GameScreen_old;
+package View.GameScreen;
 
 import Controller.GameController;
 import Model.Field;

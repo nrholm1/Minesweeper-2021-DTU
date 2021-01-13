@@ -1,6 +1,6 @@
-package View.GameScreen_old.Util;
+package View.GameScreen.Util;
 
-import View.GameScreen_old.BoardView;
+import View.GameScreen.BoardView;
 
 public class BoardViewBuilder {
     int width;

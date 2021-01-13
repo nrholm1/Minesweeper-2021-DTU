@@ -9,21 +9,19 @@ import javafx.scene.text.Text;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TimeCounter {
-
-    private HBox counter;
+public class TimeCounter extends HBox{
 
     private Timer timer;
     private int timeElapsed = 0;
 
     public TimeCounter(){
         //Setup timer for top
-        counter = new HBox();
-        counter.setAlignment(Pos.CENTER);
+        super();
+        super.setAlignment(Pos.CENTER);
 
-        Text counterText = new Text("Time: 00:00");
-        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
-        counterText.setFont(pixelfont);
+        Text counterText = new Text("00:00");
+        Font pixelFont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
+        counterText.setFont(pixelFont);
         counterText.setFill(Color.WHITE);
 
         timer = new Timer();
@@ -34,12 +32,13 @@ public class TimeCounter {
                 counterText.setText(calcTimeString(timeElapsed));
             }
         };
-        timer.scheduleAtFixedRate(task, 1000l, 1000l);
+        timer.scheduleAtFixedRate(task, 1000L, 1000L);
 
-        counter.getChildren().add(counterText);
+        super.getChildren().addAll(counterText);
     }
-    public String calcTimeString(int time) {
-        String stringTime = "Time: ";
+
+    private String calcTimeString(int time) {
+        String stringTime = "";
         int secs = time;
         int mins = 0;
 
@@ -55,9 +54,5 @@ public class TimeCounter {
         stringTime += secs >= 10 ? secs : "0" + secs;
 
         return stringTime;
-    }
-
-    public HBox visual(){
-        return counter;
     }
 }
