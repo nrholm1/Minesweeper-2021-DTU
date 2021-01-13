@@ -1,5 +1,7 @@
 package View.GameScreen;
 
+import Controller.GameController;
+import Controller.NavigationController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,13 +13,14 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class TopMenu<calcTimeString> extends HBox{
-
     static final String titleURL = "Images/premenu-title.png";
     static final String newGameURL = "Images/pre-new-game.png";
     //static final String newGameHoverURL = "Images/new-game-hover.png";
 
+    Rectangle newGame;
+
     public TopMenu(int stagewidth, int inset) {
-        super(stagewidth/8);
+        super(stagewidth/8.0);
         super.setPadding(new Insets(inset,inset,inset+10,inset));
         super.setAlignment(Pos.CENTER);
         super.setId("top-panel");
@@ -27,14 +30,14 @@ public class TopMenu<calcTimeString> extends HBox{
         title.setFitWidth(360);
         title.setFitHeight(45);
 
-        Rectangle newgame = new Rectangle(180,40);
-        newgame.setFill(new ImagePattern(new Image(newGameURL)));
-        //newgame.setOnMouseEntered(e -> {newgame.setFill(new ImagePattern(new Image(newGameHoverURL)));});
-        //newgame.setOnMouseExited(e -> newgame.setFill(new ImagePattern(new Image(newGameURL))));
-        //newgame.setOnMouseClicked(e -> Main.goToScene("pre"));
+        newGame = new Rectangle(180,40);
+        newGame.setFill(new ImagePattern(new Image(newGameURL)));
+//        newGame.setOnMouseEntered(e -> {newGame.setFill(new ImagePattern(new Image(newGameHoverURL)));});
+//        newGame.setOnMouseExited(e -> newGame.setFill(new ImagePattern(new Image(newGameURL))));
+
 
         StackPane filler1 = new StackPane();
-        filler1.getChildren().add(newgame);
+        filler1.getChildren().add(newGame);
 
         StackPane filler2 = new StackPane();
         filler2.getChildren().add(title);
@@ -44,5 +47,11 @@ public class TopMenu<calcTimeString> extends HBox{
 
         super.setAlignment(Pos.CENTER);
         super.getChildren().addAll(filler1, filler2, filler3);
+    }
+
+    public void setEvents(GameController controller) {
+        newGame.setOnMouseClicked(e -> { controller.getNavigation()
+                                                   .gotoMainMenuView();
+        });
     }
 }

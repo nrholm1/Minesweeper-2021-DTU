@@ -93,6 +93,7 @@ public class Main extends Application {
         mainMenuView.setController(mainMenuController);
 
         // temp
+        singleplayerView.linkControllerToButtons();
         mainMenuView.configureStartButton();
         // end temp
     }

@@ -5,18 +5,20 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 public class SingleplayerView extends Scene {
-  private BorderPane gameView;
-  private BoardView boardView;
-  private TopMenu topmenu;
+  private final BorderPane gameView;
+  private final BoardView boardView;
+  private final TopMenu topMenu;
+
+  GameController controller;
 
   public SingleplayerView(int width, int inset, int size) {
     super(new BorderPane());
 
-    topmenu = new TopMenu(width, inset);
+    topMenu = new TopMenu(width, inset);
     boardView = new BoardView(width, inset, size);
 
     gameView = new BorderPane();
-    gameView.setTop(topmenu);
+    gameView.setTop(topMenu);
     gameView.setCenter(boardView);
     gameView.setId("gameback");
 
@@ -27,7 +29,13 @@ public class SingleplayerView extends Scene {
                   .toExternalForm());
   }
 
-  public void setController(GameController controller) {
+  public void setController(GameController _controller) {
+    controller = _controller;
+  }
+
+  // temp
+  public void linkControllerToButtons() {
     boardView.setEvents(controller);
+    topMenu.setEvents(controller);
   }
 }
