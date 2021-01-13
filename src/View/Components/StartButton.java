@@ -1,4 +1,4 @@
-package View.MenuScreen;
+package View.Components;
 
 import Controller.GameController;
 import Controller.MainMenuController;

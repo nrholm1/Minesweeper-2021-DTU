@@ -1,7 +1,9 @@
 package View.MenuScreen;
 
-import Controller.GameController;
 import Controller.MainMenuController;
+import View.Components.DiffSlider;
+import View.Components.SizeSlider;
+import View.Components.StartButton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

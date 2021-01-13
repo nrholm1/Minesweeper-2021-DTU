@@ -25,11 +25,7 @@ public class HexTile extends Polygon{
     }
 
     public void render(Field.State state) {
-        switch (state) {
-            case UNFLAGGED -> { super.setFill(getTileImage("hex-tile"));}
-            case FLAGGED -> { super.setFill(getTileImage("hex-flag-tile"));}
-            case PRESSED -> { super.setFill(getTileImage("temp-tile"));}
-        }
+
     }
 
     public ImagePattern getTileImage(String tileUrl) {
