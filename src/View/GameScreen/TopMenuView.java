@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class TopMenu<calcTimeString> extends HBox{
+public class TopMenuView<calcTimeString> extends HBox{
     static final String titleURL = "Images/premenu-title.png";
     static final String newGameURL = "Images/pre-new-game.png";
     //static final String newGameHoverURL = "Images/new-game-hover.png";
@@ -21,7 +21,7 @@ public class TopMenu<calcTimeString> extends HBox{
 
     Rectangle newGame;
 
-    public TopMenu(int stagewidth, int inset) {
+    public TopMenuView(int stagewidth, int inset) {
         super(stagewidth/8.0);
         super.setPadding(new Insets(inset,inset,inset+10,inset));
         super.setAlignment(Pos.CENTER);
@@ -36,7 +36,11 @@ public class TopMenu<calcTimeString> extends HBox{
         newGame.setFill(new ImagePattern(new Image(newGameURL)));
 //        newGame.setOnMouseEntered(e -> {newGame.setFill(new ImagePattern(new Image(newGameHoverURL)));});
 //        newGame.setOnMouseExited(e -> newGame.setFill(new ImagePattern(new Image(newGameURL))));
-
+        newGame.setOnMouseClicked(e -> {
+            controller
+                    .getNavigation()
+                    .gotoMainMenuView();
+        });
 
         StackPane filler1 = new StackPane();
         filler1.getChildren().add(newGame);
@@ -53,12 +57,5 @@ public class TopMenu<calcTimeString> extends HBox{
 
     public void setController(GameController _controller) {
         controller = _controller;
-    }
-
-    public void setEvents() {
-        newGame.setOnMouseClicked(e -> {
-            controller.getNavigation()
-                      .gotoMainMenuView();
-        });
     }
 }

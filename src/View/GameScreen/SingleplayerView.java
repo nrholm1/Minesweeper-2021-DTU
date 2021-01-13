@@ -8,14 +8,14 @@ import javafx.scene.layout.BorderPane;
 public class SingleplayerView extends Scene {
   private BorderPane gameView;
   private final BoardView boardView;
-  private final TopMenu topMenu;
+  private final TopMenuView topMenu;
 
   GameController controller;
 
   public SingleplayerView(int width, int inset, int size) {
     super(new BorderPane());
 
-    topMenu = new TopMenu(width, inset);
+    topMenu = new TopMenuView(width, inset);
     boardView = new BoardViewBuilder()
             .withWidth(width)
             .withInsetSize(inset)
@@ -48,11 +48,5 @@ public class SingleplayerView extends Scene {
 
   public BoardView getBoardView() {
     return boardView;
-  }
-
-  // temp
-  public void linkControllerToButtons() {
-//    boardView.setEvents();
-    topMenu.setEvents();
   }
 }
