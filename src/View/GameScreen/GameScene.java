@@ -1,4 +1,4 @@
-package sample.GameScreen;
+package View.GameScreen;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;

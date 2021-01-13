@@ -1,20 +1,14 @@
-package sample.GameScreen;
+package View.GameScreen;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import sample.Main;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class TopMenu {
 

@@ -1,6 +1,5 @@
-package sample.MainMenuScreen;
+package View.MainMenuScreen;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -8,9 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import sample.Components.PixelButton;
-import sample.Main;
-
-import java.util.Stack;
 
 public class MainMenu extends Scene {
 

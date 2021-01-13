@@ -1,4 +1,4 @@
-package View.MenuScreen;
+package View.MenuScreen_old;
 
 import Controller.GameController;
 import Controller.MainMenuController;

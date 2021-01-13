@@ -1,4 +1,4 @@
-package sample.Components;
+package View.Components;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;

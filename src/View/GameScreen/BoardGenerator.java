@@ -1,7 +1,7 @@
-package sample.GameScreen;
+package View.GameScreen;
 
 import javafx.geometry.Insets;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
 
 public class BoardGenerator {
 

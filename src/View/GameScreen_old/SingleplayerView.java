@@ -1,7 +1,7 @@
-package View.GameScreen;
+package View.GameScreen_old;
 
 import Controller.GameController;
-import View.GameScreen.Util.BoardViewBuilder;
+import View.GameScreen_old.Util.BoardViewBuilder;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 

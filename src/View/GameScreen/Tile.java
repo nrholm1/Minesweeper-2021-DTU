@@ -1,14 +1,7 @@
-package sample.GameScreen;
+package View.GameScreen;
 
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.*;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class Tile {
     private double width;
