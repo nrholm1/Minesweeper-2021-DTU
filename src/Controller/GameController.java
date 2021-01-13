@@ -3,9 +3,9 @@ package Controller;
 import Model.Board;
 import Model.Field;
 import Model.Util.BoardBuilder;
+import View.GameScreen.BoardView;
 import View.GameScreen.Game;
 import View.GameScreen.HexTile;
-import View.GameScreen.HexagonalBoard;
 import View.MenuScreen.PregameMenu;
 import javafx.stage.Stage;
 
@@ -17,7 +17,7 @@ public class GameController {
   // ------------------------
 
   private Board board; // board data - states, etc.
-  private HexagonalBoard GuiBoard; // graphical representation of board - for updating view on state changes
+  private BoardView boardView; // graphical representation of board - for updating view on state changes
 
   public GameController(Stage root, PregameMenu menu) {
     this.root = root;
@@ -52,11 +52,11 @@ public class GameController {
 
   public void updateTile(int x, int y) {
     Field field = board.getField(x, y);
-    HexTile tile = GuiBoard.getTile(x, y); // make class for another level of abstraction for this?
-    tile.renderTile(field.getState());
+    HexTile tile = boardView.getTile(x, y); // make class for another level of abstraction for this?
+    tile.render(field.getState());
   }
 
-  public void setGuiBoard(HexagonalBoard GuiBoard) {
-    this.GuiBoard = GuiBoard;
+  public void setGuiBoard(BoardView _boardView) {
+    this.boardView = _boardView;
   }
 }

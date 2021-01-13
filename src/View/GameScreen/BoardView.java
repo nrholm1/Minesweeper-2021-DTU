@@ -16,7 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class HexagonalBoard extends StackPane {
+public class BoardView extends StackPane {
     private final double sideLength;
     private final int inset;
     private final int size;
@@ -28,7 +28,7 @@ public class HexagonalBoard extends StackPane {
 
     private final String tileUrl = "Images/hex-tile.png";
 
-    public HexagonalBoard(int stageWidth, int inset, int size) {
+    public BoardView(int stageWidth, int inset, int size) {
         super();
 
         this.inset = inset;
