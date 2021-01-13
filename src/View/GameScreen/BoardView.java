@@ -76,13 +76,32 @@ public class BoardView extends StackPane {
 
             //Skaber pladsen der forskyder kolonnerne fra hinanden
             for (int row = 0; row < diameter - hexTiles.length; row++)
-                currCol.getChildren().add(new Rectangle(0, Math.sqrt(3) * sideLength / 2 - sideLength / 4));
+                currCol.getChildren()
+                       .add(new Rectangle(0, Math.sqrt(3) * sideLength / 2 - sideLength / 4));
 
-            for (HexTile hexTile : hexTiles)
-                currCol.getChildren().add(hexTile);
+            for (HexTile hexTile : hexTiles) {
+                StackPane tileWithText = createTileWithText(hexTile);
+                currCol.getChildren().add(tileWithText);
+            }
 
             board.getChildren().add(currCol);
         }
+    }
+
+    // creates combined tile with text containing count of adjacent mines
+    StackPane createTileWithText(HexTile hexTile) {
+        StackPane stack = new StackPane();
+
+        // create adjacentMinesText and set styling
+        Text adjacentMinesText = new Text();
+        adjacentMinesText.setFill(Color.FIREBRICK);
+        adjacentMinesText.setScaleX(2);
+        adjacentMinesText.setScaleY(2);
+
+        hexTile.setAdjacentMinesText(adjacentMinesText);
+        stack.getChildren().addAll(hexTile, adjacentMinesText);
+
+        return stack;
     }
 
     public void createBoatDecoration(){

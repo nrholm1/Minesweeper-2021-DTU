@@ -3,19 +3,19 @@ package View.GameScreen.Util;
 import View.GameScreen.SingleplayerView;
 
 public class SingleplayerViewBuilder {
-    int width;
+    int[] stageDims;
     int inset;
     int size;
 
     public SingleplayerView build() {
-        if (width > 0 && inset > 0 && size > 0)
-            return new SingleplayerView(width, inset, size);
+        if (inset > 0 && size > 0)
+            return new SingleplayerView(stageDims, inset, size);
         else
             throw new IllegalArgumentException("Please enter a positive value for all params");
     }
 
-    public SingleplayerViewBuilder withWidth(int _width) {
-        width = _width;
+    public SingleplayerViewBuilder withStageDims(int[] _stageDims) {
+        stageDims = _stageDims;
         return this;
     }
 

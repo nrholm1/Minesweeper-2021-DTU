@@ -58,13 +58,13 @@ public class SingleplayerMenuView extends Scene{
         int inset = stageDims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));
 
-        PixelButton backbutton = new PixelButton(backUrl,
+        PixelButton backButton = new PixelButton(backUrl,
                 stageDims[0]/10,
                 stageDims[0]/30);
-        backbutton.setOnMouseClicked(e -> {
+        backButton.setOnMouseClicked(e -> {
             controller.gotoMainMenu();
         });
-        back.getChildren().add(backbutton);
+        back.getChildren().add(backButton);
 
         whole = new StackPane();
         whole.getChildren().addAll(back,menu);

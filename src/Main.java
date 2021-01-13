@@ -12,8 +12,6 @@ import javafx.application.Application;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.util.concurrent.ThreadPoolExecutor;
-
 
 // Main class containing startup logic
 // Goal is to initialize FX main thread and provide a base context for MVC and "plug in" the various
@@ -21,7 +19,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class Main extends Application {
     // "Data storage" of Models
-    Board board;
+    Board ownBoard;
+    Board opponentBoard;
 
     // Views
     MainMenuView2 mainMenuView;
@@ -43,7 +42,6 @@ public class Main extends Application {
         initializeSingleplayerMenu();
         initializeMultiplayerMenu();
         initializeSingleplayerView();
-        System.out.println("bruh");
         initializeMultiplayerView();
 
         initializeNavigation(root);
@@ -62,8 +60,6 @@ public class Main extends Application {
     }
 
     void initializeMainMenuView() {
-        int stageWidth = 1000;
-        int stageHeight = 600;
         mainMenuView = new MainMenuView2(getStageDims());
     }
 
@@ -76,10 +72,11 @@ public class Main extends Application {
     }
 
     void initializeSingleplayerView() {
+        // hardcoded right now, but should be set by the sliders in spMenuView
         singleplayerView = new SingleplayerViewBuilder()
-                .withWidth((int)mainMenuView.getWidth())
+                .withStageDims(getStageDims())
                 .withInsetSize(30)
-                .withSize(1)
+                .withSize(4)
                 .build();
     }
 
@@ -96,15 +93,15 @@ public class Main extends Application {
 
     void initializeBoard() {
         // temp
-        board = new BoardBuilder().withAmountMines(20)
-                .withSideLength(getStageDims()[0]) // Bruh
+        ownBoard = new BoardBuilder().withAmountMines(20)
+                .withSideLength(getStageDims()[1]) // Bruh
                 .build();
         // end temp
     }
 
     void initializeGameController() {
         gameController = new GameController(navigation);
-        gameController.setBoardModel(board);
+        gameController.setBoardModel(ownBoard);
         gameController.setBoardView(
                 // TODO this is temp, and should be different if multiplayer
                 singleplayerView.getBoardView()

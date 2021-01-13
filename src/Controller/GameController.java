@@ -33,6 +33,9 @@ public class GameController {
     Field field = board.getField(x, y);
     HexTile tile = boardView.getTile(x, y);
     tile.render(field.getState());
+
+    if (field.getState() == Field.State.PRESSED)
+      tile.setAdjacentMinesAmount(field.getAdjacentMines());
   }
 
   public void setBoardModel(Board _board) {

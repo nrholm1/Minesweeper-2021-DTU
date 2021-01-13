@@ -8,18 +8,18 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class PixelSlider extends VBox{
-    public PixelSlider(int[] stagedims, int[] vals, String type){
+    public PixelSlider(int[] stageDims, int[] vals, String type){
         super(12);
         //Size
         Slider slider = new Slider();
         slider.setMin(vals[0]);
         slider.setMax(vals[2]);
-        slider.setMaxWidth(stagedims[0]/4);
+        slider.setMaxWidth(stageDims[0]/4.0);
 
         slider.setValue(vals[1]);
-        if (type == "Size") {
+        if (type.equals("Size")) {
             setGameSize(vals[1]);
-        } else if(type == "Difficulty"){
+        } else if(type.equals("Difficulty")){
             setDifficulty(vals[1]);
         }
 
@@ -30,17 +30,17 @@ public class PixelSlider extends VBox{
         sliderText.setFill(Color.WHITE);
 
         slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
-            sliderText.setText("Size: " + newValue.intValue());
-            if (type == "Size") {
+            if (type.equals("Size")) {
+                sliderText.setText("Size: " + newValue.intValue());
                 setGameSize(newValue.intValue());
-            } else if(type == "Difficulty"){
+            } else if(type.equals("Difficulty")){
+                sliderText.setText("Difficulty: " + newValue.intValue());
                 setDifficulty(newValue.intValue());
             }
         });
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(sliderText, slider);
-
     }
 
 

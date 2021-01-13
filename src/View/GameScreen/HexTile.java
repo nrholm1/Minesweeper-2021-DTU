@@ -5,8 +5,11 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Text;
 
-public class HexTile extends Polygon{
+public class HexTile extends Polygon {
+    Text adjacentMinesText;
+
     public HexTile(int x, int y, double sideLength) {
         super();
 
@@ -28,11 +31,19 @@ public class HexTile extends Polygon{
         switch (state) {
             case UNFLAGGED -> { super.setFill(getTileImage("hex-tile"));}
             case FLAGGED -> { super.setFill(getTileImage("hex-flag-tile"));}
-            case PRESSED -> { super.setFill(getTileImage("temp-tile"));}
+            case PRESSED -> { super.setFill(getTileImage("temp-tile")); }
         }
     }
 
     public ImagePattern getTileImage(String tileUrl) {
         return new ImagePattern(new Image("Images/" + tileUrl + ".png"));
+    }
+
+    public void setAdjacentMinesAmount(int _adjacentMines) {
+        adjacentMinesText.setText("" + _adjacentMines);
+    }
+
+    public void setAdjacentMinesText(Text _adjacentMinesText) {
+        adjacentMinesText = _adjacentMinesText;
     }
 }

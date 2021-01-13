@@ -31,25 +31,25 @@ public class MainMenuView2 extends Scene {
         title.setFitWidth(stagedims[0]/2.0);
         title.setFitHeight(stagedims[0]/15.0);
 
-        PixelButton singleButton = new PixelButton(singleURL,
+        PixelButton spButton = new PixelButton(singleURL,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
-        PixelButton multiButton = new PixelButton(multiURL,
+        PixelButton mpButton = new PixelButton(multiURL,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
-        singleButton.setOnMouseClicked(e -> {
+        spButton.setOnMouseClicked(e -> {
             controller.gotoSingleplayerMenu();
         });
-        multiButton.setOnMouseClicked(e -> {
+        mpButton.setOnMouseClicked(e -> {
             controller.gotoMultiplayerMenu();
         });
 
         menu.getChildren()
                 .addAll(title,
-                        singleButton,
-                        multiButton);
+                        spButton,
+                        mpButton);
 
         whole = new StackPane();
         whole.setId("menu");
