@@ -2,7 +2,6 @@ package Controller;
 
 import View.GameScreen.SingleplayerView;
 import View.MainMenuScreen.MainMenuView2;
-import View.MenuScreen.MainMenuView;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
 import javafx.scene.Scene;
