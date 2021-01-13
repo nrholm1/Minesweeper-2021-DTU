@@ -20,8 +20,8 @@ public class TimeCounter extends HBox{
         super.setAlignment(Pos.CENTER);
 
         Text counterText = new Text("00:00");
-        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
-        counterText.setFont(pixelfont);
+        Font pixelFont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
+        counterText.setFont(pixelFont);
         counterText.setFill(Color.WHITE);
 
         timer = new Timer();
@@ -32,7 +32,7 @@ public class TimeCounter extends HBox{
                 counterText.setText(calcTimeString(timeElapsed));
             }
         };
-        timer.scheduleAtFixedRate(task, 1000l, 1000l);
+        timer.scheduleAtFixedRate(task, 1000L, 1000L);
 
         super.getChildren().addAll(counterText);
     }
