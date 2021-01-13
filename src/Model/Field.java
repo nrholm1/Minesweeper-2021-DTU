@@ -58,7 +58,8 @@ public class Field {
     }
 
     public String toString() {
-        return "(" + x + ", " + y + ") " + state;
+        return "(" + x + ", " + y + ") " + state
+                + (isMine ? " X" : " " + adjacentMines);
     }
 
     public enum State {

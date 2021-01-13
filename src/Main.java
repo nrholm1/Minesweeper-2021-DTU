@@ -93,8 +93,8 @@ public class Main extends Application {
 
     void initializeBoard() {
         // temp
-        ownBoard = new BoardBuilder().withAmountMines(20)
-                .withSideLength(getStageDims()[1]) // Bruh
+        ownBoard = new BoardBuilder().withAmountMines(26)
+                .withSideLength(12) // Bruh
                 .build();
         // end temp
     }
