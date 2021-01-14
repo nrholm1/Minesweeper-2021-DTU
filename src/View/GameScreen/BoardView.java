@@ -1,6 +1,7 @@
 package View.GameScreen;
 
 import Controller.GameController;
+import Model.Board;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -62,9 +63,9 @@ public class BoardView extends StackPane {
 
                 currentTile.setOnMouseClicked(e -> {
                     if (e.getButton() == MouseButton.PRIMARY)
-                        handleLeftClick(controller, x, y);
+                        handleLeftClick(x, y);
                     if (e.getButton() == MouseButton.SECONDARY)
-                        handleRightClick(controller, x, y);
+                        handleRightClick(x, y);
                 });
 
                 tileField[col][row] = currentTile;
@@ -135,14 +136,20 @@ public class BoardView extends StackPane {
         controller = _controller;
     }
 
-    void handleLeftClick(GameController controller, int x, int y) {
+    void handleLeftClick(int x, int y) {
         controller.pressField(x,y);
         controller.updateTile(x,y);
     }
 
-    void handleRightClick(GameController controller, int x, int y) {
+    void handleRightClick(int x, int y) {
         controller.flagField(x,y);
         controller.updateTile(x,y);
+    }
+
+    public void renderEntireTileField() {
+        for(int x = 0; x < tileField.length; x++)
+            for(int y = 0; y < tileField[x].length; y++)
+                controller.updateTile(x,y);
     }
 
     public HexTile getTile(int x, int y) {

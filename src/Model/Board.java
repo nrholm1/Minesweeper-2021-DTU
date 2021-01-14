@@ -12,7 +12,9 @@ public class Board {
         this.amountMines = _amountMines;
         this.radius = radius;
         this.diameter = 2* radius + 1;
+    }
 
+    public void initializeMinefield() {
         makeMinefieldWithDimensions();
         setMines();
         setAdjacentMineCounters();

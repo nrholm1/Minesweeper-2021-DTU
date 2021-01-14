@@ -27,6 +27,7 @@ public class HexTile extends Polygon {
         super.setId("hextile");
     }
 
+    // TODO make setAdjacentMinesText part of render method
     public void render(Field.State state) {
         switch (state) {
             case UNFLAGGED -> { super.setFill(getTileImage("hex-tile"));}

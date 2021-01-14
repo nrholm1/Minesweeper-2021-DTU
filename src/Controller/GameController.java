@@ -15,6 +15,14 @@ public class GameController {
     navigation = _navigation;
   }
 
+  public void initializeMinefield() {
+    board.initializeMinefield();
+  }
+
+  public void initializeBoardView() {
+    boardView.renderEntireTileField();
+  }
+
   public int getAdjacentMines(int x, int y) {
     return board.getField(x,y).getAdjacentMines();
   }

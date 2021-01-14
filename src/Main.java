@@ -110,6 +110,7 @@ public class Main extends Application {
 
     void initializeMainMenuController() {
         mainMenuController = new MainMenuController(navigation);
+        mainMenuController.setGameController(gameController);
     }
 
     void linkControllersToViews() {
