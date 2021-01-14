@@ -1,5 +1,6 @@
 package Networking;
 
+
 import Model.Field;
 
 import java.net.URI;
@@ -12,25 +13,25 @@ import java.util.concurrent.ExecutionException;
 
 public class ClientDriver {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        Field[] fields = new Field[] { new Field(5,2),
-                new Field(3,7),
-                new Field(32,26),
-                new Field(32,26),
-                new Field(32,26),
-                new Field(17,9)};
+        FieldDTO[] fieldDTOs = new FieldDTO[] { new FieldDTO(5,2, Field.State.FLAGGED),
+                new FieldDTO(3,7, Field.State.PRESSED),
+                new FieldDTO(32,26, Field.State.UNFLAGGED),
+                new FieldDTO(32,26, Field.State.FLAGGED),
+                new FieldDTO(32,26, Field.State.PRESSED),
+                new FieldDTO(17,9, Field.State.UNFLAGGED)};
 
         System.out.println("--print--");
-        testPrintField(fields);
+        testPrintFieldDTO(fieldDTOs);
         System.out.println("--get--");
-        testGetField(fields);
+        testGetFieldDTO(fieldDTOs);
     }
 
-    static void testGetField(Field[] fields) throws InterruptedException, ExecutionException {
+    static void testGetFieldDTO(FieldDTO[] fieldDTOs) throws InterruptedException, ExecutionException {
         ArrayList<String> responses = new ArrayList<>();
 
         // executes synchronously I think?
-        for (Field field : fields)
-            responses.add(simpleAsyncRequestGetField("localhost", 5050, field).get());
+        for (FieldDTO fieldDTO : fieldDTOs)
+            responses.add(simpleAsyncRequestGetFieldDTO("localhost", 5050, fieldDTO).get());
 
         for (String s : responses)
             System.out.println(s);
@@ -38,22 +39,22 @@ public class ClientDriver {
         Thread.sleep(1000);
     }
 
-    static void testPrintField(Field[] fields) throws InterruptedException {
+    static void testPrintFieldDTO(FieldDTO[] fieldDTOs) throws InterruptedException {
         // executes asynchronously I think?
-        for (Field field : fields)
-            simpleAsyncRequestPrintField("localhost", 5050, field);
+        for (FieldDTO fieldDTO : fieldDTOs)
+            simpleAsyncRequestPrintFieldDTO("localhost", 5050, fieldDTO);
 
         Thread.sleep(1000);
     }
 
     // SYNC
     // "await" makes it work sync
-    static CompletableFuture<String> simpleAsyncRequestGetField(String IP, int PORT, Field field) {
+    static CompletableFuture<String> simpleAsyncRequestGetFieldDTO(String IP, int PORT, FieldDTO fieldDTO) {
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://" + IP + ":" + PORT + "/test"))
+                .uri(URI.create("http://" + IP + ":" + PORT + "/swoop"))
                 .header("Content-Type", "text/plain")
-                .POST(HttpRequest.BodyPublishers.ofByteArray(field.toBytes()))
+                .POST(HttpRequest.BodyPublishers.ofByteArray(fieldDTO.toBytes()))
                 .build();
 
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
@@ -62,12 +63,12 @@ public class ClientDriver {
 
     // ASYNC
     // chained methods after sendAsync makes it work async
-    static void simpleAsyncRequestPrintField(String IP, int PORT, Field field) {
+    static void simpleAsyncRequestPrintFieldDTO(String IP, int PORT, FieldDTO fieldDTO) {
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://" + IP + ":" + PORT + "/test"))
+                .uri(URI.create("http://" + IP + ":" + PORT + "/swoop"))
                 .header("Content-Type", "text/plain")
-                .POST(HttpRequest.BodyPublishers.ofByteArray(field.toBytes()))
+                .POST(HttpRequest.BodyPublishers.ofByteArray(fieldDTO.toBytes()))
                 .build();
 
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())

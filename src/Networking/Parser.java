@@ -1,5 +1,7 @@
 package Networking;
 
+import Model.Field;
+
 import java.nio.charset.StandardCharsets;
 
 public class Parser {
@@ -10,10 +12,10 @@ public class Parser {
     public static FieldDTO parseFieldDTOString(String dataString) {
         String[] dataParams = getParamArray(dataString);
 
-        FieldDTO.State action = switch (dataParams[0]) {
-            case "P" -> FieldDTO.State.PRESSED;
-            case "F" -> FieldDTO.State.FLAGGED;
-            case "U" -> FieldDTO.State.UNFLAGGED;
+        Field.State action = switch (dataParams[0]) {
+            case "P" -> Field.State.PRESSED;
+            case "F" -> Field.State.FLAGGED;
+            case "U" -> Field.State.UNFLAGGED;
             default -> throw new IllegalArgumentException("bruh");
         };
         int r = Integer.parseInt(dataParams[1]);
@@ -47,7 +49,7 @@ public class Parser {
     }
 
     public static void main(String[] args) {
-        FieldDTO data = new FieldDTO(1,2, FieldDTO.State.FLAGGED);
+        FieldDTO data = new FieldDTO(1,2, Field.State.FLAGGED);
         byte[] bytes = data.toBytes();
 
         FieldDTO reqFieldDTO = readRequestInput(bytes);

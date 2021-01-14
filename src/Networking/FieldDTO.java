@@ -1,23 +1,37 @@
 package Networking;
 
+import Model.Field;
+
 import java.util.Arrays;
 
 public class FieldDTO {
-    int r; // row index
-    int c; // col index
-    State action; // change state to
+    int x; // row index
+    int y; // col index
+    Field.State action; // change state to
 
 
-    enum State {
-        PRESSED,
-        FLAGGED,
-        UNFLAGGED
+    public FieldDTO(Field alteredField) {
+        new FieldDTO(alteredField.getX(),
+                alteredField.getY(),
+                alteredField.getState());
     }
 
-    public FieldDTO(int _r, int _c, State _action) {
-        r = _r;
-        c = _c;
+    public FieldDTO(int _x, int _y, Field.State _action) {
+        x = _x;
+        y = _y;
         action = _action;
+    }
+
+    public Field.State getAction() {
+        return action;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public byte[] toBytes() {
@@ -34,13 +48,13 @@ public class FieldDTO {
 
         return  actionString +
                 "|" +
-                this.r +
+                this.x +
                 "|" +
-                this.c;
+                this.y;
     }
 
     public String toString() {
-        return "(" + r + ", " + c + ") " + action;
+        return "(" + x + ", " + y + ") " + action;
     }
 
     public static void testDataProcess(FieldDTO fieldDTO) {
@@ -57,9 +71,9 @@ public class FieldDTO {
 
     // TEST
     public static void main(String[] args) {
-        FieldDTO fieldDTO1 = new FieldDTO(12,24, State.FLAGGED);
-        FieldDTO fieldDTO2 = new FieldDTO(37,1, State.PRESSED);
-        FieldDTO fieldDTO3 = new FieldDTO(420,69, State.UNFLAGGED);
+        FieldDTO fieldDTO1 = new FieldDTO(12,24, Field.State.FLAGGED);
+        FieldDTO fieldDTO2 = new FieldDTO(37,1, Field.State.PRESSED);
+        FieldDTO fieldDTO3 = new FieldDTO(420,69, Field.State.UNFLAGGED);
 
         testDataProcess(fieldDTO1);
         testDataProcess(fieldDTO2);

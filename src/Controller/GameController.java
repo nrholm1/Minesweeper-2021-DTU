@@ -58,4 +58,8 @@ public class GameController {
   public NavigationController getNavigation() {
     return navigation;
   }
+
+  public void setFieldState(int x, int y, Field.State action) {
+    board.setFieldState(x,y,action);
+  }
 }
