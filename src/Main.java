@@ -38,7 +38,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage root) throws UnknownHostException {
-        root.setTitle("MineSwoop2");
+        root.setTitle("MineSwoop");
 
         initializeMainMenuView();
         initializeSingleplayerMenu();
