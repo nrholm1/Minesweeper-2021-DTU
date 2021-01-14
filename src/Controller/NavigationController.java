@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Board;
+import Model.Util.BoardBuilder;
 import View.GameScreen.SingleplayerView;
 import View.GameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
@@ -61,6 +63,23 @@ public abstract class NavigationController {
                 .withInsetSize(30)
                 .withSize(spMenuView.getSize())
                 .build();
+
+        Board b = new BoardBuilder()
+                .withSize(spMenuView.getSize())
+                .withAmountMines(spMenuView.getDifficulty())
+                .build();
+
+        GameController gameController = new GameController();
+        gameController.setBoardModel(b);
+        gameController.setBoardView(
+                // TODO this is temp, and should be different if multiplayer
+                singleplayerView.getBoardView()
+        );
+
+        singleplayerView.setController(gameController);
+        gameController.initializeMinefield();
+        gameController.initializeBoardView();
+
         changeView(singleplayerView);
     }
 

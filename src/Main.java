@@ -1,5 +1,6 @@
 import Controller.GameController;
 import Controller.NavigationController;
+import Services.ExternResources;
 import Services.GameTimer;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
@@ -29,6 +30,8 @@ public class Main extends Application {
     @Override
     public void start(Stage root) throws UnknownHostException {
         root.setTitle("MineSwoop");
+
+        ExternResources.createResources();
 
         mainMenuView = new MainMenuView2(getStageDims());
         singleplayerMenuView = new SingleplayerMenuView(getStageDims());

@@ -6,14 +6,8 @@ import View.GameScreen.Util.BoardView;
 import View.Components.HexTile;
 
 public class GameController {
-  NavigationController navigation;
-
   private static Board board; // board data - states, etc.
   private static BoardView boardView; // graphical representation of board - for updating view on state changes
-
-  public GameController(NavigationController _navigation) {
-    navigation = _navigation;
-  }
 
   public void initializeMinefield() {
     board.initializeMinefield();
@@ -53,10 +47,6 @@ public class GameController {
 
   public void setBoardView(BoardView _boardView) {
     this.boardView = _boardView;
-  }
-
-  public NavigationController getNavigation() {
-    return navigation;
   }
 
   public void setFieldState(int x, int y, Field.State action) {
