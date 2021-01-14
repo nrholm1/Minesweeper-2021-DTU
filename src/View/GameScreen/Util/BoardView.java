@@ -102,7 +102,7 @@ public class BoardView extends StackPane {
 
         Text boatText = new Text("Help me get through!\nFind all the mines!");
         Font pixelFont = Font.loadFont(this.getClass()
-                                           .getResource("../PressStart2P-Regular.ttf")
+                                           .getResource("../../PressStart2P-Regular.ttf")
                                            .toExternalForm(), 10);
         boatText.setLineSpacing(5);
         boatText.setFont(pixelFont);
