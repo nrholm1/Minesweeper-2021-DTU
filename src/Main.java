@@ -12,6 +12,8 @@ import javafx.application.Application;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.net.UnknownHostException;
+
 
 // Main class containing startup logic
 // Goal is to initialize FX main thread and provide a base context for MVC and "plug in" the various
@@ -35,7 +37,7 @@ public class Main extends Application {
     GameController gameController;
 
     @Override
-    public void start(Stage root) {
+    public void start(Stage root) throws UnknownHostException {
         root.setTitle("MineSwoop");
 
         initializeMainMenuView();
@@ -66,7 +68,7 @@ public class Main extends Application {
         singleplayerMenuView = new SingleplayerMenuView(getStageDims());
     }
 
-    void initializeMultiplayerMenu() {
+    void initializeMultiplayerMenu() throws UnknownHostException {
         multiplayerMenuView = new MultiPlayerMenuView(getStageDims());
     }
 

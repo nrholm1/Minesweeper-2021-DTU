@@ -15,6 +15,9 @@ import javafx.scene.text.Text;
 import View.Components.PixelButton;
 import View.Components.PixelSlider;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class MultiPlayerMenuView extends Scene {
     MainMenuController controller;
 
@@ -26,7 +29,7 @@ public class MultiPlayerMenuView extends Scene {
     static final String backUrl = "images/back-icon.png";
     static final String startUrl = "images/pre-start-game.png";
 
-    public MultiPlayerMenuView(int[] stagedims){
+    public MultiPlayerMenuView(int[] stagedims) throws UnknownHostException {
         super(new StackPane(), stagedims[0], stagedims[1]);
 
         menu = new VBox((double) stagedims[1]/20);
@@ -43,12 +46,15 @@ public class MultiPlayerMenuView extends Scene {
         VBox wholeIp = new VBox(12);
         wholeIp.setAlignment(Pos.CENTER);
 
-        Text ipText = new Text("Enter Game Code:");
-        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
+        Text ipText = new Text("Enter partner IP:");
+        Font pixelfont = Font.loadFont(this
+                .getClass()
+                .getResource("../PressStart2P-Regular.ttf")
+                .toExternalForm(), 16);
         ipText.setFont(pixelfont);
         ipText.setFill(Color.WHITE);
 
-        TextField ipField = new TextField();
+        TextField ipField = new TextField(getLocalIp());
         ipField.setMaxWidth(stagedims[0]/4.0);
         ipField.setAlignment(Pos.CENTER);
         ipField.setFont(pixelfont);
@@ -77,6 +83,12 @@ public class MultiPlayerMenuView extends Scene {
 
         super.setRoot(whole);
         super.getStylesheets().add(this.getClass().getResource("./MultiStyles.css").toExternalForm());
+    }
+
+    // TODO works as intended, but should be
+    public String getLocalIp() throws UnknownHostException {
+        InetAddress addr = InetAddress.getLocalHost();
+        return addr.getHostAddress();
     }
 
     public void setController(MainMenuController controller) {
