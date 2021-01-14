@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 
 public class HexTile extends StackPane {
 
-    private Polygon hexagon;
+    private final Polygon hexagon;
     private Text adjacentMinesText;
     private int xpos;
     private int ypos;
@@ -35,12 +35,14 @@ public class HexTile extends StackPane {
 
         hexagon = new Polygon();
         hexagon.getPoints()
-             .addAll(corners[0][0], corners[0][1],
-                     corners[1][0], corners[1][1],
-                corners[2][0],corners[2][1],
-                corners[3][0],corners[3][1],
-                corners[4][0],corners[4][1],
-                corners[5][0],corners[5][1]);
+             .addAll(
+                    corners[0][0], corners[0][1],
+                    corners[1][0], corners[1][1],
+                    corners[2][0], corners[2][1],
+                    corners[3][0], corners[3][1],
+                    corners[4][0], corners[4][1],
+                    corners[5][0], corners[5][1]
+             );
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(hexagon);
