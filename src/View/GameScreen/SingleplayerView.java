@@ -1,6 +1,8 @@
 package View.GameScreen;
 
 import Controller.GameController;
+import View.Components.TopMenuView;
+import View.GameScreen.Util.BoardView;
 import View.GameScreen.Util.BoardViewBuilder;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;

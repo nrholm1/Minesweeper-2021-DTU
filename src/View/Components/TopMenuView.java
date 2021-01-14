@@ -1,10 +1,9 @@
-package View.GameScreen;
+package View.Components;
 
 import Controller.GameController;
-import Controller.NavigationController;
+import View.Components.TimeCounter;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;

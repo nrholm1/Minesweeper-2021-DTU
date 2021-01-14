@@ -1,7 +1,7 @@
-package View.GameScreen;
+package View.GameScreen.Util;
 
 import Controller.GameController;
-import Model.Board;
+import View.Components.HexTile;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
