@@ -96,7 +96,7 @@ public class Main extends Application {
         // temp
         ownBoard = new BoardBuilder()
                 .withSize(5)
-                .withAmountMines(10) // Bruh
+                .withAmountMines(20) // Bruh
                 .build();
         // end temp
     }

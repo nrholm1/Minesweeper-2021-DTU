@@ -33,16 +33,16 @@ public class Board {
     }
 
     private void setMines(int x, int y) {
-        for (int curMines = 0; curMines < this.amountMines; curMines++) {
-            int c = 0;
-            int r = 0;
-            do {
-                c = (int)(Math.random()*radius);
-                r = (int)(Math.random()*diameter);
-            }while (c == x && r == y);
-            if (!minefield[r][c].isMine()) {
-                minefield[r][c].toggleIsMine();
-            }
+        int curMines = 0;
+        while(curMines < this.amountMines) {
+            int r = (int)(Math.random() * diameter);
+            int c = (int)(Math.random() * minefield[r].length);
+
+            if ((r == x && c == y) || minefield[r][c].isMine())
+                continue;
+
+            minefield[r][c].toggleIsMine();
+            curMines++;
         }
     }
 
@@ -53,10 +53,19 @@ public class Board {
                     incrementAdjacentMineCounters(col,row);
     }
 
-    public void blankField(int x, int y) {
-        if (getField(x, y).getAdjacentMines() == 0) {
-            int[][] fields = {/*{x-1, y-1},*/ {x-1, y}, {x-1, y+1}, {x, y-1}, {x, y+1}, {x+1, y-1}, {x+1, y}/*, {x+1, y+1}*/};
-            for (int[] field : fields) {
+    public void blankField(int col, int row) {
+        if (getField(col, row).getAdjacentMines() == 0) {
+            boolean onLeftSide = col < radius; // on left side of current index
+            boolean onRightSide = col > radius; // on right side of current index
+            int[][] adjacentFields = {
+                    {col, row-1},
+                    {col+1, row},
+                    {col, row+1},
+                    {col-1, row},
+                    {col-1, onRightSide ? row+1 : row-1},
+                    {col+1, onLeftSide ? row+1 : row-1}
+            };
+            for (int[] field : adjacentFields) {
                 int tempx = field[0];
                 int tempy = field[1];
                 if (tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && !minefield[tempx][tempy].isMine()) {
