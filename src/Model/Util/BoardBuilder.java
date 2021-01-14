@@ -4,10 +4,10 @@ import Model.Board;
 
 public class BoardBuilder {
     int amountMines;
-    int sideLength;
+    int radius;
 
     public Board build() {
-        return new Board(this.sideLength, this.amountMines);
+        return new Board(this.radius, this.amountMines);
     }
 
     public BoardBuilder withAmountMines(int _amountMines) {
@@ -18,9 +18,9 @@ public class BoardBuilder {
         return this;
     }
 
-    public BoardBuilder withSideLength(int _sideLength) {
-        if (_sideLength >= 5)
-            this.sideLength = _sideLength;
+    public BoardBuilder withSize(int _size) {
+        if (_size >= 5)
+            this.radius = _size;
         else throw new IllegalArgumentException("Side length must be greater than or equal to 5");
 
         return this;

@@ -17,8 +17,8 @@ import javafx.scene.text.Text;
 public class BoardView extends StackPane {
     private final double sideLength;
     private final int inset;
-    private final int size;
-    private final int diameter;
+    private final int boardRadius;
+    private final int boardDiameter;
 
     private HexTile[][] tileField;
     static private HBox board;
@@ -26,13 +26,13 @@ public class BoardView extends StackPane {
 
     GameController controller;
 
-    public BoardView(int stageWidth, int inset, int size) {
+    public BoardView(int[] stageDimensions, int inset, int size) {
         super();
 
         this.inset = inset;
-        this.size = size;
-        this.diameter = 2*size + 1;
-        this.sideLength = (stageWidth/2.0 - 2*inset)/(4*size + 2);
+        this.boardRadius = size;
+        this.boardDiameter = 2*size + 1;
+        this.sideLength = calculateSideLength(stageDimensions);
 
         createNewTileField();
         createTileFieldVisual();
@@ -41,12 +41,19 @@ public class BoardView extends StackPane {
         super.getChildren().addAll(boat, board);
     }
 
+    int calculateSideLength(int[] stageDimensions) {
+        return (int)
+                ((stageDimensions[1]-2*inset)
+                /
+                (2*boardRadius*(2*Math.sqrt(3)) + 2*Math.sqrt(3)));
+    }
+
     public void createNewTileField(){
 
-        tileField = new HexTile[diameter][];
+        tileField = new HexTile[boardDiameter][];
 
-        for(int col = 0; col < diameter; col++){
-            tileField[col] = new HexTile[diameter - Math.abs(col - size)];
+        for(int col = 0; col < boardDiameter; col++){
+            tileField[col] = new HexTile[boardDiameter - Math.abs(col - boardRadius)];
 
             for(int row = 0; row < tileField[col].length; row++){
                 HexTile currentTile = new HexTile(col, row, sideLength);
@@ -75,7 +82,7 @@ public class BoardView extends StackPane {
             VBox currCol = new VBox(sideLength / 2);
 
             //Skaber pladsen der forskyder kolonnerne fra hinanden
-            for (int row = 0; row < diameter - hexTiles.length; row++)
+            for (int row = 0; row < boardDiameter - hexTiles.length; row++)
                 currCol.getChildren()
                        .add(new Rectangle(0, Math.sqrt(3) * sideLength / 2 - sideLength / 4));
 

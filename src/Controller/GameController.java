@@ -35,7 +35,8 @@ public class GameController {
     tile.render(field.getState());
 
     if (field.getState() == Field.State.PRESSED)
-      tile.setAdjacentMinesAmount(field.getAdjacentMines());
+      tile.setAdjacentMinesAmount("" +
+              (field.isMine() ? "X" : field.getAdjacentMines()));
   }
 
   public void setBoardModel(Board _board) {

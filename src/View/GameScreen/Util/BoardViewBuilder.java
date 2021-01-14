@@ -3,19 +3,19 @@ package View.GameScreen.Util;
 import View.GameScreen.BoardView;
 
 public class BoardViewBuilder {
-    int width;
+    int[] stageDims;
     int inset;
     int size;
 
     public BoardView build() {
-        if (width > 0 && inset > 0 && size > 0)
-            return new BoardView(width, inset, size);
+        if (stageDims[1] > 0 && inset > 0 && size > 0)
+            return new BoardView(stageDims, inset, size);
         else
             throw new IllegalArgumentException("Please enter a positive value for all params");
     }
 
-    public BoardViewBuilder withWidth(int _width) {
-        width = _width;
+    public BoardViewBuilder withStageDims(int[] _stageDims) {
+        stageDims = _stageDims;
         return this;
     }
 

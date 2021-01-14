@@ -31,7 +31,7 @@ public class HexTile extends Polygon {
         switch (state) {
             case UNFLAGGED -> { super.setFill(getTileImage("hex-tile"));}
             case FLAGGED -> { super.setFill(getTileImage("hex-flag-tile"));}
-            case PRESSED -> { super.setFill(getTileImage("temp-tile")); }
+            case PRESSED -> { super.setFill(Color.WHITE); }
         }
     }
 
@@ -39,8 +39,8 @@ public class HexTile extends Polygon {
         return new ImagePattern(new Image("Images/" + tileUrl + ".png"));
     }
 
-    public void setAdjacentMinesAmount(int _adjacentMines) {
-        adjacentMinesText.setText("" + _adjacentMines);
+    public void setAdjacentMinesAmount(String _adjacentMines) {
+        adjacentMinesText.setText(_adjacentMines);
     }
 
     public void setAdjacentMinesText(Text _adjacentMinesText) {

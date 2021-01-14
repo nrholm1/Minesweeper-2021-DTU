@@ -13,11 +13,11 @@ public class SingleplayerView extends Scene {
   GameController controller;
 
   public SingleplayerView(int[] stageDims, int inset, int size) {
-    super(new BorderPane());
+    super(new BorderPane(), stageDims[0], stageDims[1]);
 
     topMenu = new TopMenuView(stageDims[0], inset);
     boardView = new BoardViewBuilder()
-            .withWidth(stageDims[0])
+            .withStageDims(stageDims)
             .withInsetSize(inset)
             .withSize(size)
             .build();

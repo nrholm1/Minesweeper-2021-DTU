@@ -52,7 +52,6 @@ public class Main extends Application {
         initializeMainMenuController();
 
         linkControllersToViews();
-        linkComponents();
 
         // set initial scene to main menu screen
         root.setScene(mainMenuView);
@@ -76,7 +75,7 @@ public class Main extends Application {
         singleplayerView = new SingleplayerViewBuilder()
                 .withStageDims(getStageDims())
                 .withInsetSize(30)
-                .withSize(4)
+                .withSize(5)
                 .build();
     }
 
@@ -93,8 +92,9 @@ public class Main extends Application {
 
     void initializeBoard() {
         // temp
-        ownBoard = new BoardBuilder().withAmountMines(26)
-                .withSideLength(12) // Bruh
+        ownBoard = new BoardBuilder()
+                .withSize(5)
+                .withAmountMines(26) // Bruh
                 .build();
         // end temp
     }
@@ -117,12 +117,6 @@ public class Main extends Application {
         mainMenuView.setController(mainMenuController);
         singleplayerMenuView.setController(mainMenuController);
         multiplayerMenuView.setController(mainMenuController);
-    }
-
-    private void linkComponents() {
-        // temp
-//        mainMenuView.configureStartButton();
-        // end temp
     }
 
     @Override
