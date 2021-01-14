@@ -1,12 +1,12 @@
-package View.MenuScreen;
+package View.Components;
 
 import Controller.GameController;
+import Controller.MainMenuController;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class StartButton extends Rectangle{
-
     static final String startUrl = "Images/pre-start-game.png";
 
     public StartButton() {
@@ -15,9 +15,10 @@ public class StartButton extends Rectangle{
         super.setId("pixelbutton");
     }
 
-    public void setController(GameController controller) {
+    public void setController(MainMenuController controller) {
         super.setOnMouseClicked(e -> {
-            controller.beginGame();
+            System.out.println("Start game");
+            controller.beginSingleplayerGame();
         });
     }
 

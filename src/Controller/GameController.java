@@ -2,38 +2,25 @@ package Controller;
 
 import Model.Board;
 import Model.Field;
-import Model.Util.BoardBuilder;
-import View.GameScreen.Game;
+import View.GameScreen.BoardView;
 import View.GameScreen.HexTile;
-import View.GameScreen.HexagonalBoard;
-import View.MenuScreen.PregameMenu;
-import javafx.stage.Stage;
 
 public class GameController {
-  // does it need these three?
-  private Stage root;
-  private PregameMenu menu;
-  private Game game;
-  // ------------------------
+  NavigationController navigation;
 
   private Board board; // board data - states, etc.
-  private HexagonalBoard GuiBoard; // graphical representation of board - for updating view on state changes
+  private BoardView boardView; // graphical representation of board - for updating view on state changes
 
-  public GameController(Stage root, PregameMenu menu) {
-    this.root = root;
-    this.menu = menu;
-    menu.setController(this);
-    root.setScene(menu);
-    root.show();
+  public GameController(NavigationController _navigation) {
+    navigation = _navigation;
   }
 
-  public void beginGame() {
-    board = new BoardBuilder().withAmountMines(20)
-                              .withSideLength(menu.getSize() + 1)
-                              .build();
-    game = new Game((int)menu.getWidth(), 30, menu.getSize());
-    game.setController(this);
-    root.setScene(game);
+  public void initializeMinefield() {
+    board.initializeMinefield();
+  }
+
+  public void initializeBoardView() {
+    boardView.renderEntireTileField();
   }
 
   public int getAdjacentMines(int x, int y) {
@@ -52,11 +39,23 @@ public class GameController {
 
   public void updateTile(int x, int y) {
     Field field = board.getField(x, y);
-    HexTile tile = GuiBoard.getTile(x, y); // make class for another level of abstraction for this?
-    tile.renderTile(field.getState());
+    HexTile tile = boardView.getTile(x, y);
+    tile.render(field.getState());
+
+    if (field.getState() == Field.State.PRESSED)
+      tile.setAdjacentMinesAmount("" +
+              (field.isMine() ? "X" : field.getAdjacentMines()));
   }
 
-  public void setGuiBoard(HexagonalBoard GuiBoard) {
-    this.GuiBoard = GuiBoard;
+  public void setBoardModel(Board _board) {
+    board = _board;
+  }
+
+  public void setBoardView(BoardView _boardView) {
+    this.boardView = _boardView;
+  }
+
+  public NavigationController getNavigation() {
+    return navigation;
   }
 }
