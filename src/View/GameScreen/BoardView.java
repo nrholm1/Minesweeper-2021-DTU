@@ -1,7 +1,7 @@
 package View.GameScreen;
 
 import Controller.GameController;
-import Model.Field;
+import Model.Board;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -11,30 +11,29 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class HexagonalBoard extends StackPane {
+public class BoardView extends StackPane {
     private final double sideLength;
     private final int inset;
-    private final int size;
-    private final int diameter;
+    private final int boardRadius;
+    private final int boardDiameter;
 
     private HexTile[][] tileField;
     static private HBox board;
     static private VBox boat;
 
-    private final String tileUrl = "Images/hex-tile.png";
+    GameController controller;
 
-    public HexagonalBoard(int stageWidth, int inset, int size) {
+    public BoardView(int[] stageDimensions, int inset, int size) {
         super();
 
         this.inset = inset;
-        this.size = size;
-        this.diameter = 2*size + 1;
-        this.sideLength = (stageWidth/2.0 - 2*inset)/(4*size + 2);
+        this.boardRadius = size;
+        this.boardDiameter = 2*size + 1;
+        this.sideLength = calculateSideLength(stageDimensions);
 
         createNewTileField();
         createTileFieldVisual();
@@ -43,24 +42,40 @@ public class HexagonalBoard extends StackPane {
         super.getChildren().addAll(boat, board);
     }
 
+    int calculateSideLength(int[] stageDimensions) {
+        return (int)
+                ((stageDimensions[1]-2*inset)
+                /
+                (2*boardRadius*(2*Math.sqrt(3)) + 2*Math.sqrt(3)));
+    }
+
     public void createNewTileField(){
 
-        tileField = new HexTile[diameter][];
-        ImagePattern img = new ImagePattern(new Image(tileUrl));
+        tileField = new HexTile[boardDiameter][];
 
-        for(int col = 0; col < diameter; col++){
-            tileField[col] = new HexTile[diameter - Math.abs(col-size)];
+        for(int col = 0; col < boardDiameter; col++){
+            tileField[col] = new HexTile[boardDiameter - Math.abs(col - boardRadius)];
 
-            for(int row =0; row<tileField[col].length; row++){
-                tileField[col][row] = new HexTile(col, row, sideLength, img);
+            for(int row = 0; row < tileField[col].length; row++){
+                HexTile currentTile = new HexTile(col, row, sideLength);
+                int x = col;
+                int y = row;
+
+                currentTile.setOnMouseClicked(e -> {
+                    if (e.getButton() == MouseButton.PRIMARY)
+                        handleLeftClick(x, y);
+                    if (e.getButton() == MouseButton.SECONDARY)
+                        handleRightClick(x, y);
+                });
+
+                tileField[col][row] = currentTile;
             }
         }
     }
 
     public void createTileFieldVisual(){
-
         board = new HBox();
-        board.setPadding(new Insets(inset,inset,inset,inset));
+        board.setPadding(new Insets(inset, inset, inset, inset));
         board.setAlignment(Pos.CENTER);
 
         for (HexTile[] hexTiles : tileField) {
@@ -68,9 +83,9 @@ public class HexagonalBoard extends StackPane {
             VBox currCol = new VBox(sideLength / 2);
 
             //Skaber pladsen der forskyder kolonnerne fra hinanden
-            for (int row = 0; row < diameter - hexTiles.length; row++) {
-                currCol.getChildren().add(new Rectangle(0, Math.sqrt(3) * sideLength / 2 - sideLength / 4));
-            }
+            for (int row = 0; row < boardDiameter - hexTiles.length; row++)
+                currCol.getChildren()
+                       .add(new Rectangle(0, Math.sqrt(3) * sideLength / 2 - sideLength / 4));
 
             for (HexTile hexTile : hexTiles) {
                 currCol.getChildren().add(hexTile);
@@ -100,41 +115,24 @@ public class HexagonalBoard extends StackPane {
         boat.getChildren().addAll(boatText, boatImage);
     }
 
-    // TODO refactor and clear up exactly what the architecture is?
-    // set directly when creating tiles instead?
-    public void setEvents(GameController controller) {
-        // temp set here:
-        linkTileFieldToController(controller);
-
-        for(int i = 0; i < tileField.length; i++) {
-            for(int o = 0; o < tileField[i].length; o++) {
-                int x = i;
-                int y = o;
-                tileField[i][o].setOnMouseClicked(e -> {
-                    if (e.getButton() == MouseButton.PRIMARY)
-                        handleLeftClick(controller, x, y);
-                    if (e.getButton() == MouseButton.SECONDARY)
-                        handleRightClick(controller, x, y);
-                });
-            }
-        }
+    public void setController(GameController _controller) {
+        controller = _controller;
     }
 
-    // static/final
-    void linkTileFieldToController(GameController controller) {
-        controller.setGuiBoard(this);
-    }
-
-    void handleLeftClick(GameController controller, int x, int y) {
-        // bundle all methods to be called when a tile is leftclicked
+    void handleLeftClick(int x, int y) {
         controller.pressField(x,y);
         controller.updateTile(x,y);
     }
 
-    void handleRightClick(GameController controller, int x, int y) {
-        // bundle all methods to be called when a tile is rightclicked
+    void handleRightClick(int x, int y) {
         controller.flagField(x,y);
         controller.updateTile(x,y);
+    }
+
+    public void renderEntireTileField() {
+        for(int x = 0; x < tileField.length; x++)
+            for(int y = 0; y < tileField[x].length; y++)
+                controller.updateTile(x,y);
     }
 
     public HexTile getTile(int x, int y) {

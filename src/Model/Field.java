@@ -16,6 +16,13 @@ public class Field {
         this.isMine = false;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 
     public void setState(State state) {
         this.state = state;
@@ -41,6 +48,13 @@ public class Field {
         return this.adjacentMines;
     }
 
+    public String getTileText() {
+        if (this.isMine)
+            return "X";
+
+        return "" + getAdjacentMines();
+    }
+
 
     public void incrementAdjacentMines() {
         this.adjacentMines++;
@@ -58,7 +72,27 @@ public class Field {
     }
 
     public String toString() {
-        return "(" + x + ", " + y + ") " + state;
+        return "(" + x + ", " + y + ") " + state
+                + (isMine ? " X" : " " + adjacentMines);
+    }
+
+    public byte[] toBytes() {
+        return this.toParsableString()
+                .getBytes();
+    }
+
+    public String toParsableString() {
+        String actionString = switch (this.state) {
+            case PRESSED -> "P";
+            case FLAGGED -> "F";
+            case UNFLAGGED -> "U";
+        };
+
+        return  actionString +
+                "|" +
+                this.x +
+                "|" +
+                this.y;
     }
 
     public enum State {

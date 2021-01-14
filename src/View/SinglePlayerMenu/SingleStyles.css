@@ -1,6 +1,6 @@
 
 .slider .thumb{
-    -fx-background-image: url(../../Images/knob-icon.png);
+    -fx-background-image: url(../../images/knob-icon.png);
 }
 .slider .thumb:hover {
     -fx-scale-x: 1.2;
@@ -20,7 +20,7 @@
 }
 
 #menu {
-    -fx-background-image: url(../../Images/pre-back.jpg);
+    -fx-background-image: url(../../images/pre-back.jpg);
     -fx-background-size: cover;
     -fx-background-position: center center;
 }
