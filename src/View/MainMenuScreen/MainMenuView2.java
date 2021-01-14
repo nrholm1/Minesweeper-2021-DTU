@@ -1,6 +1,6 @@
 package View.MainMenuScreen;
 
-import Controller.MainMenuController;
+import Controller.NavigationController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -11,8 +11,6 @@ import View.Components.PixelButton;
 
 // new -> Massimo's class
 public class MainMenuView2 extends Scene {
-    MainMenuController controller;
-
     static private VBox menu;
     static private VBox back;
     static private StackPane whole;
@@ -40,10 +38,10 @@ public class MainMenuView2 extends Scene {
                 stagedims[0]/24);
 
         spButton.setOnMouseClicked(e -> {
-            controller.gotoSingleplayerMenu();
+            NavigationController.gotoSingleplayerMenuView();
         });
         mpButton.setOnMouseClicked(e -> {
-            controller.gotoMultiplayerMenu();
+            NavigationController.gotoMultiplayerMenuView();
         });
 
         menu.getChildren()
@@ -61,9 +59,5 @@ public class MainMenuView2 extends Scene {
                 .add(this.getClass()
                 .getResource("./MainStyles.css")
                 .toExternalForm());
-    }
-
-    public void setController(MainMenuController _controller) {
-        controller = _controller;
     }
 }

@@ -1,6 +1,6 @@
 package View.MultiPlayerMenu;
 
-import Controller.MainMenuController;
+import Controller.NavigationController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,8 +19,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class MultiPlayerMenuView extends Scene {
-    MainMenuController controller;
-
     static VBox menu;
     static VBox back;
     static StackPane whole;
@@ -73,7 +71,7 @@ public class MultiPlayerMenuView extends Scene {
 
         PixelButton backbutton = new PixelButton(backUrl, stagedims[0]/10, stagedims[0]/30);
         backbutton.setOnMouseClicked(e -> {
-            controller.gotoMainMenu();
+            NavigationController.gotoMainMenuView();
         });
         back.getChildren().add(backbutton);
 
@@ -89,9 +87,5 @@ public class MultiPlayerMenuView extends Scene {
     public String getLocalIp() throws UnknownHostException {
         InetAddress addr = InetAddress.getLocalHost();
         return addr.getHostAddress();
-    }
-
-    public void setController(MainMenuController controller) {
-        this.controller = controller;
     }
 }

@@ -8,10 +8,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class PixelSlider extends VBox{
+    private Slider slider;
+
     public PixelSlider(int[] stageDims, int[] vals, String type){
         super(12);
         //Size
-        Slider slider = new Slider();
+        slider = new Slider();
         slider.setMin(vals[0]);
         slider.setMax(vals[2]);
         slider.setMaxWidth(stageDims[0]/4.0);
@@ -48,7 +50,9 @@ public class PixelSlider extends VBox{
         System.out.println("Difficulty set to " + val);
     }
 
-    void setGameSize(int val) {
+    private void setGameSize(int val) {
         System.out.println("Game size set to " + val);
     }
+
+    public int getSize() { return (int)slider.getValue(); }
 }

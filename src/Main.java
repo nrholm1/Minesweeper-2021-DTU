@@ -1,10 +1,6 @@
 import Controller.GameController;
-import Controller.MainMenuController;
 import Controller.NavigationController;
-import Model.Board;
-import Model.Util.BoardBuilder;
-import View.GameScreen.SingleplayerView;
-import View.GameScreen.Util.SingleplayerViewBuilder;
+import Services.GameTimer;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
@@ -20,117 +16,52 @@ import java.net.UnknownHostException;
 // components through dependency injection
 
 public class Main extends Application {
-    // "Data storage" of Models
-    Board ownBoard;
-    Board opponentBoard;
 
     // Views
     MainMenuView2 mainMenuView;
-    SingleplayerView singleplayerView;
-//    MultiplayerView multiplayerView;
     SingleplayerMenuView singleplayerMenuView;
     MultiPlayerMenuView multiplayerMenuView;
 
     // Controllers
     NavigationController navigation;
-    MainMenuController mainMenuController;
     GameController gameController;
 
     @Override
     public void start(Stage root) throws UnknownHostException {
         root.setTitle("MineSwoop");
 
-        initializeMainMenuView();
-        initializeSingleplayerMenu();
-        initializeMultiplayerMenu();
-        initializeSingleplayerView();
-        initializeMultiplayerView();
+        mainMenuView = new MainMenuView2(getStageDims());
+        singleplayerMenuView = new SingleplayerMenuView(getStageDims());
+        multiplayerMenuView = new MultiPlayerMenuView(getStageDims());
 
         initializeNavigation(root);
-
-        initializeBoard();
-
-        initializeGameController();
-        initializeMainMenuController();
-
-        linkControllersToViews();
 
         // set initial scene to main menu screen
         root.setScene(mainMenuView);
         root.show();
     }
 
-    void initializeMainMenuView() {
-        mainMenuView = new MainMenuView2(getStageDims());
-    }
-
-    void initializeSingleplayerMenu() {
-        singleplayerMenuView = new SingleplayerMenuView(getStageDims());
-    }
-
-    void initializeMultiplayerMenu() throws UnknownHostException {
-        multiplayerMenuView = new MultiPlayerMenuView(getStageDims());
-    }
-
-    void initializeSingleplayerView() {
-        // hardcoded right now, but should be set by the sliders in spMenuView
-        singleplayerView = new SingleplayerViewBuilder()
-                .withStageDims(getStageDims())
-                .withInsetSize(30)
-                .withSize(5)
-                .build();
-    }
-
-    void initializeMultiplayerView() {}
 
     void initializeNavigation(Stage root) {
-        navigation = new NavigationController(root);
+        navigation.setRoot(root);
+        navigation.setStageDims(getStageDims());
         navigation.setMainMenuView(mainMenuView);
         navigation.setSpMenuView(singleplayerMenuView);
         navigation.setMpMenuView(multiplayerMenuView);
-        navigation.setSingleplayerView(singleplayerView);
-        // navigation.setMultiplayerView(multiplayerView);
     }
 
-    void initializeBoard() {
-        // temp
-        ownBoard = new BoardBuilder()
-                .withSize(5)
-                .withAmountMines(20) // Bruh
-                .build();
-        // end temp
-    }
 
-    void initializeGameController() {
-        gameController = new GameController(navigation);
-        gameController.setBoardModel(ownBoard);
-        gameController.setBoardView(
-                // TODO this is temp, and should be different if multiplayer
-                singleplayerView.getBoardView()
-        );
-    }
-
-    void initializeMainMenuController() {
-        mainMenuController = new MainMenuController(navigation);
-        mainMenuController.setGameController(gameController);
-    }
-
-    void linkControllersToViews() {
-        singleplayerView.setController(gameController);
-        mainMenuView.setController(mainMenuController);
-        singleplayerMenuView.setController(mainMenuController);
-        multiplayerMenuView.setController(mainMenuController);
-    }
 
     @Override
     public void stop() {
         // TODO kill all spawned threads
+        GameTimer.stopTimers();
         System.out.println("Stopping Application");
 
     }
 
     // TODO refactor to not use int[]
-    int[] getStageDims() {
+    public int[] getStageDims() {
         return new int[] {
             (int) Screen
                     .getPrimary()

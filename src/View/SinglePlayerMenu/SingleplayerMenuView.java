@@ -1,6 +1,6 @@
 package View.SinglePlayerMenu;
 
-import Controller.MainMenuController;
+import Controller.NavigationController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,8 +12,6 @@ import View.Components.PixelButton;
 import View.Components.PixelSlider;
 
 public class SingleplayerMenuView extends Scene{
-    MainMenuController controller;
-
     static VBox menu;
     static VBox back;
     static StackPane whole;
@@ -44,7 +42,7 @@ public class SingleplayerMenuView extends Scene{
         startButton = new PixelButton(startUrl, stageDims[0]/4, stageDims[0]/16);
 
         startButton.setOnMouseClicked(e -> {
-            controller.beginSingleplayerGame();
+            NavigationController.createSingleplayerGame();
         });
 
         menu.getChildren()
@@ -61,9 +59,11 @@ public class SingleplayerMenuView extends Scene{
         PixelButton backButton = new PixelButton(backUrl,
                 stageDims[0]/10,
                 stageDims[0]/30);
+
         backButton.setOnMouseClicked(e -> {
-            controller.gotoMainMenu();
+            NavigationController.gotoMainMenuView();
         });
+
         back.getChildren().add(backButton);
 
         whole = new StackPane();
@@ -77,7 +77,11 @@ public class SingleplayerMenuView extends Scene{
                       .toExternalForm());
     }
 
-    public void setController(MainMenuController mainMenuController) {
-        this.controller = mainMenuController;
+    public int getSize() {
+        return size.getSize();
+    }
+
+    public int getDifficulty() {
+        return difficulty.getSize();
     }
 }

@@ -29,7 +29,7 @@ public class MultiplayerTestView extends Scene {
         super.setRoot(gameView);
         super.getStylesheets()
                 .add(this.getClass()
-                        .getResource("./GameStyles.css")
+                        .getResource("./Util/GameStyles.css")
                         .toExternalForm());
     }
 
