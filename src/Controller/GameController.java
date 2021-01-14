@@ -8,8 +8,8 @@ import View.GameScreen.HexTile;
 public class GameController {
   NavigationController navigation;
 
-  private Board board; // board data - states, etc.
-  private BoardView boardView; // graphical representation of board - for updating view on state changes
+  private static Board board; // board data - states, etc.
+  private static BoardView boardView; // graphical representation of board - for updating view on state changes
 
   public GameController(NavigationController _navigation) {
     navigation = _navigation;
@@ -29,6 +29,8 @@ public class GameController {
 
   public void pressField(int x, int y) {
     board.pressField(x,y);
+    board.firstClick(x, y);
+    board.Blankfield(x,y);
     System.out.println(board.getField(x,y));
   }
 
@@ -37,7 +39,7 @@ public class GameController {
     System.out.println(board.getField(x,y));
   }
 
-  public void updateTile(int x, int y) {
+  public static void updateTile(int x, int y) {
     Field field = board.getField(x, y);
     HexTile tile = boardView.getTile(x, y);
     tile.setTileText(field.getTileText());
