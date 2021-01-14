@@ -88,28 +88,11 @@ public class BoardView extends StackPane {
                        .add(new Rectangle(0, Math.sqrt(3) * sideLength / 2 - sideLength / 4));
 
             for (HexTile hexTile : hexTiles) {
-                StackPane tileWithText = createTileWithText(hexTile);
-                currCol.getChildren().add(tileWithText);
+                currCol.getChildren().add(hexTile);
             }
 
             board.getChildren().add(currCol);
         }
-    }
-
-    // creates combined tile with text containing count of adjacent mines
-    StackPane createTileWithText(HexTile hexTile) {
-        StackPane stack = new StackPane();
-
-        // create adjacentMinesText and set styling
-        Text adjacentMinesText = new Text();
-        adjacentMinesText.setFill(Color.FIREBRICK);
-        adjacentMinesText.setScaleX(2);
-        adjacentMinesText.setScaleY(2);
-
-        hexTile.setAdjacentMinesText(adjacentMinesText);
-        stack.getChildren().addAll(hexTile, adjacentMinesText);
-
-        return stack;
     }
 
     public void createBoatDecoration(){

@@ -40,11 +40,9 @@ public class GameController {
   public void updateTile(int x, int y) {
     Field field = board.getField(x, y);
     HexTile tile = boardView.getTile(x, y);
+    tile.setAdjacentMinesAmount("" + field.getAdjacentMines());
     tile.render(field.getState());
 
-    if (field.getState() == Field.State.PRESSED)
-      tile.setAdjacentMinesAmount("" +
-              (field.isMine() ? "X" : field.getAdjacentMines()));
   }
 
   public void setBoardModel(Board _board) {
