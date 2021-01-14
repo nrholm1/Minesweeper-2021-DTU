@@ -62,6 +62,25 @@ public class Field {
                 + (isMine ? " X" : " " + adjacentMines);
     }
 
+    public byte[] toBytes() {
+        return this.toParsableString()
+                .getBytes();
+    }
+
+    public String toParsableString() {
+        String actionString = switch (this.state) {
+            case PRESSED -> "P";
+            case FLAGGED -> "F";
+            case UNFLAGGED -> "U";
+        };
+
+        return  actionString +
+                "|" +
+                this.x +
+                "|" +
+                this.y;
+    }
+
     public enum State {
         PRESSED,
         FLAGGED,

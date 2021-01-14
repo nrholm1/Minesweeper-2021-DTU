@@ -30,7 +30,7 @@ public class HexTile extends Polygon {
     // TODO make setAdjacentMinesText part of render method
     public void render(Field.State state) {
         switch (state) {
-            case UNFLAGGED -> { super.setFill(getTileImage("hex-tile"));}
+            case UNFLAGGED -> { super.setFill(Color.DARKTURQUOISE);}
             case FLAGGED -> { super.setFill(getTileImage("hex-flag-tile"));}
             case PRESSED -> { super.setFill(Color.WHITE); }
         }
