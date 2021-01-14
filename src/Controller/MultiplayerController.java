@@ -16,14 +16,17 @@ public class MultiplayerController {
         this.gameController = controller;
     }
 
+    // call on init
     public void setMpService(MultiplayerService mpService) {
         this.mpService = mpService;
     }
 
+    // call from menuController
     public void setTargetIp(String ipAddress) {
         mpService.setTargetIpAdress(ipAddress);
     }
 
+    // call from gameController
     public void sendEvent(Field field) {
         FieldDTO dto = createFieldDTO(field);
         mpService.sendHttpRequest(dto);
@@ -41,6 +44,7 @@ public class MultiplayerController {
         gameController.setFieldState(
                 dto.getX(),
                 dto.getY(),
-                dto.getAction());
+                dto.getAction()
+        );
     }
 }

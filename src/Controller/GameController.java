@@ -40,7 +40,7 @@ public class GameController {
   public void updateTile(int x, int y) {
     Field field = board.getField(x, y);
     HexTile tile = boardView.getTile(x, y);
-    tile.setAdjacentMinesAmount("" + field.getAdjacentMines());
+    tile.setTileText(field.getTileText());
     tile.render(field.getState());
 
   }

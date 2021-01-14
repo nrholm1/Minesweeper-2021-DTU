@@ -56,21 +56,22 @@ public class HexTile extends StackPane {
     }
 
     public void renderUnflagged(){
-        if(getChildren().contains(adjacentMinesText)) getChildren().remove(adjacentMinesText);
+        getChildren().remove(adjacentMinesText);
 
         hexagon.setFill(Color.DARKTURQUOISE);
         hexagon.setId("hextile");
     }
 
     public void renderFlagged(){
-        if(getChildren().contains(adjacentMinesText)) getChildren().remove(adjacentMinesText);
+        getChildren().remove(adjacentMinesText);
 
         hexagon.setFill(Color.RED);
         hexagon.setId("hextile");
     }
 
     public void renderPressed(){
-        if(!getChildren().contains(adjacentMinesText)) getChildren().add(adjacentMinesText);
+        if(!getChildren().contains(adjacentMinesText))
+            getChildren().add(adjacentMinesText);
 
         hexagon.setFill(Color.AQUAMARINE.darker());
         hexagon.setId("");
@@ -90,9 +91,7 @@ public class HexTile extends StackPane {
         adjacentMinesText.setPickOnBounds(false);
     }
 
-    public void setAdjacentMinesAmount(String _adjacentMines) {
+    public void setTileText(String _adjacentMines) {
         adjacentMinesText.setText(_adjacentMines);
     }
-
-    public void setAdjacentMinesText(Text _adjacentMinesText) { adjacentMinesText = _adjacentMinesText; }
 }

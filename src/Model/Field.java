@@ -48,6 +48,13 @@ public class Field {
         return this.adjacentMines;
     }
 
+    public String getTileText() {
+        if (this.isMine)
+            return "X";
+
+        return "" + getAdjacentMines();
+    }
+
 
     public void incrementAdjacentMines() {
         this.adjacentMines++;
