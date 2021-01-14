@@ -9,7 +9,8 @@ public class Board {
     private final int radius;
 
     private final int diameter;
-private boolean FirstClick = true;
+    private boolean isFirstClick;
+
     public Board(int radius, int _amountMines) {
         this.amountMines = _amountMines;
         this.radius = radius;
@@ -28,6 +29,7 @@ private boolean FirstClick = true;
             for(int row = 0; row < minefield[col].length; row++)
                 minefield[col][row] = new Field(col, row);
         }
+        isFirstClick = true;
     }
 
     private void setMines(int x, int y) {
@@ -50,7 +52,8 @@ private boolean FirstClick = true;
                 if(minefield[col][row].isMine())
                     incrementAdjacentMineCounters(col,row);
     }
-    public void Blankfield(int x, int y) {
+
+    public void blankField(int x, int y) {
         if (getField(x, y).getAdjacentMines() == 0) {
             int[][] fields = {/*{x-1, y-1},*/ {x-1, y}, {x-1, y+1}, {x, y-1}, {x, y+1}, {x+1, y-1}, {x+1, y}/*, {x+1, y+1}*/};
             for (int[] field : fields) {
@@ -60,7 +63,7 @@ private boolean FirstClick = true;
                     if (!minefield[tempx][tempy].isMine() && !(minefield[tempx][tempy].getState() == Field.State.PRESSED)){
                         minefield[tempx][tempy].press();
                         GameController.updateTile(tempx,tempy);
-                        Blankfield(tempx, tempy);
+                        blankField(tempx, tempy);
                     }
                 }
             }
@@ -94,10 +97,11 @@ private boolean FirstClick = true;
             }
         }
     }
+
     public void firstClick(int x, int y) {
         if (minefield[x][y].getState() == Field.State.PRESSED) {
-            if (FirstClick) {
-                FirstClick = false;
+            if (isFirstClick) {
+                isFirstClick = false;
                 setMines(x,y);
                 setAdjacentMineCounters();
                 GameController.updateTile(x,y);

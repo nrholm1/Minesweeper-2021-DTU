@@ -30,7 +30,7 @@ public class GameController {
   public void pressField(int x, int y) {
     board.pressField(x,y);
     board.firstClick(x, y);
-    board.Blankfield(x,y);
+    board.blankField(x,y);
     System.out.println(board.getField(x,y));
   }
 
