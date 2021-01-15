@@ -38,11 +38,11 @@ public class MultiplayerController {
     }
 
     public void receiveEvent(FieldDTO dto) {
-        oppGameController.setFieldState(
+        oppGameController.updateTile(
                 dto.getX(),
                 dto.getY(),
-                dto.getAction()
+                dto.getAction(),
+                dto.getTileText()
         );
-        oppGameController.updateTile(dto.getX(), dto.getY());
     }
 }

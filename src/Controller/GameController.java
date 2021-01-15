@@ -48,8 +48,13 @@ public class GameController {
       mpController.sendEvent(field);
   }
 
-  public void setFieldState(int x, int y, Field.State action) {
-    board.setFieldState(x,y,action);
+  public void updateTile(int x,
+                         int y,
+                         Field.State action,
+                         String tileText) {
+    HexTile tile = boardView.getTile(x,y);
+    tile.setTileText(tileText);
+    tile.render(action);
   }
 
   public void setMpController(MultiplayerController mpController) {

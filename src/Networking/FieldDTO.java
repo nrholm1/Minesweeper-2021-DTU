@@ -35,6 +35,10 @@ public class FieldDTO {
         return y;
     }
 
+    public String getTileText() {
+        return tileText;
+    }
+
     public byte[] toBytes() {
         return this.toParsableString()
                    .getBytes();
