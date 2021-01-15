@@ -19,27 +19,70 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class MultiPlayerMenuView extends Scene {
-    static VBox menu;
-    static VBox back;
-    static StackPane whole;
 
-    PixelSlider size;
-    PixelSlider difficulty;
-    PixelButton startButton;
+    private VBox back;
+    private StackPane whole;
 
-    public MultiPlayerMenuView(int[] stageDims) throws UnknownHostException {
+    private VBox createGameMenu;
+    private VBox joinGamemenu;
+
+    private ImageView title;
+    private PixelSlider size;
+    private PixelSlider difficulty;
+    private PixelButton startButton;
+
+    public MultiPlayerMenuView(int[] stageDims) throws UnknownHostException{
         super(new StackPane(), stageDims[0], stageDims[1]);
 
-        menu = new VBox((double) stageDims[1]/20);
-        menu.setAlignment(Pos.CENTER);
-        menu.setStyle("-fx-background-color: null;");
-        menu.setPickOnBounds(false);
+        assembleSharedComponents(stageDims);
+        assembleCreateMenu(stageDims);
+        assembleJoinMenu(stageDims);
+        assembleBack(stageDims);
 
+        whole = new StackPane();
+        whole.getChildren().addAll(back, createGameMenu);
+        whole.setId("menu");
+
+        super.setRoot(whole);
+        super.getStylesheets().add(ExternalResources.multiplayerMenuStyleSheet);
+    }
+
+    // TODO works as intended, but should be
+    public String getLocalIp() throws UnknownHostException {
+        InetAddress addr = InetAddress.getLocalHost();
+        return addr.getHostAddress();
+    }
+
+    public void assembleSharedComponents(int[] stageDims){
         //Title
-        ImageView title = new ImageView(ExternalResources.menuTitle);
+        title = new ImageView(ExternalResources.menuTitle);
         title.setFitWidth(stageDims[0]/2.0);
         title.setFitHeight(stageDims[0]/15.0);
 
+        //StartButton
+        startButton = new PixelButton(ExternalResources.startgameText, stageDims[0]/4, stageDims[0]/16);
+        startButton.setOnMouseClicked(e -> {
+            NavigationController.createMultiplayerGame();
+        });
+    }
+
+    public void assembleCreateMenu(int[] stageDims){
+        createGameMenu = new VBox((double) stageDims[1]/20);
+        createGameMenu.setAlignment(Pos.CENTER);
+        createGameMenu.setStyle("-fx-background-color: null;");
+        createGameMenu.setPickOnBounds(false);
+
+        size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
+        difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
+
+        createGameMenu.getChildren().addAll(title,
+                size,
+                difficulty,
+                startButton);
+
+    }
+
+    public void assembleJoinMenu(int[] stageDims) throws UnknownHostException{
         //Ip-address
         VBox wholeIp = new VBox(12);
         wholeIp.setAlignment(Pos.CENTER);
@@ -56,20 +99,9 @@ public class MultiPlayerMenuView extends Scene {
 
         wholeIp.getChildren().addAll(ipText,ipField);
 
-        size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
-        difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
-        startButton = new PixelButton(ExternalResources.startgameText, stageDims[0]/4, stageDims[0]/16);
+    }
 
-        startButton.setOnMouseClicked(e -> {
-            NavigationController.createMultiplayerGame();
-        });
-
-        menu.getChildren().addAll(title,
-                size,
-                difficulty,
-                wholeIp,
-                startButton);
-
+    public void assembleBack(int[] stageDims){
         back = new VBox();
         int inset = stageDims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));
@@ -79,18 +111,5 @@ public class MultiPlayerMenuView extends Scene {
             NavigationController.gotoMainMenuView();
         });
         back.getChildren().add(backbutton);
-
-        whole = new StackPane();
-        whole.getChildren().addAll(back,menu);
-        whole.setId("menu");
-
-        super.setRoot(whole);
-        super.getStylesheets().add(ExternalResources.multiplayerMenuStyleSheet);
-    }
-
-    // TODO works as intended, but should be
-    public String getLocalIp() throws UnknownHostException {
-        InetAddress addr = InetAddress.getLocalHost();
-        return addr.getHostAddress();
     }
 }
