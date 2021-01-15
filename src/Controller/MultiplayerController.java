@@ -46,5 +46,6 @@ public class MultiplayerController {
                 dto.getY(),
                 dto.getAction()
         );
+        gameController.updateTile(dto.getX(), dto.getY());
     }
 }

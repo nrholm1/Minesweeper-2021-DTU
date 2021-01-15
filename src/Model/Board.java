@@ -54,7 +54,8 @@ public class Board {
                     incrementAdjacentMineCounters(col,row);
     }
 
-    public void blankField(int col, int row) {
+    // TODO refactor controller argument
+    public void blankField(int col, int row, GameController gameController) {
         if (getField(col, row).getAdjacentMines() == 0) {
             boolean onLeftSide = col < radius; // on left side of current index
             boolean onRightSide = col > radius; // on right side of current index
@@ -72,13 +73,14 @@ public class Board {
                 if (tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && !minefield[tempx][tempy].isMine()) {
                     if (!minefield[tempx][tempy].isMine() && !(minefield[tempx][tempy].getState() == Field.State.PRESSED)){
                         minefield[tempx][tempy].press();
-                        GameController.updateTile(tempx,tempy);
-                        blankField(tempx, tempy);
+                        blankField(tempx, tempy, gameController);
+                        gameController.updateTile(tempx,tempy);
                     }
                 }
             }
         }
     }
+
     public void setFieldState(int x, int y, Field.State state) {
         minefield[x][y].setState(state);
     }
@@ -114,7 +116,6 @@ public class Board {
                 isFirstClick = false;
                 setMines(x,y);
                 setAdjacentMineCounters();
-                GameController.updateTile(x,y);
             }
         }
     }

@@ -32,7 +32,7 @@ public class MultiPlayerView extends Scene {
         assembleView(stageDimension[0], stageDimension[1]);
 
         super.setRoot(whole);
-        super.getStylesheets().add(this.getClass().getResource("./MultiStyles.css").toExternalForm());
+        super.getStylesheets().add(ExternalResources.multiplayerMenuStyleSheet);
     }
 
     public void assembleView(int stageWidth, int stageHeight){
@@ -63,7 +63,7 @@ public class MultiPlayerView extends Scene {
         player2View = new BoardView(stageDims, 30, 10);
 
         player2Screen.getChildren()
-                .addAll(player1Text, player1View);
+                .addAll(player2Text, player2View);
 
         boards = new HBox(screenWidth);
         boards.setAlignment(Pos.CENTER);
