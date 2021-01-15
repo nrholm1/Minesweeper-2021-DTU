@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Board;
 import Model.Util.BoardBuilder;
+import Services.Bot;
 import View.GameScreen.SingleplayerView;
 import View.GameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
@@ -71,6 +72,8 @@ public abstract class NavigationController {
                 .build();
 
         GameController gameController = new GameController(b , singleplayerView.getBoardView());
+
+        Bot bot = new Bot(gameController);
 
         changeView(singleplayerView);
     }
