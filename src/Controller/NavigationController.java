@@ -61,17 +61,17 @@ public abstract class NavigationController {
         SingleplayerView singleplayerView = new SingleplayerViewBuilder()
                 .withStageDims(stageDims)
                 .withInsetSize(30)
-                .withSize(spMenuView.getSize())
+                .withSize(5)
                 .build();
 
         Board b = new BoardBuilder()
-                .withSize(spMenuView.getSize())
-                .withAmountMines(spMenuView.getDifficulty())
+                .withSize(5)
+                .withAmountMines(20)
                 .build();
 
         GameController gameController = new GameController(b , singleplayerView.getBoardView());
 
-        Bot bot = new Bot(gameController);
+        //Bot bot = new Bot(gameController);
 
         changeView(singleplayerView);
     }
