@@ -5,16 +5,12 @@ import Networking.FieldDTO;
 import Networking.MultiplayerService;
 
 public class MultiplayerController {
-    GameController ownGameController; // TODO does it need a reference?
-    GameController oppGameController;
+    GameController oppGameController; // opponent game controller
     MultiplayerService mpService;
 
-    public MultiplayerController(GameController controller) {
-        this.ownGameController = controller;
-    }
-
-    public void setController(GameController controller) {
-        this.ownGameController = controller;
+    public void setGameControllers(GameController _oppGameController, GameController _ownGameController) {
+        this.oppGameController = _oppGameController;
+        _ownGameController.setMpController(this);
     }
 
     // call on init

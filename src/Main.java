@@ -54,7 +54,6 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        // TODO kill all spawned threads
         GameTimer.stopTimers();
         System.out.println("Stopping Application");
 

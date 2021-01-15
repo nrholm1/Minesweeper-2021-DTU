@@ -23,7 +23,7 @@ public class MultiPlayerView extends Scene {
 
     Text player1Text;
     Text player2Text;
-    Board player1Board, player2Board;
+    Board player1Board;
     BoardView player1View, player2View;
 
     public MultiPlayerView(int[] stageDimension){
@@ -59,7 +59,6 @@ public class MultiPlayerView extends Scene {
         player2Text = new Text("Player 2: Opponent");
         player2Text.setFont(pixelfont);
 
-        player2Board = new Board(stageWidth, stageHeight);
         player2View = new BoardView(stageDims, 30, 10);
 
         player2Screen.getChildren()
@@ -74,5 +73,13 @@ public class MultiPlayerView extends Scene {
         whole.setId("whole");
         whole.setTop(topMenu);
         whole.setCenter(boards);
+    }
+
+    public BoardView getPlayer1View() {
+        return player1View;
+    }
+
+    public BoardView getPlayer2View() {
+        return player2View;
     }
 }

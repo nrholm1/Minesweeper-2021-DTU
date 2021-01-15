@@ -77,6 +77,15 @@ public abstract class NavigationController {
         System.out.println("Hooked");
         MultiPlayerView multiPlayerView = new MultiPlayerView(stageDims);
 
+        Board b = new BoardBuilder()
+                .withSize(spMenuView.getSize())
+                .withAmountMines(spMenuView.getDifficulty())
+                .build();
+
+        MultiplayerController mpController = new MultiplayerController();
+        GameController ownGameController = new GameController(b, multiPlayerView.getPlayer1View());
+        GameController oppGameController = new GameController(multiPlayerView.getPlayer2View());
+
         changeView(multiPlayerView);
     }
 }
