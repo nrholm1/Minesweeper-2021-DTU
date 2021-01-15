@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 public abstract class ExternalResources {
   public static String pixelFontResource;
   public static String gamestyleSheet;
+  public static String victoryStyleSheet;
+  public static String multiplayerStyleSheet;
 
   public static Image menuTitle;
   public static Image singeplayerText;
@@ -35,5 +37,7 @@ public abstract class ExternalResources {
 
     pixelFontResource = ExternalResources.class.getResource("../View/PressStart2P-Regular.ttf").toExternalForm();
     gamestyleSheet = ExternalResources.class.getResource("../View/GameScreen/Util/GameStyles.css").toExternalForm();
+    victoryStyleSheet = ExternalResources.class.getResource("../View/VictoryScreen/VictoryStyles.css").toExternalForm();
+    multiplayerStyleSheet = ExternalResources.class.getResource("../View/MultiPlayerGameScreen/MultiStyles.css").toExternalForm();
   }
 }
