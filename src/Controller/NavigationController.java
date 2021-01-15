@@ -5,6 +5,7 @@ import Model.Util.BoardBuilder;
 import View.GameScreen.SingleplayerView;
 import View.GameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
+import View.MultiPlayerGameScreen.MultiPlayerView;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
 import javafx.scene.Scene;
@@ -76,6 +77,9 @@ public abstract class NavigationController {
 
     public static void createMultiplayerGame() {
         System.out.println("Hooked");
+        MultiPlayerView multiPlayerView = new MultiPlayerView(stageDims);
+
+        changeView(multiPlayerView);
     }
 
 }

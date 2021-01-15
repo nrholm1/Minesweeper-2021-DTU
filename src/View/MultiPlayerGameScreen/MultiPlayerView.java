@@ -56,17 +56,19 @@ public class MultiPlayerView extends Scene {
         player2Screen = new VBox(screenHeight);
         player2Screen.setAlignment(Pos.CENTER);
 
-        player2Text = new Text("Player 1: You");
+        player2Text = new Text("Player 2: Opponent");
         player2Text.setFont(pixelfont);
 
         player2Board = new Board(stageWidth, stageHeight);
         player2View = new BoardView(stageDims, 30, 10);
 
-        player2Screen.getChildren().addAll(player1Text, player1View);
+        player2Screen.getChildren()
+                .addAll(player1Text, player1View);
 
         boards = new HBox(screenWidth);
         boards.setAlignment(Pos.CENTER);
-        boards.getChildren().addAll(player1Screen, player2Screen);
+        boards.getChildren()
+                .addAll(player1Screen, player2Screen);
 
         whole = new BorderPane();
         whole.setId("whole");

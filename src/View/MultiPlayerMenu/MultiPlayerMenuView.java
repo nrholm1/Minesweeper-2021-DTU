@@ -23,18 +23,22 @@ public class MultiPlayerMenuView extends Scene {
     static VBox back;
     static StackPane whole;
 
-    public MultiPlayerMenuView(int[] stagedims) throws UnknownHostException {
-        super(new StackPane(), stagedims[0], stagedims[1]);
+    PixelSlider size;
+    PixelSlider difficulty;
+    PixelButton startButton;
 
-        menu = new VBox((double) stagedims[1]/20);
+    public MultiPlayerMenuView(int[] stageDims) throws UnknownHostException {
+        super(new StackPane(), stageDims[0], stageDims[1]);
+
+        menu = new VBox((double) stageDims[1]/20);
         menu.setAlignment(Pos.CENTER);
         menu.setStyle("-fx-background-color: null;");
         menu.setPickOnBounds(false);
 
         //Title
         ImageView title = new ImageView(ExternalResources.menuTitle);
-        title.setFitWidth(stagedims[0]/2.0);
-        title.setFitHeight(stagedims[0]/15.0);
+        title.setFitWidth(stageDims[0]/2.0);
+        title.setFitHeight(stageDims[0]/15.0);
 
         //Ip-address
         VBox wholeIp = new VBox(12);
@@ -46,23 +50,31 @@ public class MultiPlayerMenuView extends Scene {
         ipText.setFill(Color.WHITE);
 
         TextField ipField = new TextField(getLocalIp());
-        ipField.setMaxWidth(stagedims[0]/4.0);
+        ipField.setMaxWidth(stageDims[0]/4.0);
         ipField.setAlignment(Pos.CENTER);
         ipField.setFont(pixelfont);
 
         wholeIp.getChildren().addAll(ipText,ipField);
 
+        size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
+        difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
+        startButton = new PixelButton(ExternalResources.startgameText, stageDims[0]/4, stageDims[0]/16);
+
+        startButton.setOnMouseClicked(e -> {
+            NavigationController.createMultiplayerGame();
+        });
 
         menu.getChildren().addAll(title,
-                new PixelSlider(stagedims, new int[]{4,8,12}, "Size"),
-                new PixelSlider(stagedims, new int[]{1,5,10}, "Difficulty"), wholeIp,
-                new PixelButton(ExternalResources.startgameText, stagedims[0]/5, stagedims[0]/15));
+                size,
+                difficulty,
+                wholeIp,
+                startButton);
 
         back = new VBox();
-        int inset = stagedims[0]/40;
+        int inset = stageDims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));
 
-        PixelButton backbutton = new PixelButton(ExternalResources.backButton, stagedims[0]/10, stagedims[0]/30);
+        PixelButton backbutton = new PixelButton(ExternalResources.backButton, stageDims[0]/10, stageDims[0]/30);
         backbutton.setOnMouseClicked(e -> {
             NavigationController.gotoMainMenuView();
         });
@@ -73,7 +85,7 @@ public class MultiPlayerMenuView extends Scene {
         whole.setId("menu");
 
         super.setRoot(whole);
-        super.getStylesheets().add(this.getClass().getResource("./MultiStyles.css").toExternalForm());
+        super.getStylesheets().add(ExternalResources.multiplayerMenuStyleSheet);
     }
 
     // TODO works as intended, but should be

@@ -8,6 +8,7 @@ public abstract class ExternalResources {
   public static String gamestyleSheet;
   public static String victoryStyleSheet;
   public static String multiplayerStyleSheet;
+  public static String multiplayerMenuStyleSheet;
 
   public static Image menuTitle;
   public static Image singeplayerText;
@@ -19,7 +20,6 @@ public abstract class ExternalResources {
   public static Image topmenuNewGame;
   public static Image topMenuTitle;
   public static Image submarine;
-
 
 
   public static void createResources() {
@@ -39,5 +39,6 @@ public abstract class ExternalResources {
     gamestyleSheet = ExternalResources.class.getResource("../View/GameScreen/Util/GameStyles.css").toExternalForm();
     victoryStyleSheet = ExternalResources.class.getResource("../View/VictoryScreen/VictoryStyles.css").toExternalForm();
     multiplayerStyleSheet = ExternalResources.class.getResource("../View/MultiPlayerGameScreen/MultiStyles.css").toExternalForm();
+    multiplayerMenuStyleSheet = ExternalResources.class.getResource("../View/MultiPlayerMenu/MultiStyles.css").toExternalForm();
   }
 }
