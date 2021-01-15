@@ -1,5 +1,6 @@
 package View.VictoryScreen;
 
+import Controller.NavigationController;
 import Services.ExternalResources;
 import View.Components.PixelButton;
 import javafx.scene.Scene;
@@ -30,6 +31,7 @@ public class VictoryView extends Scene {
         setTextType(extra, stagedims[0]/60);
 
         next = new PixelButton(ExternalResources.topmenuNewGame, stagedims[0]/6, stagedims[0]/18);
+        next.setOnMouseClicked(e -> NavigationController.gotoMainMenuView());
 
         content = new VBox(stagedims[1]/12.0);
         content.getChildren().addAll(congratulations,extra,time,next);
