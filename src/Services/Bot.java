@@ -3,8 +3,9 @@ package Services;
 import Controller.GameController;
 
 public class Bot implements Runnable{
-  GameController controller;
-  Thread t;
+  private GameController controller;
+  private Thread t;
+  private boolean runThread = true;
 
   public Bot(GameController controller_) {
     this.controller = controller_;
@@ -12,20 +13,28 @@ public class Bot implements Runnable{
   }
 
   public void run() {
+    int x = 0;
+    int y = 0;
     try {
-      while(true) {
+      while(runThread) {
         System.out.println("Making Decision");
+        controller.pressField(x, y);
+        controller.updateTile(x++, y++);
         Thread.sleep(500);
-
       }
 
     } catch(Exception e) {
-      System.out.println("Something went wrong");
+      System.out.println(e);
     }
   }
 
   public void start() {
-    t = new Thread(this, "Bot");
+    t = new Thread(this, "Name");
+    GameTimer.addBot(this);
     t.start();
+  }
+
+  public void stop() {
+    runThread = false;
   }
 }
