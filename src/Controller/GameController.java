@@ -9,12 +9,10 @@ public class GameController {
   private static Board board; // board data - states, etc.
   private static BoardView boardView; // graphical representation of board - for updating view on state changes
 
-  public void initializeMinefield() {
-    board.initializeMinefield();
-  }
-
-  public void initializeBoardView() {
-    boardView.renderEntireTileField();
+  public GameController(Board b, BoardView bv) {
+    this.board = b;
+    this.boardView = bv;
+    bv.setController(this);
   }
 
   public int getAdjacentMines(int x, int y) {
@@ -39,14 +37,6 @@ public class GameController {
     tile.setTileText(field.getTileText());
     tile.render(field.getState());
 
-  }
-
-  public void setBoardModel(Board _board) {
-    board = _board;
-  }
-
-  public void setBoardView(BoardView _boardView) {
-    this.boardView = _boardView;
   }
 
   public void setFieldState(int x, int y, Field.State action) {

@@ -90,6 +90,7 @@ public class BoardView extends StackPane {
 
             for (HexTile hexTile : hexTiles) {
                 currCol.getChildren().add(hexTile);
+                hexTile.renderUnflagged();
             }
 
             board.getChildren().add(currCol);
