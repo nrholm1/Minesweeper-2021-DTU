@@ -3,6 +3,7 @@ import Controller.MultiplayerController;
 import Controller.NavigationController;
 import Services.ExternalResources;
 import Services.GameTimer;
+import View.DefeatScreen.DefeatView;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
@@ -24,6 +25,7 @@ public class Main extends Application {
     SingleplayerMenuView singleplayerMenuView;
     MultiPlayerMenuView multiplayerMenuView;
     VictoryView victoryView;
+    DefeatView defeatView;
 
     // Controllers
     MultiplayerController mpController;
@@ -39,6 +41,7 @@ public class Main extends Application {
         singleplayerMenuView = new SingleplayerMenuView(getStageDims());
         multiplayerMenuView = new MultiPlayerMenuView(getStageDims());
         victoryView = new VictoryView(getStageDims());
+        defeatView = new DefeatView(getStageDims());
 
         initializeNavigation(root);
 
@@ -54,6 +57,7 @@ public class Main extends Application {
         NavigationController.setSpMenuView(singleplayerMenuView);
         NavigationController.setMpMenuView(multiplayerMenuView);
         NavigationController.setVictoryView(victoryView);
+        NavigationController.setDefeatView(defeatView);
     }
 
     @Override

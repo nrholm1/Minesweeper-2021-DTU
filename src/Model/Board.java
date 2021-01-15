@@ -7,6 +7,7 @@ public class Board {
     private final int amountMines;
 
     private int amountFields;
+    private int totalTiles;
 
     private final int radius;
 
@@ -64,7 +65,6 @@ public class Board {
             n--; //Go to next ring
         }
         total++;//We also have to count the center point
-
         return total - amountMines; //We have to subtract the number of mines
     }
 
@@ -93,7 +93,7 @@ public class Board {
                 int tempy = field[1];
                 if (tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && !minefield[tempx][tempy].isMine()) {
                     if (!minefield[tempx][tempy].isMine() && !(minefield[tempx][tempy].getState() == Field.State.PRESSED)){
-                        minefield[tempx][tempy].press();
+                        pressField(tempx, tempy);
                         blankField(tempx, tempy, gameController);
                         gameController.updateTile(tempx,tempy);
                     }
@@ -150,14 +150,8 @@ public class Board {
     }
 
     public void pressField(int x, int y) {
-        Field field = minefield[x][y];
-
-        if(!field.isMine()){ openedFields++; }
-        else {
-            //LOSE
-        }
-
-        field.press();
+        openedFields++;
+        minefield[x][y].press();
     }
 
     public void flagField(int x, int y)  {
@@ -176,7 +170,8 @@ public class Board {
     }
 
     public Boolean gameWon(){
-        if((flaggedMines == amountMines && flaggedNonMines == 0) || (amountFields == openedFields + amountMines)){
+        if((flaggedMines == amountMines && flaggedNonMines == 0) || (openedFields == amountFields)){
+            System.out.println(openedFields);
             return true;
         }
         return false;

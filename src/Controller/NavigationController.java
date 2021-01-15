@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Board;
 import Model.Util.BoardBuilder;
+import View.DefeatScreen.DefeatView;
 import View.GameScreen.SingleplayerView;
 import View.GameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
@@ -18,6 +19,7 @@ public abstract class NavigationController {
     private static SingleplayerMenuView spMenuView;
     private static MultiPlayerMenuView mpMenuView;
     private static VictoryView victoryView;
+    private static DefeatView defeatView;
     private static Stage root;
     private static int[] stageDims;
 
@@ -43,6 +45,8 @@ public abstract class NavigationController {
 
     public static void goToVictoryView() {changeView(victoryView);}
 
+    public static void goToDefeatView() {changeView(defeatView);}
+
     public static void setMpMenuView(MultiPlayerMenuView mpMenuView_) {
         mpMenuView = mpMenuView_;
     }
@@ -56,6 +60,8 @@ public abstract class NavigationController {
     }
 
     public static void setVictoryView(VictoryView victoryView_) { victoryView = victoryView_; };
+
+    public static void setDefeatView(DefeatView _defeatView) { defeatView = _defeatView; }
 
     public static void setStageDims(int[] dims) {
         stageDims = dims;
