@@ -71,16 +71,11 @@ public abstract class NavigationController {
 
         GameController gameController = new GameController(b , singleplayerView.getBoardView());
 
-        //singleplayerView.setController(gameController);
-
-        //gameController.initializeMinefield();
-        //gameController.initializeBoardView();
-
         changeView(singleplayerView);
     }
 
     public static void createMultiplayerGame() {
-
+        System.out.println("Hooked");
     }
 
 }
