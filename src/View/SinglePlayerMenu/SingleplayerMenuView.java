@@ -1,6 +1,7 @@
 package View.SinglePlayerMenu;
 
 import Controller.NavigationController;
+import Services.ExternResources;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,10 +17,6 @@ public class SingleplayerMenuView extends Scene{
     static VBox back;
     static StackPane whole;
 
-    static final String titleURL = "images/premenu-title.png";
-    static final String backUrl = "images/back-icon.png";
-    static final String startUrl = "images/pre-start-game.png";
-
     PixelSlider size;
     PixelSlider difficulty;
     PixelButton startButton;
@@ -33,13 +30,13 @@ public class SingleplayerMenuView extends Scene{
         menu.setPickOnBounds(false);
 
         //Title
-        ImageView title = new ImageView(new Image(titleURL));
+        ImageView title = new ImageView(ExternResources.menuTitle);
         title.setFitWidth(stageDims[0]/2.0);
         title.setFitHeight(stageDims[0]/15.0);
 
         size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
         difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
-        startButton = new PixelButton(startUrl, stageDims[0]/4, stageDims[0]/16);
+        startButton = new PixelButton(ExternResources.startgameText, stageDims[0]/4, stageDims[0]/16);
 
         startButton.setOnMouseClicked(e -> {
             NavigationController.createSingleplayerGame();
@@ -56,7 +53,7 @@ public class SingleplayerMenuView extends Scene{
         int inset = stageDims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));
 
-        PixelButton backButton = new PixelButton(backUrl,
+        PixelButton backButton = new PixelButton(ExternResources.backButton,
                 stageDims[0]/10,
                 stageDims[0]/30);
 

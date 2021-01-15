@@ -1,5 +1,6 @@
 package View.Components;
 
+import Services.ExternResources;
 import javafx.geometry.Pos;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -27,7 +28,7 @@ public class PixelSlider extends VBox{
 
         String initialText = type + ": " + slider.getValue();
         Text sliderText = new Text(initialText.substring(0,initialText.length() -2));
-        Font pixelfont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
+        Font pixelfont = Font.loadFont(ExternResources.pixelFontResource, 16);
         sliderText.setFont(pixelfont);
         sliderText.setFill(Color.WHITE);
 

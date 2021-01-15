@@ -1,6 +1,7 @@
 package View.MultiPlayerMenu;
 
 import Controller.NavigationController;
+import Services.ExternResources;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,10 +24,6 @@ public class MultiPlayerMenuView extends Scene {
     static VBox back;
     static StackPane whole;
 
-    static final String titleURL = "images/premenu-title.png";
-    static final String backUrl = "images/back-icon.png";
-    static final String startUrl = "images/pre-start-game.png";
-
     public MultiPlayerMenuView(int[] stagedims) throws UnknownHostException {
         super(new StackPane(), stagedims[0], stagedims[1]);
 
@@ -36,7 +33,7 @@ public class MultiPlayerMenuView extends Scene {
         menu.setPickOnBounds(false);
 
         //Title
-        ImageView title = new ImageView(new Image(titleURL));
+        ImageView title = new ImageView(ExternResources.menuTitle);
         title.setFitWidth(stagedims[0]/2.0);
         title.setFitHeight(stagedims[0]/15.0);
 
@@ -45,10 +42,7 @@ public class MultiPlayerMenuView extends Scene {
         wholeIp.setAlignment(Pos.CENTER);
 
         Text ipText = new Text("Enter partner IP:");
-        Font pixelfont = Font.loadFont(this
-                .getClass()
-                .getResource("../PressStart2P-Regular.ttf")
-                .toExternalForm(), 16);
+        Font pixelfont = Font.loadFont(ExternResources.pixelFontResource, 16);
         ipText.setFont(pixelfont);
         ipText.setFill(Color.WHITE);
 
@@ -63,13 +57,13 @@ public class MultiPlayerMenuView extends Scene {
         menu.getChildren().addAll(title,
                 new PixelSlider(stagedims, new int[]{4,8,12}, "Size"),
                 new PixelSlider(stagedims, new int[]{1,5,10}, "Difficulty"), wholeIp,
-                new PixelButton(startUrl, stagedims[0]/5, stagedims[0]/15));
+                new PixelButton(ExternResources.startgameText, stagedims[0]/5, stagedims[0]/15));
 
         back = new VBox();
         int inset = stagedims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));
 
-        PixelButton backbutton = new PixelButton(backUrl, stagedims[0]/10, stagedims[0]/30);
+        PixelButton backbutton = new PixelButton(ExternResources.backButton, stagedims[0]/10, stagedims[0]/30);
         backbutton.setOnMouseClicked(e -> {
             NavigationController.gotoMainMenuView();
         });

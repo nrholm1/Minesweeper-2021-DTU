@@ -5,9 +5,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class PixelButton extends Rectangle {
-    public PixelButton(String picURL, int width, int height) {
+    public PixelButton(Image pic, int width, int height) {
         super(width, height);
-        setFill(new ImagePattern(new Image(picURL)));
+        setFill(new ImagePattern(pic));
         setId("pixelbutton");
 
         setOnMouseClicked(e -> {

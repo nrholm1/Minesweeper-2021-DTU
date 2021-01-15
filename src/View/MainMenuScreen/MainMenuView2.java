@@ -1,6 +1,7 @@
 package View.MainMenuScreen;
 
 import Controller.NavigationController;
+import Services.ExternResources;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -15,25 +16,21 @@ public class MainMenuView2 extends Scene {
     static private VBox back;
     static private StackPane whole;
 
-    private final String titleURL = "Images/premenu-title.png";
-    private final String singleURL = "Images/pre-single-game.png";
-    private final String multiURL = "Images/pre-multi-game.png";
-
     public MainMenuView2(int[] stagedims ){
         super(new StackPane(), stagedims[0], stagedims[1]);
 
         menu = new VBox((double) stagedims[1]/20);
         menu.setAlignment(Pos.CENTER);
 
-        ImageView title = new ImageView(new Image(titleURL));
+        ImageView title = new ImageView(ExternResources.menuTitle);
         title.setFitWidth(stagedims[0]/2.0);
         title.setFitHeight(stagedims[0]/15.0);
 
-        PixelButton spButton = new PixelButton(singleURL,
+        PixelButton spButton = new PixelButton(ExternResources.singeplayerText,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
-        PixelButton mpButton = new PixelButton(multiURL,
+        PixelButton mpButton = new PixelButton(ExternResources.multiplayerText,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
