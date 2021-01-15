@@ -93,6 +93,7 @@ public class MultiPlayerMenuView extends Scene {
         createGameMenu.getChildren().addAll(title,
                 size,
                 difficulty,
+                wholeIp,
                 startButton);
 
     }
