@@ -1,10 +1,8 @@
-package View.GameScreen;
+package View.SinglePlayerGameScreen;
 
 import Controller.GameController;
-import Controller.NavigationController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;

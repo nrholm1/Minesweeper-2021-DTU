@@ -2,8 +2,8 @@ package Controller;
 
 import Model.Board;
 import Model.Field;
-import View.GameScreen.BoardView;
-import View.GameScreen.HexTile;
+import View.SinglePlayerGameScreen.BoardView;
+import View.SinglePlayerGameScreen.HexTile;
 
 public class GameController {
   NavigationController navigation;

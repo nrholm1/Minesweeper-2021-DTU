@@ -3,8 +3,9 @@ import Controller.MainMenuController;
 import Controller.NavigationController;
 import Model.Board;
 import Model.Util.BoardBuilder;
-import View.GameScreen.SingleplayerView;
-import View.GameScreen.Util.SingleplayerViewBuilder;
+import View.MultiPlayerGameScreen.MultiPlayerView;
+import View.SinglePlayerGameScreen.SingleplayerView;
+import View.SinglePlayerGameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
@@ -27,7 +28,7 @@ public class Main extends Application {
     // Views
     MainMenuView2 mainMenuView;
     SingleplayerView singleplayerView;
-//    MultiplayerView multiplayerView;
+    MultiPlayerView multiplayerView;
     SingleplayerMenuView singleplayerMenuView;
     MultiPlayerMenuView multiplayerMenuView;
 
@@ -89,14 +90,14 @@ public class Main extends Application {
         navigation.setSpMenuView(singleplayerMenuView);
         navigation.setMpMenuView(multiplayerMenuView);
         navigation.setSingleplayerView(singleplayerView);
-        // navigation.setMultiplayerView(multiplayerView);
+        navigation.setMultiplayerView(multiplayerView);
     }
 
     void initializeBoard() {
         // temp
         ownBoard = new BoardBuilder()
                 .withSize(5)
-                .withAmountMines(26) // Bruh
+                .withAmountMines(26)
                 .build();
         // end temp
     }

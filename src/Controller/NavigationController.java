@@ -1,6 +1,7 @@
 package Controller;
 
-import View.GameScreen.SingleplayerView;
+import View.MultiPlayerGameScreen.MultiPlayerView;
+import View.SinglePlayerGameScreen.SingleplayerView;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
@@ -9,7 +10,7 @@ import javafx.stage.Stage;
 
 public class NavigationController {
     SingleplayerView spView;
-//    MultiplayerView mpView;
+    MultiPlayerView mpView;
     MainMenuView2 mainMenuView;
     SingleplayerMenuView spMenuView;
     MultiPlayerMenuView mpMenuView;
@@ -50,13 +51,13 @@ public class NavigationController {
         this.spView = spView;
     }
 
-//    public void setMultiplayerView(MultiplayerView mpView) {
-//        this.mpView = mpView;
-//    }
-
-    public void setSpView(SingleplayerView spView) {
-        this.spView = spView;
+    public void setMultiplayerView(MultiPlayerView mpView) {
+        this.mpView = mpView;
     }
+
+    public void setSpView(SingleplayerView spView) { this.spView = spView; }
+
+    public void setMpView(MultiPlayerView mpView) { this.mpView = mpView; }
 
     public void setMpMenuView(MultiPlayerMenuView mpMenuView) {
         this.mpMenuView = mpMenuView;

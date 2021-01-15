@@ -1,4 +1,4 @@
-package View.GameScreen;
+package View.SinglePlayerGameScreen;
 
 import Model.Field;
 import javafx.geometry.Pos;

@@ -1,7 +1,6 @@
-package View.GameScreen;
+package View.SinglePlayerGameScreen;
 
 import Controller.GameController;
-import Model.Board;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -37,7 +36,7 @@ public class BoardView extends StackPane {
 
         createNewTileField();
         createTileFieldVisual();
-        createBoatDecoration();
+        createBoatDecoration(stageDimensions);
 
         super.getChildren().addAll(boat, board);
     }
@@ -95,22 +94,22 @@ public class BoardView extends StackPane {
         }
     }
 
-    public void createBoatDecoration(){
+    public void createBoatDecoration(int[] dims){
         boat = new VBox(10);
-        boat.setPadding(new Insets(0,0,0,50));
+        boat.setPadding(new Insets(0,0,0,dims[0]/12));
         boat.setAlignment(Pos.CENTER_LEFT);
 
         Text boatText = new Text("Help me get through!\nFind all the mines!");
         Font pixelFont = Font.loadFont(this.getClass()
                                            .getResource("../PressStart2P-Regular.ttf")
-                                           .toExternalForm(), 10);
+                                           .toExternalForm(), dims[0]/100);
         boatText.setLineSpacing(5);
         boatText.setFont(pixelFont);
         boatText.setFill(Color.WHITE);
 
         ImageView boatImage = new ImageView(new Image("Images/image_submarine.gif"));
-        boatImage.setFitWidth(160);
-        boatImage.setFitHeight(75);
+        boatImage.setFitWidth(dims[0]/8);
+        boatImage.setFitHeight(dims[0]/16);
 
         boat.getChildren().addAll(boatText, boatImage);
     }
