@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 public class MultiplayerService {
     MultiplayerController mpController;
@@ -39,7 +40,8 @@ public class MultiplayerService {
     }
 
     public void receiveIncomingRequest(FieldDTO dto) {
-        this.mpController.receiveEvent(dto);
+        if (this.mpController != null)
+            this.mpController.receiveEvent(dto);
     }
 
     // setTargetIp
@@ -60,10 +62,10 @@ public class MultiplayerService {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         MultiplayerService service = new MultiplayerService();
-//        service.startHttpListener();
         service.targetLocalIp();
+//        service.startHttpListener();
         int counter = 0;
-        while(counter < 100) {
+        while(counter < 1000) {
             service.sendRandomHttpRequest();
             Thread.sleep(1000);
             counter++;
@@ -73,7 +75,7 @@ public class MultiplayerService {
     void sendRandomHttpRequest() {
         FieldDTO dto = createRandomDTO();
         System.out.println(dto);
-        sendHttpRequest(createRandomDTO());
+        sendHttpRequest(dto);
     }
 
     public void targetLocalIp() throws UnknownHostException {

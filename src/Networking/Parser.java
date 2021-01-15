@@ -55,11 +55,13 @@ public class Parser {
     }
 
     public static void main(String[] args) {
-        FieldDTO data = new FieldDTO(1,2, Field.State.FLAGGED, "X");
+        FieldDTO data = new FieldDTO(13, 21, Field.State.FLAGGED, "X");
+
+        String s = data.toParsableString();
         byte[] bytes = data.toBytes();
+        FieldDTO parsedDto = readRequestInput(bytes);
 
-        FieldDTO reqFieldDTO = readRequestInput(bytes);
-
-        System.out.println(reqFieldDTO);
+        System.out.println(s);
+        System.out.println(parsedDto);
     }
 }

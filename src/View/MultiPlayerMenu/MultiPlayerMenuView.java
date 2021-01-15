@@ -31,7 +31,7 @@ public class MultiPlayerMenuView extends Scene {
     private PixelSlider size;
     private PixelSlider difficulty;
     private PixelButton startButton;
-    Text ipText;
+    TextField ipField;
 
     public MultiPlayerMenuView(int[] stageDims) throws UnknownHostException{
         super(new StackPane(), stageDims[0], stageDims[1]);
@@ -49,7 +49,7 @@ public class MultiPlayerMenuView extends Scene {
     }
 
     public String getIp() {
-        return ipText.getText();
+        return ipField.getText();
     }
 
     // TODO works as intended, but should be
@@ -85,12 +85,12 @@ public class MultiPlayerMenuView extends Scene {
         VBox wholeIp = new VBox(12);
         wholeIp.setAlignment(Pos.CENTER);
 
-        ipText = new Text("Enter partner IP:");
+        Text ipText = new Text("Enter partner IP:");
         Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource, 16);
         ipText.setFont(pixelfont);
         ipText.setFill(Color.WHITE);
 
-        TextField ipField = new TextField(getLocalIp());
+        ipField = new TextField(getLocalIp());
         ipField.setMaxWidth(stageDims[0]/4.0);
         ipField.setAlignment(Pos.CENTER);
         ipField.setFont(pixelfont);

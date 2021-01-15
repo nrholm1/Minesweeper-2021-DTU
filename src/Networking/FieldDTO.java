@@ -61,7 +61,7 @@ public class FieldDTO {
     }
 
     public String toString() {
-        return "(" + x + ", " + y + ") " + tileText + " " + action;
+        return ""+  action + " (" + x + ", " + y + ") " + tileText;
     }
 
     public static void testDataProcess(FieldDTO fieldDTO) {

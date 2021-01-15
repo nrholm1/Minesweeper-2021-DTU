@@ -31,7 +31,7 @@ public class ClientDriver {
 
         // executes synchronously I think?
         for (FieldDTO fieldDTO : fieldDTOs)
-            responses.add(simpleAsyncRequestGetFieldDTO("localhost", 5050, fieldDTO).get());
+            responses.add(simpleAsyncRequestGetFieldDTO("192.168.1.222", 5050, fieldDTO).get());
 
         for (String s : responses)
             System.out.println(s);
@@ -42,7 +42,7 @@ public class ClientDriver {
     static void testPrintFieldDTO(FieldDTO[] fieldDTOs) throws InterruptedException {
         // executes asynchronously I think?
         for (FieldDTO fieldDTO : fieldDTOs)
-            simpleAsyncRequestPrintFieldDTO("localhost", 5050, fieldDTO);
+            simpleAsyncRequestPrintFieldDTO("192.168.1.222", 5050, fieldDTO);
 
         Thread.sleep(1000);
     }
