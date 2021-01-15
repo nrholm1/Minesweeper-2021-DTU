@@ -13,12 +13,12 @@ import java.util.concurrent.ExecutionException;
 
 public class ClientDriver {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        FieldDTO[] fieldDTOs = new FieldDTO[] { new FieldDTO(5,2, Field.State.FLAGGED),
-                new FieldDTO(3,7, Field.State.PRESSED),
-                new FieldDTO(32,26, Field.State.UNFLAGGED),
-                new FieldDTO(32,26, Field.State.FLAGGED),
-                new FieldDTO(32,26, Field.State.PRESSED),
-                new FieldDTO(17,9, Field.State.UNFLAGGED)};
+        FieldDTO[] fieldDTOs = new FieldDTO[] { new FieldDTO(5,2, Field.State.FLAGGED, "X"),
+                new FieldDTO(3,7, Field.State.PRESSED, "X"),
+                new FieldDTO(32,26, Field.State.UNFLAGGED, "X"),
+                new FieldDTO(32,26, Field.State.FLAGGED, "X"),
+                new FieldDTO(32,26, Field.State.PRESSED, "X"),
+                new FieldDTO(17,9, Field.State.UNFLAGGED, "X")};
 
         System.out.println("--print--");
         testPrintFieldDTO(fieldDTOs);

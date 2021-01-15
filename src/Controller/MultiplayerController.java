@@ -5,15 +5,16 @@ import Networking.FieldDTO;
 import Networking.MultiplayerService;
 
 public class MultiplayerController {
-    GameController gameController;
+    GameController ownGameController; // TODO does it need a reference?
+    GameController oppGameController;
     MultiplayerService mpService;
 
     public MultiplayerController(GameController controller) {
-        this.gameController = controller;
+        this.ownGameController = controller;
     }
 
     public void setController(GameController controller) {
-        this.gameController = controller;
+        this.ownGameController = controller;
     }
 
     // call on init
@@ -36,16 +37,16 @@ public class MultiplayerController {
         return new FieldDTO(
                 field.getX(),
                 field.getY(),
-                field.getState()
-        );
+                field.getState(),
+                field.getTileText());
     }
 
     public void receiveEvent(FieldDTO dto) {
-        gameController.setFieldState(
+        oppGameController.setFieldState(
                 dto.getX(),
                 dto.getY(),
                 dto.getAction()
         );
-        gameController.updateTile(dto.getX(), dto.getY());
+        oppGameController.updateTile(dto.getX(), dto.getY());
     }
 }

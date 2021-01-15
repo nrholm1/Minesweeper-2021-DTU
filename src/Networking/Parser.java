@@ -20,14 +20,17 @@ public class Parser {
         };
         int r = Integer.parseInt(dataParams[1]);
         int c = Integer.parseInt(dataParams[2]);
+        String tileText = dataParams[3];
 
-        return new FieldDTO(r, c, action);
+
+        return new FieldDTO(r, c, action, tileText);
     }
 
     public static String[] getParamArray(String s) {
         String action = s.substring(0,1);
         StringBuilder r = new StringBuilder();
         StringBuilder c = new StringBuilder();
+        StringBuilder tileText = new StringBuilder();
 
         int counter = 0;
         for(char ch : s.toCharArray()) {
@@ -37,11 +40,14 @@ public class Parser {
                 r.append(ch);
             if (counter == 2 && ch != '|')
                 c.append(ch);
+            if (counter == 3 && ch != '|')
+                tileText.append(ch);
         }
 
         return new String[] {action,
                              r.toString(),
-                             c.toString()};
+                             c.toString(),
+                             tileText.toString()};
     }
 
     public static String deserializeFieldDTO(byte[] dataBytes) {
@@ -49,7 +55,7 @@ public class Parser {
     }
 
     public static void main(String[] args) {
-        FieldDTO data = new FieldDTO(1,2, Field.State.FLAGGED);
+        FieldDTO data = new FieldDTO(1,2, Field.State.FLAGGED, "X");
         byte[] bytes = data.toBytes();
 
         FieldDTO reqFieldDTO = readRequestInput(bytes);

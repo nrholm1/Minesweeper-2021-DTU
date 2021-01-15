@@ -8,18 +8,19 @@ public class FieldDTO {
     int x; // row index
     int y; // col index
     Field.State action; // change state to
-
+    String tileText;
 
     public FieldDTO(Field alteredField) {
         new FieldDTO(alteredField.getX(),
                 alteredField.getY(),
-                alteredField.getState());
+                alteredField.getState(), tileText);
     }
 
-    public FieldDTO(int _x, int _y, Field.State _action) {
+    public FieldDTO(int _x, int _y, Field.State _action, String _tileText) {
         x = _x;
         y = _y;
         action = _action;
+        tileText = _tileText;
     }
 
     public Field.State getAction() {
@@ -50,11 +51,13 @@ public class FieldDTO {
                 "|" +
                 this.x +
                 "|" +
-                this.y;
+                this.y +
+                "|" +
+                this.tileText;
     }
 
     public String toString() {
-        return "(" + x + ", " + y + ") " + action;
+        return "(" + x + ", " + y + ") " + tileText + " " + action;
     }
 
     public static void testDataProcess(FieldDTO fieldDTO) {
@@ -71,9 +74,9 @@ public class FieldDTO {
 
     // TEST
     public static void main(String[] args) {
-        FieldDTO fieldDTO1 = new FieldDTO(12,24, Field.State.FLAGGED);
-        FieldDTO fieldDTO2 = new FieldDTO(37,1, Field.State.PRESSED);
-        FieldDTO fieldDTO3 = new FieldDTO(420,69, Field.State.UNFLAGGED);
+        FieldDTO fieldDTO1 = new FieldDTO(12,24, Field.State.FLAGGED, "X");
+        FieldDTO fieldDTO2 = new FieldDTO(37,1, Field.State.PRESSED, "3");
+        FieldDTO fieldDTO3 = new FieldDTO(420,69, Field.State.UNFLAGGED, "2");
 
         testDataProcess(fieldDTO1);
         testDataProcess(fieldDTO2);

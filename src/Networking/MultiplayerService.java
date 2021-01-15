@@ -73,6 +73,8 @@ public class MultiplayerService {
     }
 
     void sendRandomHttpRequest() {
+        FieldDTO dto = createRandomDTO();
+        System.out.println(dto);
         sendHttpRequest(createRandomDTO());
     }
 
@@ -86,7 +88,7 @@ public class MultiplayerService {
                 (int)(Math.random() * 70),
                 Math.random() >= 0.5 ?
                         Field.State.FLAGGED :
-                        Field.State.PRESSED
-        );
+                        Field.State.PRESSED,
+                "" + (int)(Math.random() * 9));
     }
 }
