@@ -67,8 +67,6 @@ public class HexTile extends StackPane {
     }
 
     public void renderPressed(){
-        System.out.println("tile pressed");
-
         hexagon.setFill(Color.AQUAMARINE.darker());
         hexagon.setId("");
     }

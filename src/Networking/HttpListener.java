@@ -31,9 +31,9 @@ public class HttpListener implements HttpHandler {
         response += " | time elapsed: " + (end - start) + " ns";
 
         exchange.sendResponseHeaders(200, response.length());
-        OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+//        OutputStream os = exchange.getResponseBody();
+////        os.write(response.getBytes());
+//        os.close();
     }
 
     public void setMpService(MultiplayerService mpService) {

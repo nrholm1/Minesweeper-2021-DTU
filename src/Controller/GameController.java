@@ -53,7 +53,6 @@ public class GameController {
                          Field.State action,
                          String tileText) {
     HexTile tile = boardView.getTile(x,y);
-    System.out.println(tileText); // TODO find out why press events are not registered properly
     tile.setTileText(tileText);
     tile.render(action);
   }
