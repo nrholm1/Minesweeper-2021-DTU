@@ -14,7 +14,6 @@ import java.net.UnknownHostException;
 
 public class MultiplayerService {
     MultiplayerController mpController;
-    GameController gameController;
 
     String targetIp;
     int port = 5050;
@@ -22,7 +21,9 @@ public class MultiplayerService {
     // startHttpListener
     public void startHttpListener() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(5050), 0);
-        server.createContext("/swoop", new HttpListener());
+        HttpListener listener = new HttpListener();
+        listener.setMpService(this);
+        server.createContext("/swoop", listener);
         server.setExecutor(null);
         server.start();
     }
@@ -43,10 +44,6 @@ public class MultiplayerService {
     // setTargetIp
     public void setTargetIpAdress(String ipAdress) {
         targetIp = ipAdress;
-    }
-
-    public void setGameController(GameController _gameController) {
-        this.gameController = _gameController;
     }
 
     public void setMpController(MultiplayerController mpController) {

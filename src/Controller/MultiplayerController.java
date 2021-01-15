@@ -8,7 +8,7 @@ public class MultiplayerController {
     GameController oppGameController; // opponent game controller
     MultiplayerService mpService;
 
-    public void setGameControllers(GameController _oppGameController, GameController _ownGameController) {
+    public void setGameControllers(GameController _ownGameController, GameController _oppGameController) {
         this.oppGameController = _oppGameController;
         _ownGameController.setMpController(this);
     }
