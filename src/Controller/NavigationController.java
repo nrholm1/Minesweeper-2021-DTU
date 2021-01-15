@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Board;
 import Model.Util.BoardBuilder;
+import Networking.MultiplayerService;
 import View.GameScreen.SingleplayerView;
 import View.GameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
@@ -87,6 +88,9 @@ public abstract class NavigationController {
         GameController oppGameController = new GameController(multiPlayerView.getPlayer2View());
 
         mpController.setGameControllers(ownGameController, oppGameController);
+
+        MultiplayerService mpService = new MultiplayerService();
+        mpController.setMpService(mpService);
 
         changeView(multiPlayerView);
     }

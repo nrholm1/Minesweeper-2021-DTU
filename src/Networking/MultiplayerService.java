@@ -2,7 +2,6 @@ package Networking;
 
 // methods for connecting to other person and sending / receiving requests
 
-import Controller.GameController;
 import Controller.MultiplayerController;
 import Model.Field;
 import com.sun.net.httpserver.HttpServer;
