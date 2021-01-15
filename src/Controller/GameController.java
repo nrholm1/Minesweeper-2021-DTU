@@ -23,7 +23,7 @@ public class GameController {
     board.pressField(x,y);
     board.firstClick(x, y);
     board.blankField(x,y,this);
-
+    if(board.getField(x,y).isMine()) NavigationController.goToDefeatView();
     if(board.gameWon()) NavigationController.goToVictoryView();
   }
 
