@@ -67,6 +67,7 @@ public class HexTile extends StackPane {
     }
 
     public void renderPressed(){
+//        System.out.println("tile pressed");
         if(!getChildren().contains(adjacentMinesText))
             getChildren().add(adjacentMinesText);
 

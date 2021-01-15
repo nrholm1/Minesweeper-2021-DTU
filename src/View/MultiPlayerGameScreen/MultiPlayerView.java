@@ -31,7 +31,8 @@ public class MultiPlayerView extends Scene {
         assembleView(stageDimension[0], stageDimension[1]);
 
         super.setRoot(whole);
-        super.getStylesheets().add(ExternalResources.multiplayerMenuStyleSheet);
+        super.getStylesheets()
+                .add(ExternalResources.gamestyleSheet);
     }
 
     public void assembleView(int stageWidth, int stageHeight){
@@ -68,7 +69,7 @@ public class MultiPlayerView extends Scene {
                 .addAll(player1Screen, player2Screen);
 
         whole = new BorderPane();
-        whole.setId("whole");
+        whole.setId("gameback");
         whole.setTop(topMenu);
         whole.setCenter(boards);
     }

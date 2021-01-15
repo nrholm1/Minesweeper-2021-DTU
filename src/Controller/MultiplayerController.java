@@ -4,6 +4,8 @@ import Model.Field;
 import Networking.FieldDTO;
 import Networking.MultiplayerService;
 
+import java.io.IOException;
+
 public class MultiplayerController {
     GameController oppGameController; // opponent game controller
     MultiplayerService mpService;
@@ -14,7 +16,7 @@ public class MultiplayerController {
     }
 
     // call on init
-    public void setMpService(MultiplayerService mpService) {
+    public void setMpService(MultiplayerService mpService) throws IOException {
         this.mpService = mpService;
     }
 
@@ -38,6 +40,7 @@ public class MultiplayerController {
     }
 
     public void receiveEvent(FieldDTO dto) {
+        System.out.println("Received event: " + dto);
         oppGameController.updateTile(
                 dto.getX(),
                 dto.getY(),

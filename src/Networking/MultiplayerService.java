@@ -19,6 +19,8 @@ public class MultiplayerService {
 
     // startHttpListener
     public void startHttpListener() throws IOException {
+        System.out.println("Starting http listener");
+
         HttpServer server = HttpServer.create(new InetSocketAddress(5050), 0);
         HttpListener listener = new HttpListener();
         listener.setMpService(this);
@@ -58,7 +60,7 @@ public class MultiplayerService {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         MultiplayerService service = new MultiplayerService();
-        service.startHttpListener();
+//        service.startHttpListener();
         service.targetLocalIp();
         int counter = 0;
         while(counter < 100) {
@@ -80,8 +82,8 @@ public class MultiplayerService {
     }
 
     FieldDTO createRandomDTO() {
-        return new FieldDTO((int)(Math.random() * 70),
-                (int)(Math.random() * 70),
+        return new FieldDTO((int)(Math.random() * 10),
+                (int)(Math.random() * 20),
                 Math.random() >= 0.5 ?
                         Field.State.FLAGGED :
                         Field.State.PRESSED,

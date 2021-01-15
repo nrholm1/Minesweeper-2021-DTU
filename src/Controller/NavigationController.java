@@ -12,6 +12,8 @@ import View.SinglePlayerMenu.SingleplayerMenuView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public abstract class NavigationController {
 
     private static MainMenuView2 mainMenuView;
@@ -74,7 +76,7 @@ public abstract class NavigationController {
         changeView(singleplayerView);
     }
 
-    public static void createMultiplayerGame() {
+    public static void createMultiplayerGame() throws IOException {
         System.out.println("Hooked");
         MultiPlayerView multiPlayerView = new MultiPlayerView(stageDims);
 
@@ -90,7 +92,11 @@ public abstract class NavigationController {
         mpController.setGameControllers(ownGameController, oppGameController);
 
         MultiplayerService mpService = new MultiplayerService();
+        mpService.setMpController(mpController);
+        mpService.startHttpListener();
+
         mpController.setMpService(mpService);
+        mpController.setTargetIp(mpMenuView.getIp());
 
         changeView(multiPlayerView);
     }
