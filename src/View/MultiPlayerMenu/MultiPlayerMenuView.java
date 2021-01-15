@@ -35,8 +35,7 @@ public class MultiPlayerMenuView extends Scene {
         super(new StackPane(), stageDims[0], stageDims[1]);
 
         assembleSharedComponents(stageDims);
-        assembleCreateMenu(stageDims);
-        assembleJoinMenu(stageDims);
+        assembleMenu(stageDims);
         assembleBack(stageDims);
 
         whole = new StackPane();
@@ -66,23 +65,12 @@ public class MultiPlayerMenuView extends Scene {
         });
     }
 
-    public void assembleCreateMenu(int[] stageDims){
+    public void assembleMenu(int[] stageDims) throws UnknownHostException {
         createGameMenu = new VBox((double) stageDims[1]/20);
         createGameMenu.setAlignment(Pos.CENTER);
         createGameMenu.setStyle("-fx-background-color: null;");
         createGameMenu.setPickOnBounds(false);
 
-        size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
-        difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
-
-        createGameMenu.getChildren().addAll(title,
-                size,
-                difficulty,
-                startButton);
-
-    }
-
-    public void assembleJoinMenu(int[] stageDims) throws UnknownHostException{
         //Ip-address
         VBox wholeIp = new VBox(12);
         wholeIp.setAlignment(Pos.CENTER);
@@ -98,6 +86,14 @@ public class MultiPlayerMenuView extends Scene {
         ipField.setFont(pixelfont);
 
         wholeIp.getChildren().addAll(ipText,ipField);
+
+        size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
+        difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
+
+        createGameMenu.getChildren().addAll(title,
+                size,
+                difficulty,
+                startButton);
 
     }
 
