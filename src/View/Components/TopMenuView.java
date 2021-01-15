@@ -1,11 +1,10 @@
-package View.GameScreen;
+package View.Components;
 
 import Controller.GameController;
 import Controller.NavigationController;
+import Services.ExternalResources;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -13,10 +12,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class TopMenuView<calcTimeString> extends HBox{
-    static final String titleURL = "Images/premenu-title.png";
-    static final String newGameURL = "Images/pre-new-game.png";
-    //static final String newGameHoverURL = "Images/new-game-hover.png";
-
     GameController controller;
 
     Rectangle newGame;
@@ -28,17 +23,15 @@ public class TopMenuView<calcTimeString> extends HBox{
         super.setId("top-panel");
 
         ImageView title = new ImageView();
-        title.setImage(new Image(titleURL));
+        title.setImage(ExternalResources.topMenuTitle);
         title.setFitWidth(stagewidth/3.0);
         title.setFitHeight(stagewidth/22.0);
 
         newGame = new Rectangle(stagewidth/6.0,stagewidth/27.0);
-        newGame.setFill(new ImagePattern(new Image(newGameURL)));
+        newGame.setFill(new ImagePattern(ExternalResources.topmenuNewGame));
         newGame.setId("newgame-button");
         newGame.setOnMouseClicked(e -> {
-            controller
-                    .getNavigation()
-                    .gotoMainMenuView();
+            NavigationController.gotoMainMenuView();
         });
 
         StackPane filler1 = new StackPane();

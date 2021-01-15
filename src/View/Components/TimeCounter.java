@@ -1,5 +1,7 @@
-package View.GameScreen;
+package View.Components;
 
+import Services.ExternalResources;
+import Services.GameTimer;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -20,11 +22,11 @@ public class TimeCounter extends HBox{
         super.setAlignment(Pos.CENTER);
 
         Text counterText = new Text("00:00");
-        Font pixelFont = Font.loadFont(this.getClass().getResource("../PressStart2P-Regular.ttf").toExternalForm(), 16);
+        Font pixelFont = Font.loadFont(ExternalResources.pixelFontResource, 16);
         counterText.setFont(pixelFont);
         counterText.setFill(Color.WHITE);
 
-        timer = new Timer();
+        timer = GameTimer.getTimer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {

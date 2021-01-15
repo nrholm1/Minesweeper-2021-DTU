@@ -1,10 +1,10 @@
-package View.GameScreen;
+package View.GameScreen.Util;
 
 import Controller.GameController;
-import Model.Board;
+import Services.ExternalResources;
+import View.Components.HexTile;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
@@ -89,6 +89,7 @@ public class BoardView extends StackPane {
 
             for (HexTile hexTile : hexTiles) {
                 currCol.getChildren().add(hexTile);
+                hexTile.renderUnflagged();
             }
 
             board.getChildren().add(currCol);
@@ -101,14 +102,12 @@ public class BoardView extends StackPane {
         boat.setAlignment(Pos.CENTER_LEFT);
 
         Text boatText = new Text("Help me get through!\nFind all the mines!");
-        Font pixelFont = Font.loadFont(this.getClass()
-                                           .getResource("../PressStart2P-Regular.ttf")
-                                           .toExternalForm(), 10);
+        Font pixelFont = Font.loadFont(ExternalResources.pixelFontResource, 10);
         boatText.setLineSpacing(5);
         boatText.setFont(pixelFont);
         boatText.setFill(Color.WHITE);
 
-        ImageView boatImage = new ImageView(new Image("Images/image_submarine.gif"));
+        ImageView boatImage = new ImageView(ExternalResources.submarine);
         boatImage.setFitWidth(160);
         boatImage.setFitHeight(75);
 

@@ -1,6 +1,9 @@
 package View.GameScreen;
 
 import Controller.GameController;
+import Services.ExternalResources;
+import View.Components.TopMenuView;
+import View.GameScreen.Util.BoardView;
 import View.GameScreen.Util.BoardViewBuilder;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -26,9 +29,7 @@ public class MultiplayerTestView extends Scene {
 
         super.setRoot(gameView);
         super.getStylesheets()
-                .add(this.getClass()
-                        .getResource("./GameStyles.css")
-                        .toExternalForm());
+                .add(ExternalResources.gamestyleSheet);
     }
 
     public void initializeGameView() {

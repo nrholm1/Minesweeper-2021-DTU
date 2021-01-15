@@ -1,72 +1,81 @@
 package Controller;
 
+import Model.Board;
+import Model.Util.BoardBuilder;
 import View.GameScreen.SingleplayerView;
+import View.GameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class NavigationController {
-    SingleplayerView spView;
-//    MultiplayerView mpView;
-    MainMenuView2 mainMenuView;
-    SingleplayerMenuView spMenuView;
-    MultiPlayerMenuView mpMenuView;
+public abstract class NavigationController {
 
-    Stage root;
+    private static MainMenuView2 mainMenuView;
+    private static SingleplayerMenuView spMenuView;
+    private static MultiPlayerMenuView mpMenuView;
+    private static Stage root;
+    private static int[] stageDims;
 
-    public NavigationController(Stage _root) {
+
+
+    public static void setRoot(Stage _root) {
         root = _root;
     }
 
-    public void changeView(Scene _scene) {
+    private static void changeView(Scene _scene) {
         root.setScene(_scene);
     }
 
-    public void gotoSingleplayerView() {
-        changeView(spView);
-    }
-
-    public void gotoMultiplayerView() {
-        // TODO change to mpView
-        changeView(spView);
-    }
-
-    public void gotoMainMenuView() {
+    public static void gotoMainMenuView() {
         changeView(mainMenuView);
     }
 
-
-    public void gotoSingleplayerMenuView() {
+    public static void gotoSingleplayerMenuView() {
         changeView(spMenuView);
     }
 
-    public void gotoMultiplayerMenuView() {
+    public static void gotoMultiplayerMenuView() {
         changeView(mpMenuView);
     }
 
-    public void setSingleplayerView(SingleplayerView spView) {
-        this.spView = spView;
+    public static void setMpMenuView(MultiPlayerMenuView mpMenuView_) {
+        mpMenuView = mpMenuView_;
     }
 
-//    public void setMultiplayerView(MultiplayerView mpView) {
-//        this.mpView = mpView;
-//    }
-
-    public void setSpView(SingleplayerView spView) {
-        this.spView = spView;
+    public static void setMainMenuView(MainMenuView2 mainMenuView_) {
+        mainMenuView = mainMenuView_;
     }
 
-    public void setMpMenuView(MultiPlayerMenuView mpMenuView) {
-        this.mpMenuView = mpMenuView;
+    public static void setSpMenuView(SingleplayerMenuView singleplayerMenuView) {
+        spMenuView = singleplayerMenuView;
     }
 
-    public void setMainMenuView(MainMenuView2 mainMenuView) {
-        this.mainMenuView = mainMenuView;
+    public static void setStageDims(int[] dims) {
+        stageDims = dims;
     }
 
-    public void setSpMenuView(SingleplayerMenuView singleplayerMenuView) {
-        this.spMenuView = singleplayerMenuView;
+    // On demand initialization
+    public static void createSingleplayerGame() {
+        SingleplayerView singleplayerView = new SingleplayerViewBuilder()
+                .withStageDims(stageDims)
+                .withInsetSize(30)
+                .withSize(spMenuView.getSize())
+                .build();
+
+        Board b = new BoardBuilder()
+                .withSize(spMenuView.getSize())
+                .withAmountMines(spMenuView.getDifficulty())
+                .build();
+
+        GameController gameController = new GameController(b , singleplayerView.getBoardView());
+
+        changeView(singleplayerView);
     }
+
+    public static void createMultiplayerGame() {
+        System.out.println("Hooked");
+    }
+
 }

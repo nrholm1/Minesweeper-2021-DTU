@@ -1,7 +1,5 @@
 package View.GameScreen.Util;
 
-import View.GameScreen.BoardView;
-
 public class BoardViewBuilder {
     int[] stageDims;
     int inset;
