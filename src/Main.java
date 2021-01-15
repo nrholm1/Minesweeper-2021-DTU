@@ -1,6 +1,7 @@
 import Controller.GameController;
+import Controller.MultiplayerController;
 import Controller.NavigationController;
-import Services.ExternResources;
+import Services.ExternalResources;
 import Services.GameTimer;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
@@ -10,7 +11,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.net.UnknownHostException;
-
 
 // Main class containing startup logic
 // Goal is to initialize FX main thread and provide a base context for MVC and "plug in" the various
@@ -24,14 +24,14 @@ public class Main extends Application {
     MultiPlayerMenuView multiplayerMenuView;
 
     // Controllers
-    NavigationController navigation;
+    MultiplayerController mpController;
     GameController gameController;
 
     @Override
     public void start(Stage root) throws UnknownHostException {
         root.setTitle("MineSwoop");
 
-        ExternResources.createResources();
+        ExternalResources.createResources();
 
         mainMenuView = new MainMenuView2(getStageDims());
         singleplayerMenuView = new SingleplayerMenuView(getStageDims());
@@ -44,16 +44,13 @@ public class Main extends Application {
         root.show();
     }
 
-
     void initializeNavigation(Stage root) {
-        navigation.setRoot(root);
-        navigation.setStageDims(getStageDims());
-        navigation.setMainMenuView(mainMenuView);
-        navigation.setSpMenuView(singleplayerMenuView);
-        navigation.setMpMenuView(multiplayerMenuView);
+        NavigationController.setRoot(root);
+        NavigationController.setStageDims(getStageDims());
+        NavigationController.setMainMenuView(mainMenuView);
+        NavigationController.setSpMenuView(singleplayerMenuView);
+        NavigationController.setMpMenuView(multiplayerMenuView);
     }
-
-
 
     @Override
     public void stop() {

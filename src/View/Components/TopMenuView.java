@@ -2,11 +2,9 @@ package View.Components;
 
 import Controller.GameController;
 import Controller.NavigationController;
-import Services.ExternResources;
-import View.Components.TimeCounter;
+import Services.ExternalResources;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -25,12 +23,12 @@ public class TopMenuView<calcTimeString> extends HBox{
         super.setId("top-panel");
 
         ImageView title = new ImageView();
-        title.setImage(ExternResources.topMenuTitle);
+        title.setImage(ExternalResources.topMenuTitle);
         title.setFitWidth(stagewidth/3.0);
         title.setFitHeight(stagewidth/22.0);
 
         newGame = new Rectangle(stagewidth/6.0,stagewidth/27.0);
-        newGame.setFill(new ImagePattern(ExternResources.topmenuNewGame));
+        newGame.setFill(new ImagePattern(ExternalResources.topmenuNewGame));
         newGame.setId("newgame-button");
         newGame.setOnMouseClicked(e -> {
             NavigationController.gotoMainMenuView();

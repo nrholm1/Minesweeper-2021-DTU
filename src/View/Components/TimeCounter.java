@@ -1,6 +1,6 @@
 package View.Components;
 
-import Services.ExternResources;
+import Services.ExternalResources;
 import Services.GameTimer;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -22,7 +22,7 @@ public class TimeCounter extends HBox{
         super.setAlignment(Pos.CENTER);
 
         Text counterText = new Text("00:00");
-        Font pixelFont = Font.loadFont(ExternResources.pixelFontResource, 16);
+        Font pixelFont = Font.loadFont(ExternalResources.pixelFontResource, 16);
         counterText.setFont(pixelFont);
         counterText.setFill(Color.WHITE);
 

@@ -1,7 +1,7 @@
 package View.Components;
 
 import Model.Field;
-import Services.ExternResources;
+import Services.ExternalResources;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
@@ -87,7 +87,7 @@ public class HexTile extends StackPane {
     public void setupText(){
         adjacentMinesText = new Text();
 
-        Font pixelfont = Font.loadFont(ExternResources.pixelFontResource, 16);
+        Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource, 16);
         adjacentMinesText.setFont(pixelfont);
         adjacentMinesText.setFill(Color.WHITE);
         adjacentMinesText.setStyle("-fx-background-color: null;");

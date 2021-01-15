@@ -1,13 +1,9 @@
 package Services;
 
-import Model.Field;
-import View.MainMenuScreen.MainMenuView2;
 import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.text.Font;
 
 // This class holds all of the extern resources, so the program wont need to load new files every time they're needed
-public abstract class ExternResources {
+public abstract class ExternalResources {
   public static String pixelFontResource;
   public static String gamestyleSheet;
 
@@ -37,7 +33,7 @@ public abstract class ExternResources {
     startgameText = new Image("Images/pre-start-game.png");
     backButton = new Image("Images/back-icon.png");
 
-    pixelFontResource = ExternResources.class.getResource("../View/PressStart2P-Regular.ttf").toExternalForm();
-    gamestyleSheet = ExternResources.class.getResource("../View/GameScreen/Util/GameStyles.css").toExternalForm();
+    pixelFontResource = ExternalResources.class.getResource("../View/PressStart2P-Regular.ttf").toExternalForm();
+    gamestyleSheet = ExternalResources.class.getResource("../View/GameScreen/Util/GameStyles.css").toExternalForm();
   }
 }

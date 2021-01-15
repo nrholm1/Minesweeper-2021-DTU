@@ -1,12 +1,11 @@
 package View.MultiPlayerMenu;
 
 import Controller.NavigationController;
-import Services.ExternResources;
+import Services.ExternalResources;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -33,7 +32,7 @@ public class MultiPlayerMenuView extends Scene {
         menu.setPickOnBounds(false);
 
         //Title
-        ImageView title = new ImageView(ExternResources.menuTitle);
+        ImageView title = new ImageView(ExternalResources.menuTitle);
         title.setFitWidth(stagedims[0]/2.0);
         title.setFitHeight(stagedims[0]/15.0);
 
@@ -42,7 +41,7 @@ public class MultiPlayerMenuView extends Scene {
         wholeIp.setAlignment(Pos.CENTER);
 
         Text ipText = new Text("Enter partner IP:");
-        Font pixelfont = Font.loadFont(ExternResources.pixelFontResource, 16);
+        Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource, 16);
         ipText.setFont(pixelfont);
         ipText.setFill(Color.WHITE);
 
@@ -57,13 +56,13 @@ public class MultiPlayerMenuView extends Scene {
         menu.getChildren().addAll(title,
                 new PixelSlider(stagedims, new int[]{4,8,12}, "Size"),
                 new PixelSlider(stagedims, new int[]{1,5,10}, "Difficulty"), wholeIp,
-                new PixelButton(ExternResources.startgameText, stagedims[0]/5, stagedims[0]/15));
+                new PixelButton(ExternalResources.startgameText, stagedims[0]/5, stagedims[0]/15));
 
         back = new VBox();
         int inset = stagedims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));
 
-        PixelButton backbutton = new PixelButton(ExternResources.backButton, stagedims[0]/10, stagedims[0]/30);
+        PixelButton backbutton = new PixelButton(ExternalResources.backButton, stagedims[0]/10, stagedims[0]/30);
         backbutton.setOnMouseClicked(e -> {
             NavigationController.gotoMainMenuView();
         });

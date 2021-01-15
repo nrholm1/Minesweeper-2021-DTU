@@ -1,11 +1,10 @@
 package View.GameScreen.Util;
 
 import Controller.GameController;
-import Services.ExternResources;
+import Services.ExternalResources;
 import View.Components.HexTile;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
@@ -103,12 +102,12 @@ public class BoardView extends StackPane {
         boat.setAlignment(Pos.CENTER_LEFT);
 
         Text boatText = new Text("Help me get through!\nFind all the mines!");
-        Font pixelFont = Font.loadFont(ExternResources.pixelFontResource, 10);
+        Font pixelFont = Font.loadFont(ExternalResources.pixelFontResource, 10);
         boatText.setLineSpacing(5);
         boatText.setFont(pixelFont);
         boatText.setFill(Color.WHITE);
 
-        ImageView boatImage = new ImageView(ExternResources.submarine);
+        ImageView boatImage = new ImageView(ExternalResources.submarine);
         boatImage.setFitWidth(160);
         boatImage.setFitHeight(75);
 

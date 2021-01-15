@@ -1,10 +1,9 @@
 package View.MainMenuScreen;
 
 import Controller.NavigationController;
-import Services.ExternResources;
+import Services.ExternalResources;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -22,15 +21,15 @@ public class MainMenuView2 extends Scene {
         menu = new VBox((double) stagedims[1]/20);
         menu.setAlignment(Pos.CENTER);
 
-        ImageView title = new ImageView(ExternResources.menuTitle);
+        ImageView title = new ImageView(ExternalResources.menuTitle);
         title.setFitWidth(stagedims[0]/2.0);
         title.setFitHeight(stagedims[0]/15.0);
 
-        PixelButton spButton = new PixelButton(ExternResources.singeplayerText,
+        PixelButton spButton = new PixelButton(ExternalResources.singeplayerText,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
-        PixelButton mpButton = new PixelButton(ExternResources.multiplayerText,
+        PixelButton mpButton = new PixelButton(ExternalResources.multiplayerText,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
