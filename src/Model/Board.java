@@ -93,7 +93,7 @@ public class Board {
                 int tempy = field[1];
                 if (tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && !minefield[tempx][tempy].isMine()) {
                     if (!minefield[tempx][tempy].isMine() && !(minefield[tempx][tempy].getState() == Field.State.PRESSED)){
-                        minefield[tempx][tempy].press();
+                        pressField(tempx, tempy);
                         blankField(tempx, tempy, gameController);
                         gameController.updateTile(tempx,tempy);
                     }
@@ -176,7 +176,7 @@ public class Board {
     }
 
     public Boolean gameWon(){
-        if((flaggedMines == amountMines && flaggedNonMines == 0) || (amountFields == openedFields + amountMines)){
+        if((flaggedMines == amountMines && flaggedNonMines == 0) || (amountFields == openedFields)){
             return true;
         }
         return false;
