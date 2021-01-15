@@ -79,8 +79,8 @@ public abstract class NavigationController {
         MultiPlayerView multiPlayerView = new MultiPlayerView(stageDims);
 
         Board board = new BoardBuilder()
-                .withSize(spMenuView.getSize())
-                .withAmountMines(spMenuView.getDifficulty())
+                .withSize(10)
+                .withAmountMines(50)
                 .build();
 
         MultiplayerController mpController = new MultiplayerController();

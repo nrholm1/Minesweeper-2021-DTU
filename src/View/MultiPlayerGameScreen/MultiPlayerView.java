@@ -14,17 +14,16 @@ import javafx.scene.text.Text;
 
 public class MultiPlayerView extends Scene {
 
-    BorderPane whole;
+    private BorderPane whole;
 
-    TopMenuView topMenu;
+    private TopMenuView topMenu;
 
-    HBox boards;
-    VBox player1Screen, player2Screen;
+    private HBox boards;
+    private VBox player1Screen, player2Screen;
 
-    Text player1Text;
-    Text player2Text;
-    Board player1Board;
-    BoardView player1View, player2View;
+    private Text player1Text;
+    private Text player2Text;
+    private BoardView player1View, player2View;
 
     public MultiPlayerView(int[] stageDimension){
         super(new BorderPane(), stageDimension[0], stageDimension[1]);
@@ -47,7 +46,6 @@ public class MultiPlayerView extends Scene {
         player1Text = new Text("Player 1: You");
         player1Text.setFont(pixelfont);
 
-        player1Board = new Board(stageWidth, stageHeight);
         player1View = new BoardView(stageDims, 30, 10);
 
         player1Screen.getChildren()
