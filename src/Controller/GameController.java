@@ -36,7 +36,6 @@ public class GameController {
     HexTile tile = boardView.getTile(x, y);
     tile.setTileText(field.getTileText());
     tile.render(field.getState());
-
   }
 
   public void setFieldState(int x, int y, Field.State action) {

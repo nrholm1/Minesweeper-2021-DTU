@@ -15,15 +15,10 @@ public class HexTile extends StackPane {
 
     private final Polygon hexagon;
     private Text adjacentMinesText;
-    private int xpos;
-    private int ypos;
 
     public HexTile(int x, int y, double sideLength) {
         super();
         setupText();
-
-        xpos = x;
-        ypos = y;
 
         double[][] corners = {
                 {0.0, 0.0}, //Bottom left corner
@@ -49,7 +44,6 @@ public class HexTile extends StackPane {
         getChildren().addAll(hexagon);
     }
 
-    // TODO make setAdjacentMinesText part of render method
     public void render(Field.State state) {
         switch (state) {
             case UNFLAGGED -> renderUnflagged();
