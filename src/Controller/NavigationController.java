@@ -20,8 +20,6 @@ public abstract class NavigationController {
     private static Stage root;
     private static int[] stageDims;
 
-
-
     public static void setRoot(Stage _root) {
         root = _root;
     }
@@ -84,5 +82,4 @@ public abstract class NavigationController {
 
         changeView(multiPlayerView);
     }
-
 }
