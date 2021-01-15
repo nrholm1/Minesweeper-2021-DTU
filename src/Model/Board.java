@@ -135,4 +135,9 @@ public class Board {
     public void flagField(int x, int y)  {
         minefield[x][y].toggleFlag();
     }
+
+    public Field getRandomField() {
+        Field[] row = minefield[(int)(Math.random()*diameter)];
+        return row[(int)(Math.random()*row.length)];
+    }
 }
