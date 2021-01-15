@@ -6,6 +6,7 @@ import Services.GameTimer;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
+import View.VictoryScreen.VictoryView;
 import javafx.application.Application;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -22,6 +23,7 @@ public class Main extends Application {
     MainMenuView2 mainMenuView;
     SingleplayerMenuView singleplayerMenuView;
     MultiPlayerMenuView multiplayerMenuView;
+    VictoryView victoryView;
 
     // Controllers
     MultiplayerController mpController;
@@ -36,6 +38,7 @@ public class Main extends Application {
         mainMenuView = new MainMenuView2(getStageDims());
         singleplayerMenuView = new SingleplayerMenuView(getStageDims());
         multiplayerMenuView = new MultiPlayerMenuView(getStageDims());
+        victoryView = new VictoryView(getStageDims());
 
         initializeNavigation(root);
 
@@ -50,6 +53,7 @@ public class Main extends Application {
         NavigationController.setMainMenuView(mainMenuView);
         NavigationController.setSpMenuView(singleplayerMenuView);
         NavigationController.setMpMenuView(multiplayerMenuView);
+        NavigationController.setVictoryView(victoryView);
     }
 
     @Override

@@ -8,6 +8,7 @@ import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerGameScreen.MultiPlayerView;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
+import View.VictoryScreen.VictoryView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -16,6 +17,7 @@ public abstract class NavigationController {
     private static MainMenuView2 mainMenuView;
     private static SingleplayerMenuView spMenuView;
     private static MultiPlayerMenuView mpMenuView;
+    private static VictoryView victoryView;
     private static Stage root;
     private static int[] stageDims;
 
@@ -39,6 +41,8 @@ public abstract class NavigationController {
         changeView(mpMenuView);
     }
 
+    public static void goToVictoryView() {changeView(victoryView);}
+
     public static void setMpMenuView(MultiPlayerMenuView mpMenuView_) {
         mpMenuView = mpMenuView_;
     }
@@ -50,6 +54,8 @@ public abstract class NavigationController {
     public static void setSpMenuView(SingleplayerMenuView singleplayerMenuView) {
         spMenuView = singleplayerMenuView;
     }
+
+    public static void setVictoryView(VictoryView victoryView_) { victoryView = victoryView_; };
 
     public static void setStageDims(int[] dims) {
         stageDims = dims;

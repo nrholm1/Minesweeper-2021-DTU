@@ -6,15 +6,22 @@ public class Board {
     private Field[][] minefield;
     private final int amountMines;
 
+    private int amountFields;
+
     private final int radius;
 
     private final int diameter;
     private boolean isFirstClick;
 
+    private int flaggedMines;
+    private int flaggedNonMines;
+    private int openedFields;
+
     public Board(int radius, int _amountMines) {
         this.amountMines = _amountMines;
         this.radius = radius;
         this.diameter = 2* radius + 1;
+        this.amountFields = getAmountFields();
         makeMinefieldWithDimensions();
     }
 
@@ -45,6 +52,20 @@ public class Board {
             minefield[r][c].toggleIsMine();
             curMines++;
         }
+    }
+
+    private int getAmountFields(){
+        int n = radius;
+        int total = 0;
+
+        //We count them in hexagonal rings, starting from the outmost ring
+        while(n > 0){ //When we hit n = 0, we have reached the center point
+            total += 6*n; //Every ring has 6n hexagons
+            n--; //Go to next ring
+        }
+        total++;//We also have to count the center point
+
+        return total - amountMines; //We have to subtract the number of mines
     }
 
     private void setAdjacentMineCounters() {
@@ -129,10 +150,36 @@ public class Board {
     }
 
     public void pressField(int x, int y) {
-        minefield[x][y].press();
+        Field field = minefield[x][y];
+
+        if(!field.isMine()){ openedFields++; }
+        else {
+            //LOSE
+        }
+
+        field.press();
     }
 
     public void flagField(int x, int y)  {
-        minefield[x][y].toggleFlag();
+        Field field = minefield[x][y];
+
+        if(field.isMine()) {
+            if(field.getState() == Field.State.UNFLAGGED) flaggedMines++;
+            else flaggedMines--;
+        }
+        else{
+            if(field.getState() == Field.State.UNFLAGGED) flaggedNonMines++;
+            else flaggedNonMines--;
+        }
+
+        field.toggleFlag();
     }
+
+    public Boolean gameWon(){
+        if((flaggedMines == amountMines && flaggedNonMines == 0) || (amountFields == openedFields + amountMines)){
+            return true;
+        }
+        return false;
+    }
+
 }

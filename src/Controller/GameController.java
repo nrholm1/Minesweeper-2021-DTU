@@ -23,12 +23,14 @@ public class GameController {
     board.pressField(x,y);
     board.firstClick(x, y);
     board.blankField(x,y,this);
-    System.out.println(board.getField(x,y));
+
+    if(board.gameWon()) NavigationController.goToVictoryView();
   }
 
   public void flagField(int x, int y) {
     board.flagField(x,y);
-    System.out.println(board.getField(x,y));
+
+    if(board.gameWon()) NavigationController.goToVictoryView();
   }
 
   public void updateTile(int x, int y) {
