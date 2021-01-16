@@ -68,7 +68,7 @@ public abstract class NavigationController {
 
         Board b = new BoardBuilder()
                 .withSize(spMenuView.getSize())
-                .withAmountMines(spMenuView.getDifficulty())
+                .withAmountMines(spMenuView.getDifficulty() * 5)
                 .build();
 
         GameController gameController = new GameController(b , singleplayerView.getBoardView());

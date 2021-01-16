@@ -39,7 +39,12 @@ public class Board {
             int r = (int)(Math.random() * diameter);
             int c = (int)(Math.random() * minefield[r].length);
 
-            if ((r == x && c == y) || minefield[r][c].isMine())
+            boolean rInVicinityOfX = r >= x - 1 && r <= x + 1;
+            boolean cInVicinityOfY = c >= y - 1 && c <= y + 1;
+
+            if ((rInVicinityOfX && cInVicinityOfY)
+                ||
+                minefield[r][c].isMine())
                 continue;
 
             minefield[r][c].toggleIsMine();
