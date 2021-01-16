@@ -1,7 +1,5 @@
 package Model;
 
-import Controller.GameController;
-
 public class Board {
     private Field[][] minefield;
     private final int amountMines;
@@ -15,10 +13,6 @@ public class Board {
         this.amountMines = _amountMines;
         this.radius = radius;
         this.diameter = 2* radius + 1;
-        makeMinefieldWithDimensions();
-    }
-
-    public void initializeMinefield() {
         makeMinefieldWithDimensions();
     }
 
