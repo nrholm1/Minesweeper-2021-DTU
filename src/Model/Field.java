@@ -28,10 +28,6 @@ public class Field {
         this.state = state;
     }
 
-    public void setAdjacentMines(int _adjacentMines) {
-        this.adjacentMines = _adjacentMines;
-    }
-
     public void toggleIsMine() {
         this.isMine = !this.isMine;
     }
