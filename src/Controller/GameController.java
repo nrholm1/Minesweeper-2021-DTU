@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Board;
 import Model.Field;
+import Services.BlankFieldSolver;
 import View.GameScreen.Util.BoardView;
 import View.Components.HexTile;
 
@@ -26,10 +27,26 @@ public class GameController {
     return board.getField(x,y).getAdjacentMines();
   }
 
+  public int getRadius() {
+    return board.getRadius();
+  }
+
+  public boolean isInsideBounds(int x, int y) {
+    return board.isInsideBounds(x,y);
+  }
+
+  public boolean isMine(int x, int y) {
+    return board.getField(x,y).isMine();
+  }
+
+  public boolean isUnflagged(int x, int y) {
+    return board.getField(x,y).getState() == Field.State.UNFLAGGED;
+  }
+
   public void pressField(int x, int y) {
-    board.pressField(x,y);
+    board.pressField(x, y);
     board.firstClick(x, y);
-    board.blankField(x,y,this);
+    BlankFieldSolver.recursiveSolve(x, y, this);
     System.out.println(board.getField(x,y));
   }
 
