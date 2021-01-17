@@ -4,30 +4,39 @@ package Networking;
 
 import Controller.MultiplayerController;
 import Model.Field;
+import Services.ThreadManager;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
 
 public class MultiplayerService {
     MultiplayerController mpController;
 
     String targetIp;
     int port = 5050;
+    HttpServer server;
 
     // startHttpListener
     public void startHttpListener() throws IOException {
         System.out.println("Starting http listener");
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(5050), 0);
+        if (server != null)
+            return;
+        server = HttpServer.create(new InetSocketAddress(5050), 0);
         HttpListener listener = new HttpListener();
         listener.setMpService(this);
         server.createContext("/swoop", listener);
         server.setExecutor(null);
         server.start();
+
+        ThreadManager.setServer(server);
+    }
+
+    public void stopHttpListener() {
+        server.stop(1000);
     }
 
     // sendRequestAsync

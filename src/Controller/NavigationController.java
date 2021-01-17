@@ -21,6 +21,7 @@ public abstract class NavigationController {
     private static MultiPlayerMenuView mpMenuView;
     private static Stage root;
     private static int[] stageDims;
+    private static MultiplayerService mpService;
 
     public static void setRoot(Stage _root) {
         root = _root;
@@ -91,7 +92,8 @@ public abstract class NavigationController {
 
         mpController.setGameControllers(ownGameController, oppGameController);
 
-        MultiplayerService mpService = new MultiplayerService();
+        if (mpService == null)
+            mpService = new MultiplayerService();
         mpService.setMpController(mpController);
         mpService.startHttpListener();
 

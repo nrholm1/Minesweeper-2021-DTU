@@ -15,6 +15,10 @@ public class MultiplayerController {
         _ownGameController.setMpController(this);
     }
 
+    public MultiplayerService getMpService() {
+        return mpService;
+    }
+
     // call on init
     public void setMpService(MultiplayerService mpService) throws IOException {
         this.mpService = mpService;

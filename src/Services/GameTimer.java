@@ -14,8 +14,8 @@ public abstract class GameTimer {
   }
 
   public static void stopTimers() {
-    for(int i = 0; i < timers.size(); i++) {
-      timers.get(i).cancel();
+    for (Timer timer : timers) {
+      timer.cancel();
     }
   }
 

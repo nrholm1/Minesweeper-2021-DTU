@@ -3,6 +3,7 @@ import Controller.MultiplayerController;
 import Controller.NavigationController;
 import Services.ExternalResources;
 import Services.GameTimer;
+import Services.ThreadManager;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
@@ -55,8 +56,9 @@ public class Main extends Application {
     @Override
     public void stop() {
         GameTimer.stopTimers();
-        System.out.println("Stopping Application");
+        ThreadManager.stopServer();
 
+        System.out.println("Stopping Application");
     }
 
     // TODO refactor to not use int[]
