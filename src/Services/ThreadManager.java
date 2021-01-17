@@ -7,7 +7,7 @@ import java.util.Timer;
 
 public abstract class ThreadManager {
     private static HttpServer server;
-    private static final ArrayList<Timer> timers = new ArrayList<Timer>();
+    private static final ArrayList<Timer> timers = new ArrayList<>();
 
     public static Timer getTimer() {
         Timer t = new Timer();
@@ -16,13 +16,13 @@ public abstract class ThreadManager {
     }
 
     public static void stopTimers() {
-        for (Timer timer : timers) {
+        for (Timer timer : timers)
             timer.cancel();
-        }
     }
 
     public static void stopServer() {
-        server.stop(1);
+        if (server != null)
+            server.stop(1);
     }
 
     public static void setServer(HttpServer _server) {
