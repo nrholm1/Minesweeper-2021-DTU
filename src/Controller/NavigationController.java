@@ -9,6 +9,7 @@ import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerGameScreen.MultiPlayerView;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
 import View.SinglePlayerMenu.SingleplayerMenuView;
+import View.VictoryScreen.VictoryView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -101,5 +102,11 @@ public abstract class NavigationController {
         mpController.setTargetIp(mpMenuView.getIp());
 
         changeView(multiPlayerView);
+    }
+
+
+    public static void goToVictoryScreen(int seconds) {
+        VictoryView victory = new VictoryView(stageDims, seconds);
+        changeView(victory);
     }
 }

@@ -1,13 +1,16 @@
 package View.GameScreen.Util;
 
+import View.Components.TopMenuView;
+
 public class BoardViewBuilder {
-    int[] stageDims;
-    int inset;
-    int size;
+    private int[] stageDims;
+    private int inset;
+    private int size;
+    private TopMenuView topMenu;
 
     public BoardView build() {
         if (stageDims[1] > 0 && inset > 0 && size > 0)
-            return new BoardView(stageDims, inset, size);
+            return new BoardView(stageDims, inset, size, topMenu);
         else
             throw new IllegalArgumentException("Please enter a positive value for all params");
     }
@@ -19,6 +22,11 @@ public class BoardViewBuilder {
 
     public BoardViewBuilder withInsetSize(int _inset) {
         inset = _inset;
+        return this;
+    }
+
+    public BoardViewBuilder withTopview(TopMenuView top) {
+        topMenu = top;
         return this;
     }
 

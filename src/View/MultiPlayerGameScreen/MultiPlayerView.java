@@ -50,6 +50,7 @@ public class MultiPlayerView extends Scene {
                 .withStageDims(stageDims)
                 .withInsetSize(30)
                 .withSize(10)
+                .withTopview(topMenu)
                 .build();
 
         player1Screen.getChildren()
@@ -61,6 +62,7 @@ public class MultiPlayerView extends Scene {
                 .withStageDims(stageDims)
                 .withInsetSize(30)
                 .withSize(10)
+                .withTopview(topMenu)
                 .build();
 
         player2Screen.getChildren()

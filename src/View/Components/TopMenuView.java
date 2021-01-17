@@ -12,9 +12,10 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class TopMenuView<calcTimeString> extends HBox{
-    GameController controller;
+    private GameController controller;
 
-    Rectangle newGame;
+    private Rectangle newGame;
+    private TimeCounter timeCounter;
 
     public TopMenuView(int stagewidth, int inset) {
         super(stagewidth/8.0);
@@ -40,8 +41,9 @@ public class TopMenuView<calcTimeString> extends HBox{
         StackPane filler2 = new StackPane();
         filler2.getChildren().add(title);
 
+        timeCounter = new TimeCounter();
         StackPane filler3 = new StackPane();
-        filler3.getChildren().add(new TimeCounter());
+        filler3.getChildren().add(timeCounter);
 
         super.setAlignment(Pos.CENTER);
         super.getChildren().addAll(filler1, filler2, filler3);
@@ -50,4 +52,6 @@ public class TopMenuView<calcTimeString> extends HBox{
     public void setController(GameController _controller) {
         controller = _controller;
     }
+
+    public int getSeconds() { return timeCounter.getTime(); }
 }

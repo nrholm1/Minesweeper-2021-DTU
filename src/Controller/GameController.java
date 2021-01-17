@@ -47,12 +47,15 @@ public class GameController {
     board.pressField(x, y);
     board.firstClick(x, y);
     BlankFieldSolver.recursiveSolve(x, y, this);
-    System.out.println(board.getField(x,y));
+
+    if(board.getField(x,y).isMine()) System.out.println("U ded");
+    if(board.gameWon()) NavigationController.goToVictoryScreen(boardView.getTime());
   }
 
   public void flagField(int x, int y) {
     board.flagField(x,y);
-    System.out.println(board.getField(x,y));
+
+    if(board.gameWon()) NavigationController.goToVictoryScreen(boardView.getTime());
   }
 
   public void updateTile(int x, int y) {
