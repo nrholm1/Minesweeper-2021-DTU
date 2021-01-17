@@ -7,10 +7,11 @@ public class BoardViewBuilder {
     private int inset;
     private int size;
     private TopMenuView topMenu;
+    private boolean disableTiles = false;
 
     public BoardView build() {
         if (stageDims[1] > 0 && inset > 0 && size > 0)
-            return new BoardView(stageDims, inset, size, topMenu);
+            return new BoardView(stageDims, inset, size, topMenu, disableTiles);
         else
             throw new IllegalArgumentException("Please enter a positive value for all params");
     }
@@ -27,6 +28,11 @@ public class BoardViewBuilder {
 
     public BoardViewBuilder withTopview(TopMenuView top) {
         topMenu = top;
+        return this;
+    }
+
+    public BoardViewBuilder disableTiles() {
+        disableTiles = true;
         return this;
     }
 

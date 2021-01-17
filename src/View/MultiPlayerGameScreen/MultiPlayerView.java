@@ -63,6 +63,7 @@ public class MultiPlayerView extends Scene {
                 .withInsetSize(30)
                 .withSize(10)
                 .withTopview(topMenu)
+                .disableTiles() // Disables tiles for oppenent, since the client isn't supposed to be able to press them
                 .build();
 
         player2Screen.getChildren()

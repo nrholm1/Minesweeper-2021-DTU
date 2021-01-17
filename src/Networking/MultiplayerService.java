@@ -62,42 +62,4 @@ public class MultiplayerService {
         this.mpController = mpController;
     }
 
-    // teardown methods?
-
-
-
-
-    // ---Methods for testing---
-
-    public static void main(String[] args) throws IOException, InterruptedException {
-        MultiplayerService service = new MultiplayerService();
-        service.targetLocalIp();
-//        service.startHttpListener();
-        int counter = 0;
-        while(counter < 1000) {
-            service.sendRandomHttpRequest();
-            Thread.sleep(1000);
-            counter++;
-        }
-    }
-
-    void sendRandomHttpRequest() {
-        FieldDTO dto = createRandomDTO();
-        System.out.println(dto);
-        sendHttpRequest(dto);
-    }
-
-    public void targetLocalIp() throws UnknownHostException {
-        InetAddress addr = InetAddress.getLocalHost();
-        targetIp = addr.getHostAddress();
-    }
-
-    FieldDTO createRandomDTO() {
-        return new FieldDTO((int)(Math.random() * 10),
-                (int)(Math.random() * 20),
-                Math.random() >= 0.5 ?
-                        Field.State.FLAGGED :
-                        Field.State.PRESSED,
-                "" + (int)(Math.random() * 9));
-    }
 }

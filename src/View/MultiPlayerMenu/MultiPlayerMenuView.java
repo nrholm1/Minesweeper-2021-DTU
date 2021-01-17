@@ -97,12 +97,7 @@ public class MultiPlayerMenuView extends Scene {
 
         wholeIp.getChildren().addAll(ipText,ipField);
 
-        size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
-        difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
-
         createGameMenu.getChildren().addAll(title,
-                size,
-                difficulty,
                 wholeIp,
                 startButton);
 

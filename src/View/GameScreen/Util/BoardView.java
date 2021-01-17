@@ -28,8 +28,9 @@ public class BoardView extends StackPane {
 
     private GameController controller;
     private TopMenuView topMenu;
+    private boolean disableTiles;
 
-    public BoardView(int[] stageDimensions, int inset, int size, TopMenuView topMenu) {
+    public BoardView(int[] stageDimensions, int inset, int size, TopMenuView topMenu, boolean disableTiles) {
         super();
 
         this.inset = inset;
@@ -37,6 +38,7 @@ public class BoardView extends StackPane {
         this.boardDiameter = 2*size + 1;
         this.sideLength = calculateSideLength(stageDimensions);
         this.topMenu = topMenu;
+        this.disableTiles = disableTiles;
 
         createNewTileField();
         createTileFieldVisual();
@@ -64,12 +66,14 @@ public class BoardView extends StackPane {
                 int x = col;
                 int y = row;
 
-                currentTile.setOnMouseClicked(e -> {
-                    if (e.getButton() == MouseButton.PRIMARY)
-                        handleLeftClick(x, y);
-                    if (e.getButton() == MouseButton.SECONDARY)
-                        handleRightClick(x, y);
-                });
+                if(!disableTiles) {
+                    currentTile.setOnMouseClicked(e -> {
+                        if (e.getButton() == MouseButton.PRIMARY)
+                            handleLeftClick(x, y);
+                        if (e.getButton() == MouseButton.SECONDARY)
+                            handleRightClick(x, y);
+                    });
+                }
 
                 tileField[col][row] = currentTile;
             }

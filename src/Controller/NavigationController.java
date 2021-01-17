@@ -80,7 +80,6 @@ public abstract class NavigationController {
     }
 
     public static void createMultiplayerGame() throws IOException {
-        System.out.println("Hooked");
         MultiPlayerView multiPlayerView = new MultiPlayerView(stageDims);
 
         Board board = new BoardBuilder()
