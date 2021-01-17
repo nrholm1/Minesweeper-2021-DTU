@@ -18,8 +18,8 @@ public class HttpListener implements HttpHandler {
 
         long start = System.nanoTime();
         byte[] receivedBytes = exchange
-                    .getRequestBody()
-                    .readAllBytes();
+                .getRequestBody()
+                .readAllBytes();
 
         FieldDTO dto = Parser.readRequestInput(receivedBytes);
 
@@ -31,22 +31,10 @@ public class HttpListener implements HttpHandler {
         response += " | time elapsed: " + (end - start) + " ns";
 
         exchange.sendResponseHeaders(200, response.length());
-//        OutputStream os = exchange.getResponseBody();
-////        os.write(response.getBytes());
-//        os.close();
     }
 
     public void setMpService(MultiplayerService mpService) {
         this.mpService = mpService;
     }
 
-    public static void main(String[] args) throws IOException {
-        System.out.println("Starting http listener");
-
-        HttpServer server = HttpServer.create(new InetSocketAddress(5050), 0);
-        HttpListener listener = new HttpListener();
-        server.createContext("/swoop", listener);
-        server.setExecutor(null);
-        server.start();
-    }
 }

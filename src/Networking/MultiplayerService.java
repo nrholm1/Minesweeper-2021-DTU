@@ -3,14 +3,10 @@ package Networking;
 // methods for connecting to other person and sending / receiving requests
 
 import Controller.MultiplayerController;
-import Model.Field;
 import Services.ThreadManager;
 import com.sun.net.httpserver.HttpServer;
-
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 
 public class MultiplayerService {
     MultiplayerController mpController;
