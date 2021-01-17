@@ -3,6 +3,7 @@ package Controller;
 import Model.Board;
 import Model.Util.BoardBuilder;
 import Networking.MultiplayerService;
+import View.DefeatScreen.DefeatView;
 import View.GameScreen.SingleplayerView;
 import View.GameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
@@ -108,5 +109,9 @@ public abstract class NavigationController {
     public static void goToVictoryScreen(int seconds) {
         VictoryView victory = new VictoryView(stageDims, seconds);
         changeView(victory);
+    }
+
+    public static void goToDefeatScreen() {
+        changeView(new DefeatView(stageDims));
     }
 }

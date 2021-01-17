@@ -48,7 +48,7 @@ public class GameController {
     board.firstClick(x, y);
     BlankFieldSolver.recursiveSolve(x, y, this);
 
-    if(board.getField(x,y).isMine()) System.out.println("U ded");
+    if(board.getField(x,y).isMine()) NavigationController.goToDefeatScreen();
     if(board.gameWon()) NavigationController.goToVictoryScreen(boardView.getTime());
   }
 
