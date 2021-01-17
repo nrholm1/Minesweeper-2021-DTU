@@ -3,6 +3,7 @@ package View.GameScreen.Util;
 import Controller.GameController;
 import Services.ExternalResources;
 import View.Components.HexTile;
+import View.Components.TopMenuView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
@@ -25,15 +26,17 @@ public class BoardView extends StackPane {
     static private HBox board;
     static private VBox boat;
 
-    GameController controller;
+    private GameController controller;
+    private TopMenuView topMenu;
 
-    public BoardView(int[] stageDimensions, int inset, int size) {
+    public BoardView(int[] stageDimensions, int inset, int size, TopMenuView topMenu) {
         super();
 
         this.inset = inset;
         this.boardRadius = size;
         this.boardDiameter = 2*size + 1;
         this.sideLength = calculateSideLength(stageDimensions);
+        this.topMenu = topMenu;
 
         createNewTileField();
         createTileFieldVisual();
@@ -137,4 +140,6 @@ public class BoardView extends StackPane {
     public HexTile getTile(int x, int y) {
         return tileField[x][y];
     }
+
+    public int getTime() { return topMenu.getSeconds(); }
 }

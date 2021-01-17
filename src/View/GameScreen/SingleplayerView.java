@@ -23,6 +23,7 @@ public class SingleplayerView extends Scene {
             .withStageDims(stageDims)
             .withInsetSize(inset)
             .withSize(size)
+            .withTopview(topMenu)
             .build();
 
     initializeGameView();

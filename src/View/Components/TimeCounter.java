@@ -57,4 +57,6 @@ public class TimeCounter extends HBox{
 
         return stringTime;
     }
+
+    public int getTime() { return timeElapsed; }
 }
