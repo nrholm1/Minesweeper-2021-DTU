@@ -1,12 +1,8 @@
 package Model;
 
-import Controller.GameController;
-
 public class Board {
     private Field[][] minefield;
     private final int amountMines;
-
-    private int amountFields;
 
     private final int radius;
 
@@ -16,16 +12,13 @@ public class Board {
     private int flaggedMines;
     private int flaggedNonMines;
     private int openedFields;
+    private int amountFields;
 
     public Board(int radius, int _amountMines) {
         this.amountMines = _amountMines;
         this.radius = radius;
         this.diameter = 2* radius + 1;
         this.amountFields = getAmountFields();
-        makeMinefieldWithDimensions();
-    }
-
-    public void initializeMinefield() {
         makeMinefieldWithDimensions();
     }
 
@@ -46,7 +39,12 @@ public class Board {
             int r = (int)(Math.random() * diameter);
             int c = (int)(Math.random() * minefield[r].length);
 
-            if ((r == x && c == y) || minefield[r][c].isMine())
+            boolean rInVicinityOfX = r >= x - 1 && r <= x + 1;
+            boolean cInVicinityOfY = c >= y - 1 && c <= y + 1;
+
+            if ((rInVicinityOfX && cInVicinityOfY)
+                    ||
+                    minefield[r][c].isMine())
                 continue;
 
             minefield[r][c].toggleIsMine();
@@ -75,33 +73,6 @@ public class Board {
                     incrementAdjacentMineCounters(col,row);
     }
 
-    // TODO refactor controller argument
-    public void blankField(int col, int row, GameController gameController) {
-        if (getField(col, row).getAdjacentMines() == 0) {
-            boolean onLeftSide = col < radius; // on left side of current index
-            boolean onRightSide = col > radius; // on right side of current index
-            int[][] adjacentFields = {
-                    {col, row-1},
-                    {col+1, row},
-                    {col, row+1},
-                    {col-1, row},
-                    {col-1, onRightSide ? row+1 : row-1},
-                    {col+1, onLeftSide ? row+1 : row-1}
-            };
-            for (int[] field : adjacentFields) {
-                int tempx = field[0];
-                int tempy = field[1];
-                if (tempx >= 0 && tempx < minefield.length && tempy >= 0 && tempy < minefield[tempx].length && !minefield[tempx][tempy].isMine()) {
-                    if (!minefield[tempx][tempy].isMine() && !(minefield[tempx][tempy].getState() == Field.State.PRESSED)){
-                        pressField(tempx, tempy);
-                        blankField(tempx, tempy, gameController);
-                        gameController.updateTile(tempx,tempy);
-                    }
-                }
-            }
-        }
-    }
-
     public boolean isInsideBounds(int x, int y) {
         boolean isInLowerBound = x >= 0 && y >= 0;
         if (!isInLowerBound)
@@ -111,7 +82,6 @@ public class Board {
                 y < minefield[x].length;
         return isInUpperBound;
     }
-
 
     public void incrementAdjacentMineCounters(int col, int row){
         boolean onLeftSide = col < radius; // on left side of current index
@@ -156,6 +126,10 @@ public class Board {
         return minefield[x][y];
     }
 
+    public int getRadius() {
+        return this.radius;
+    }
+
     public void pressField(int x, int y) {
         Field field = minefield[x][y];
 
@@ -187,9 +161,5 @@ public class Board {
             return true;
         }
         return false;
-    }
-
-    public int getRadius() {
-        return this.radius;
     }
 }
