@@ -2,9 +2,24 @@ package Services;
 
 import com.sun.net.httpserver.HttpServer;
 
-//TODO maybe only http listener, so maybe call something else
+import java.util.ArrayList;
+import java.util.Timer;
+
 public abstract class ThreadManager {
-    static HttpServer server;
+    private static HttpServer server;
+    private static final ArrayList<Timer> timers = new ArrayList<Timer>();
+
+    public static Timer getTimer() {
+        Timer t = new Timer();
+        timers.add(t);
+        return t;
+    }
+
+    public static void stopTimers() {
+        for (Timer timer : timers) {
+            timer.cancel();
+        }
+    }
 
     public static void stopServer() {
         server.stop(1);

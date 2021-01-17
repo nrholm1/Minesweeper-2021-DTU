@@ -2,7 +2,6 @@ import Controller.GameController;
 import Controller.MultiplayerController;
 import Controller.NavigationController;
 import Services.ExternalResources;
-import Services.GameTimer;
 import Services.ThreadManager;
 import View.MainMenuScreen.MainMenuView2;
 import View.MultiPlayerMenu.MultiPlayerMenuView;
@@ -55,7 +54,7 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        GameTimer.stopTimers();
+        ThreadManager.stopTimers();
         ThreadManager.stopServer();
 
         System.out.println("Stopping Application");

@@ -1,7 +1,7 @@
 package View.Components;
 
 import Services.ExternalResources;
-import Services.GameTimer;
+import Services.ThreadManager;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -26,7 +26,7 @@ public class TimeCounter extends HBox{
         counterText.setFont(pixelFont);
         counterText.setFill(Color.WHITE);
 
-        timer = GameTimer.getTimer();
+        timer = ThreadManager.getTimer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
