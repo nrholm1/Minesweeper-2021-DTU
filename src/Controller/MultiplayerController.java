@@ -4,21 +4,23 @@ import Model.Field;
 import Networking.FieldDTO;
 import Networking.MultiplayerService;
 
+import java.io.IOException;
+
 public class MultiplayerController {
-    GameController ownGameController; // TODO does it need a reference?
-    GameController oppGameController;
+    GameController oppGameController; // opponent game controller
     MultiplayerService mpService;
 
-    public MultiplayerController(GameController controller) {
-        this.ownGameController = controller;
+    public void setGameControllers(GameController _ownGameController, GameController _oppGameController) {
+        this.oppGameController = _oppGameController;
+        _ownGameController.setMpController(this);
     }
 
-    public void setController(GameController controller) {
-        this.ownGameController = controller;
+    public MultiplayerService getMpService() {
+        return mpService;
     }
 
     // call on init
-    public void setMpService(MultiplayerService mpService) {
+    public void setMpService(MultiplayerService mpService) throws IOException {
         this.mpService = mpService;
     }
 
@@ -42,11 +44,12 @@ public class MultiplayerController {
     }
 
     public void receiveEvent(FieldDTO dto) {
-        oppGameController.setFieldState(
+        System.out.println("Received event: " + dto);
+        oppGameController.updateTile(
                 dto.getX(),
                 dto.getY(),
-                dto.getAction()
+                dto.getAction(),
+                dto.getTileText()
         );
-        oppGameController.updateTile(dto.getX(), dto.getY());
     }
 }

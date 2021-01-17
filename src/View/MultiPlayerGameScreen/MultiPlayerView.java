@@ -4,6 +4,7 @@ import Model.Board;
 import Services.ExternalResources;
 import View.Components.TopMenuView;
 import View.GameScreen.Util.BoardView;
+import View.GameScreen.Util.BoardViewBuilder;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -14,17 +15,17 @@ import javafx.scene.text.Text;
 
 public class MultiPlayerView extends Scene {
 
-    BorderPane whole;
+    private BorderPane whole;
 
-    TopMenuView topMenu;
+    private TopMenuView topMenu;
+    private final Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource,16);
 
-    HBox boards;
-    VBox player1Screen, player2Screen;
+    private HBox boards;
+    private VBox player1Screen, player2Screen;
 
-    Text player1Text;
-    Text player2Text;
-    Board player1Board, player2Board;
-    BoardView player1View, player2View;
+    private Text player1Text;
+    private Text player2Text;
+    private BoardView player1View, player2View;
 
     public MultiPlayerView(int[] stageDimension){
         super(new BorderPane(), stageDimension[0], stageDimension[1]);
@@ -32,35 +33,35 @@ public class MultiPlayerView extends Scene {
         assembleView(stageDimension[0], stageDimension[1]);
 
         super.setRoot(whole);
-        super.getStylesheets().add(ExternalResources.multiplayerMenuStyleSheet);
+        super.getStylesheets()
+                .add(ExternalResources.gamestyleSheet);
     }
 
     public void assembleView(int stageWidth, int stageHeight){
-        Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource,16);
-
         int[] stageDims = new int[] {stageWidth, stageHeight};
         double screenHeight = stageHeight / 10.0;
         double screenWidth = stageWidth / 10.0;
 
-        player1Screen = new VBox(screenHeight);
+        topMenu = new TopMenuView(stageWidth, 30);
 
-        player1Text = new Text("Player 1: You");
-        player1Text.setFont(pixelfont);
-
-        player1Board = new Board(stageWidth, stageHeight);
-        player1View = new BoardView(stageDims, 30, 10);
+        player1Screen = createPlayerScreen(screenHeight);
+        player1Text = createPlayerText("Player 1: You");
+        player1View = new BoardViewBuilder()
+                .withStageDims(stageDims)
+                .withInsetSize(30)
+                .withSize(10)
+                .build();
 
         player1Screen.getChildren()
                 .addAll(player1Text, player1View);
 
-        player2Screen = new VBox(screenHeight);
-        player2Screen.setAlignment(Pos.CENTER);
-
-        player2Text = new Text("Player 2: Opponent");
-        player2Text.setFont(pixelfont);
-
-        player2Board = new Board(stageWidth, stageHeight);
-        player2View = new BoardView(stageDims, 30, 10);
+        player2Screen = createPlayerScreen(screenHeight);
+        player2Text = createPlayerText("Player 2: Opponent");
+        player2View = new BoardViewBuilder()
+                .withStageDims(stageDims)
+                .withInsetSize(30)
+                .withSize(10)
+                .build();
 
         player2Screen.getChildren()
                 .addAll(player2Text, player2View);
@@ -71,8 +72,30 @@ public class MultiPlayerView extends Scene {
                 .addAll(player1Screen, player2Screen);
 
         whole = new BorderPane();
-        whole.setId("whole");
+        whole.setId("gameback");
         whole.setTop(topMenu);
         whole.setCenter(boards);
+    }
+
+    VBox createPlayerScreen(double screenHeight) {
+        VBox playerScreen = new VBox(screenHeight);
+        playerScreen.setAlignment(Pos.CENTER);
+
+        return playerScreen;
+    }
+
+    Text createPlayerText(String text) {
+        Text playerText = new Text(text);
+        playerText.setFont(pixelfont);
+
+        return playerText;
+    }
+
+    public BoardView getPlayer1View() {
+        return player1View;
+    }
+
+    public BoardView getPlayer2View() {
+        return player2View;
     }
 }

@@ -35,6 +35,10 @@ public class FieldDTO {
         return y;
     }
 
+    public String getTileText() {
+        return tileText;
+    }
+
     public byte[] toBytes() {
         return this.toParsableString()
                    .getBytes();
@@ -57,7 +61,7 @@ public class FieldDTO {
     }
 
     public String toString() {
-        return "(" + x + ", " + y + ") " + tileText + " " + action;
+        return ""+  action + " (" + x + ", " + y + ") " + tileText;
     }
 
     public static void testDataProcess(FieldDTO fieldDTO) {

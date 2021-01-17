@@ -41,7 +41,7 @@ public class HexTile extends StackPane {
              );
 
         setAlignment(Pos.CENTER);
-        getChildren().addAll(hexagon);
+        getChildren().addAll(hexagon, adjacentMinesText);
     }
 
     public void render(Field.State state) {
@@ -53,29 +53,22 @@ public class HexTile extends StackPane {
     }
 
     public void renderUnflagged(){
-        getChildren().remove(adjacentMinesText);
+        adjacentMinesText.setText("");
 
         hexagon.setFill(Color.DARKTURQUOISE);
         hexagon.setId("hextile");
     }
 
     public void renderFlagged(){
-        getChildren().remove(adjacentMinesText);
+        adjacentMinesText.setText("");
 
         hexagon.setFill(Color.RED);
         hexagon.setId("hextile");
     }
 
     public void renderPressed(){
-        if(!getChildren().contains(adjacentMinesText))
-            getChildren().add(adjacentMinesText);
-
         hexagon.setFill(Color.AQUAMARINE.darker());
         hexagon.setId("");
-    }
-
-    public ImagePattern getTileImage(String tileUrl) {
-        return new ImagePattern(new Image("Images/" + tileUrl + ".png"));
     }
 
     public void setupText(){

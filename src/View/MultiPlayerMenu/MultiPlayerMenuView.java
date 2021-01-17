@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import View.Components.PixelButton;
 import View.Components.PixelSlider;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -30,6 +31,7 @@ public class MultiPlayerMenuView extends Scene {
     private PixelSlider size;
     private PixelSlider difficulty;
     private PixelButton startButton;
+    TextField ipField;
 
     public MultiPlayerMenuView(int[] stageDims) throws UnknownHostException{
         super(new StackPane(), stageDims[0], stageDims[1]);
@@ -44,6 +46,10 @@ public class MultiPlayerMenuView extends Scene {
 
         super.setRoot(whole);
         super.getStylesheets().add(ExternalResources.multiplayerMenuStyleSheet);
+    }
+
+    public String getIp() {
+        return ipField.getText();
     }
 
     // TODO works as intended, but should be
@@ -61,7 +67,11 @@ public class MultiPlayerMenuView extends Scene {
         //StartButton
         startButton = new PixelButton(ExternalResources.startgameText, stageDims[0]/4, stageDims[0]/16);
         startButton.setOnMouseClicked(e -> {
-            NavigationController.createMultiplayerGame();
+            try {
+                NavigationController.createMultiplayerGame();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
     }
 
@@ -80,7 +90,7 @@ public class MultiPlayerMenuView extends Scene {
         ipText.setFont(pixelfont);
         ipText.setFill(Color.WHITE);
 
-        TextField ipField = new TextField(getLocalIp());
+        ipField = new TextField(getLocalIp());
         ipField.setMaxWidth(stageDims[0]/4.0);
         ipField.setAlignment(Pos.CENTER);
         ipField.setFont(pixelfont);

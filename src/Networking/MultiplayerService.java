@@ -2,9 +2,9 @@ package Networking;
 
 // methods for connecting to other person and sending / receiving requests
 
-import Controller.GameController;
 import Controller.MultiplayerController;
 import Model.Field;
+import Services.ThreadManager;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -14,17 +14,29 @@ import java.net.UnknownHostException;
 
 public class MultiplayerService {
     MultiplayerController mpController;
-    GameController gameController;
 
     String targetIp;
     int port = 5050;
+    HttpServer server;
 
     // startHttpListener
     public void startHttpListener() throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(5050), 0);
-        server.createContext("/swoop", new HttpListener());
+        System.out.println("Starting http listener");
+
+        if (server != null)
+            return;
+        server = HttpServer.create(new InetSocketAddress(5050), 0);
+        HttpListener listener = new HttpListener();
+        listener.setMpService(this);
+        server.createContext("/swoop", listener);
         server.setExecutor(null);
         server.start();
+
+        ThreadManager.setServer(server);
+    }
+
+    public void stopHttpListener() {
+        server.stop(1000);
     }
 
     // sendRequestAsync
@@ -37,16 +49,13 @@ public class MultiplayerService {
     }
 
     public void receiveIncomingRequest(FieldDTO dto) {
-        this.mpController.receiveEvent(dto);
+        if (this.mpController != null)
+            this.mpController.receiveEvent(dto);
     }
 
     // setTargetIp
     public void setTargetIpAdress(String ipAdress) {
         targetIp = ipAdress;
-    }
-
-    public void setGameController(GameController _gameController) {
-        this.gameController = _gameController;
     }
 
     public void setMpController(MultiplayerController mpController) {
@@ -62,10 +71,10 @@ public class MultiplayerService {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         MultiplayerService service = new MultiplayerService();
-        service.startHttpListener();
         service.targetLocalIp();
+//        service.startHttpListener();
         int counter = 0;
-        while(counter < 100) {
+        while(counter < 1000) {
             service.sendRandomHttpRequest();
             Thread.sleep(1000);
             counter++;
@@ -75,7 +84,7 @@ public class MultiplayerService {
     void sendRandomHttpRequest() {
         FieldDTO dto = createRandomDTO();
         System.out.println(dto);
-        sendHttpRequest(createRandomDTO());
+        sendHttpRequest(dto);
     }
 
     public void targetLocalIp() throws UnknownHostException {
@@ -84,8 +93,8 @@ public class MultiplayerService {
     }
 
     FieldDTO createRandomDTO() {
-        return new FieldDTO((int)(Math.random() * 70),
-                (int)(Math.random() * 70),
+        return new FieldDTO((int)(Math.random() * 10),
+                (int)(Math.random() * 20),
                 Math.random() >= 0.5 ?
                         Field.State.FLAGGED :
                         Field.State.PRESSED,

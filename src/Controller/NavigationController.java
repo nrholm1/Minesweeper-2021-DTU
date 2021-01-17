@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Board;
 import Model.Util.BoardBuilder;
+import Networking.MultiplayerService;
 import View.GameScreen.SingleplayerView;
 import View.GameScreen.Util.SingleplayerViewBuilder;
 import View.MainMenuScreen.MainMenuView2;
@@ -11,6 +12,8 @@ import View.SinglePlayerMenu.SingleplayerMenuView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public abstract class NavigationController {
 
     private static MainMenuView2 mainMenuView;
@@ -18,6 +21,7 @@ public abstract class NavigationController {
     private static MultiPlayerMenuView mpMenuView;
     private static Stage root;
     private static int[] stageDims;
+    private static MultiplayerService mpService;
 
     public static void setRoot(Stage _root) {
         root = _root;
@@ -65,7 +69,7 @@ public abstract class NavigationController {
 
         Board b = new BoardBuilder()
                 .withSize(spMenuView.getSize())
-                .withAmountMines(spMenuView.getDifficulty())
+                .withAmountMines(spMenuView.getDifficulty() * 5)
                 .build();
 
         GameController gameController = new GameController(b , singleplayerView.getBoardView());
@@ -73,9 +77,28 @@ public abstract class NavigationController {
         changeView(singleplayerView);
     }
 
-    public static void createMultiplayerGame() {
+    public static void createMultiplayerGame() throws IOException {
         System.out.println("Hooked");
         MultiPlayerView multiPlayerView = new MultiPlayerView(stageDims);
+
+        Board board = new BoardBuilder()
+                .withSize(10)
+                .withAmountMines(50)
+                .build();
+
+        MultiplayerController mpController = new MultiplayerController();
+        GameController ownGameController = new GameController(board, multiPlayerView.getPlayer1View());
+        GameController oppGameController = new GameController(multiPlayerView.getPlayer2View());
+
+        mpController.setGameControllers(ownGameController, oppGameController);
+
+        if (mpService == null)
+            mpService = new MultiplayerService();
+        mpService.setMpController(mpController);
+        mpService.startHttpListener();
+
+        mpController.setMpService(mpService);
+        mpController.setTargetIp(mpMenuView.getIp());
 
         changeView(multiPlayerView);
     }
