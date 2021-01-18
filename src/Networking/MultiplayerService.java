@@ -14,15 +14,18 @@ public class MultiplayerService {
     private HttpServer server;
     private GameController oppGameController;
 
-    public MultiplayerService(GameController ownGameController, GameController oppGameController) throws IOException {
+    public MultiplayerService(GameController ownGameController, GameController oppGameController, String ip) throws IOException {
         this.oppGameController = oppGameController;
+        this.targetIp = ip;
         ownGameController.setMpService(this);
+
         startHttpListener();
     }
 
     // startHttpListener
     private void startHttpListener() throws IOException {
         System.out.println("Starting http listener");
+        ThreadManager.stopServer();
 
         server = HttpServer.create(new InetSocketAddress(5050), 0);
         HttpListener listener = new HttpListener(this);
