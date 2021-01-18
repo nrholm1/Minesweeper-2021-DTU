@@ -4,7 +4,7 @@ import Model.Field;
 
 import java.nio.charset.StandardCharsets;
 
-public class Parser {
+public abstract class Parser {
     public static FieldDTO readRequestInput(byte[] dataBytes) {
         return parseFieldDTOString(deserializeFieldDTO(dataBytes));
     }
@@ -54,14 +54,4 @@ public class Parser {
         return new String(dataBytes, StandardCharsets.UTF_8);
     }
 
-    public static void main(String[] args) {
-        FieldDTO data = new FieldDTO(13, 21, Field.State.FLAGGED, "X");
-
-        String s = data.toParsableString();
-        byte[] bytes = data.toBytes();
-        FieldDTO parsedDto = readRequestInput(bytes);
-
-        System.out.println(s);
-        System.out.println(parsedDto);
-    }
 }

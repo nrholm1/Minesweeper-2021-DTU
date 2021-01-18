@@ -87,19 +87,11 @@ public abstract class NavigationController {
                 .withAmountMines(50)
                 .build();
 
-        MultiplayerController mpController = new MultiplayerController();
         GameController ownGameController = new GameController(board, multiPlayerView.getPlayer1View());
         GameController oppGameController = new GameController(multiPlayerView.getPlayer2View());
 
-        mpController.setGameControllers(ownGameController, oppGameController);
-
-        if (mpService == null)
-            mpService = new MultiplayerService();
-        mpService.setMpController(mpController);
-        mpService.startHttpListener();
-
-        mpController.setMpService(mpService);
-        mpController.setTargetIp(mpMenuView.getIp());
+        MultiplayerService.initiateService(oppGameController, mpMenuView.getIp());
+        ownGameController.toggleMultiplayer();
 
         changeView(multiPlayerView);
     }

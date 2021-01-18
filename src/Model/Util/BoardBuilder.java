@@ -19,7 +19,7 @@ public class BoardBuilder {
     }
 
     public BoardBuilder withSize(int _size) {
-        if (_size >= 5)
+        if (_size >= 4)
             this.radius = _size;
         else throw new IllegalArgumentException("Side length must be greater than or equal to 5");
 
