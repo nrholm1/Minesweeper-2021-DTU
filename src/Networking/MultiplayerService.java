@@ -23,8 +23,7 @@ public abstract class MultiplayerService {
 
     // startHttpListener
     private static void startHttpListener() throws IOException {
-        System.out.println("Starting http listener");
-        ThreadManager.stopServer();
+        if(server != null) return;
 
         HttpListener listener = new HttpListener();
 
