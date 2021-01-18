@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Board;
 import Model.Field;
+import Networking.FieldDTO;
+import Networking.MultiplayerService;
 import Services.BlankFieldSolver;
 import View.GameScreen.Util.BoardView;
 import View.Components.HexTile;
@@ -9,7 +11,7 @@ import View.Components.HexTile;
 public class GameController {
   private Board board; // board data - states, etc.
   private final BoardView boardView; // graphical representation of board - for updating view on state changes
-  private MultiplayerController mpController; // only set in multiplayer contexts. Can be either receiver or sender of http requests.
+  private MultiplayerService mpService; // only set in multiplayer contexts. Can be either receiver or sender of http requests.
 
   public GameController(Board b, BoardView bv) {
     this.board = b;
@@ -64,8 +66,13 @@ public class GameController {
     tile.setTileText(field.getTileText());
     tile.render(field.getState());
 
-    if (mpController != null)
-      mpController.sendEvent(field);
+    if (mpService != null) {
+      mpService.sendHttpRequest(new FieldDTO(
+              field.getX(),
+              field.getY(),
+              field.getState(),
+              field.getTileText()));
+    }
   }
 
   public void updateTile(int x,
@@ -77,7 +84,7 @@ public class GameController {
     tile.render(action);
   }
 
-  public void setMpController(MultiplayerController mpController) {
-    this.mpController = mpController;
+  public void setMpService(MultiplayerService mpService) {
+    this.mpService = mpService;
   }
 }

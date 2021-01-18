@@ -5,10 +5,10 @@ import Model.Field;
 import java.util.Arrays;
 
 public class FieldDTO {
-    int x; // row index
-    int y; // col index
-    Field.State action; // change state to
-    String tileText;
+    private int x; // row index
+    private int y; // col index
+    private Field.State action; // change state to
+    private String tileText;
 
     public FieldDTO(Field alteredField) {
         new FieldDTO(alteredField.getX(),

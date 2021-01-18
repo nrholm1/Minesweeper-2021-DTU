@@ -2,28 +2,31 @@ package Networking;
 
 // methods for connecting to other person and sending / receiving requests
 
-import Controller.MultiplayerController;
+import Controller.GameController;
 import Services.ThreadManager;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
 public class MultiplayerService {
-    MultiplayerController mpController;
+    private String targetIp;
+    private int port = 5050;
+    private HttpServer server;
+    private GameController oppGameController;
 
-    String targetIp;
-    int port = 5050;
-    HttpServer server;
+    public MultiplayerService(GameController ownGameController, GameController oppGameController) throws IOException {
+        this.oppGameController = oppGameController;
+        ownGameController.setMpService(this);
+        startHttpListener();
+    }
 
     // startHttpListener
-    public void startHttpListener() throws IOException {
+    private void startHttpListener() throws IOException {
         System.out.println("Starting http listener");
 
-        if (server != null)
-            return;
         server = HttpServer.create(new InetSocketAddress(5050), 0);
-        HttpListener listener = new HttpListener();
-        listener.setMpService(this);
+        HttpListener listener = new HttpListener(this);
+
         server.createContext("/swoop", listener);
         server.setExecutor(null);
         server.start();
@@ -31,12 +34,9 @@ public class MultiplayerService {
         ThreadManager.setServer(server);
     }
 
-    public void stopHttpListener() {
-        server.stop(1000);
-    }
-
     // sendRequestAsync
     public void sendHttpRequest(FieldDTO fieldDTO) {
+        System.out.println("adasd");
         ClientDriver.simpleAsyncRequestPrintFieldDTO(
                 targetIp,
                 port,
@@ -45,17 +45,11 @@ public class MultiplayerService {
     }
 
     public void receiveIncomingRequest(FieldDTO dto) {
-        if (this.mpController != null)
-            this.mpController.receiveEvent(dto);
+        oppGameController.updateTile(
+                dto.getX(),
+                dto.getY(),
+                dto.getAction(),
+                dto.getTileText()
+        );
     }
-
-    // setTargetIp
-    public void setTargetIpAdress(String ipAdress) {
-        targetIp = ipAdress;
-    }
-
-    public void setMpController(MultiplayerController mpController) {
-        this.mpController = mpController;
-    }
-
 }

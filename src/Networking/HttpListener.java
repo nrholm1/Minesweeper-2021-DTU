@@ -12,6 +12,10 @@ import java.util.Arrays;
 public class HttpListener implements HttpHandler {
     MultiplayerService mpService;
 
+    public HttpListener(MultiplayerService mpService) {
+        this.mpService = mpService;
+    }
+
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String response = "Response from server | ";
@@ -31,10 +35,6 @@ public class HttpListener implements HttpHandler {
         response += " | time elapsed: " + (end - start) + " ns";
 
         exchange.sendResponseHeaders(200, response.length());
-    }
-
-    public void setMpService(MultiplayerService mpService) {
-        this.mpService = mpService;
     }
 
 }

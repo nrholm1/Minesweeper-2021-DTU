@@ -1,5 +1,4 @@
 import Controller.GameController;
-import Controller.MultiplayerController;
 import Controller.NavigationController;
 import Services.ExternalResources;
 import Services.ThreadManager;
@@ -24,7 +23,6 @@ public class Main extends Application {
     MultiPlayerMenuView multiplayerMenuView;
 
     // Controllers
-    MultiplayerController mpController;
     GameController gameController;
 
     @Override
