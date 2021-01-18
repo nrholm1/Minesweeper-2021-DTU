@@ -12,9 +12,6 @@ import java.util.Arrays;
 public class HttpListener implements HttpHandler {
     MultiplayerService mpService;
 
-    public HttpListener(MultiplayerService mpService) {
-        this.mpService = mpService;
-    }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -29,8 +26,7 @@ public class HttpListener implements HttpHandler {
 
         response += dto.toString();
 
-        if (mpService != null)
-            mpService.receiveIncomingRequest(dto);
+        MultiplayerService.receiveIncomingRequest(dto);
         long end = System.nanoTime();
         response += " | time elapsed: " + (end - start) + " ns";
 

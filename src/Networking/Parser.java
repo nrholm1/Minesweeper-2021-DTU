@@ -4,7 +4,7 @@ import Model.Field;
 
 import java.nio.charset.StandardCharsets;
 
-public class Parser {
+public abstract class Parser {
     public static FieldDTO readRequestInput(byte[] dataBytes) {
         return parseFieldDTOString(deserializeFieldDTO(dataBytes));
     }

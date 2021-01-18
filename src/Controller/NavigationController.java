@@ -89,8 +89,9 @@ public abstract class NavigationController {
 
         GameController ownGameController = new GameController(board, multiPlayerView.getPlayer1View());
         GameController oppGameController = new GameController(multiPlayerView.getPlayer2View());
-        MultiplayerService mpService = new MultiplayerService(ownGameController, oppGameController, mpMenuView.getIp());
 
+        MultiplayerService.initiateService(oppGameController, mpMenuView.getIp());
+        ownGameController.toggleMultiplayer();
 
         changeView(multiPlayerView);
     }

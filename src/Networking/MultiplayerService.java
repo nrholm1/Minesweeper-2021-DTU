@@ -8,28 +8,27 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-public class MultiplayerService {
-    private String targetIp;
-    private int port = 5050;
-    private HttpServer server;
-    private GameController oppGameController;
+public abstract class MultiplayerService {
+    private static int port = 5050;
+    private static String targetIp;
+    private static HttpServer server;
+    private static GameController oppGameController;
 
-    public MultiplayerService(GameController ownGameController, GameController oppGameController, String ip) throws IOException {
-        this.oppGameController = oppGameController;
-        this.targetIp = ip;
-        ownGameController.setMpService(this);
+    public static void initiateService(GameController oppGameController_, String ip) throws IOException {
+        oppGameController = oppGameController_;
+        targetIp = ip;
 
         startHttpListener();
     }
 
     // startHttpListener
-    private void startHttpListener() throws IOException {
+    private static void startHttpListener() throws IOException {
         System.out.println("Starting http listener");
         ThreadManager.stopServer();
 
-        server = HttpServer.create(new InetSocketAddress(5050), 0);
-        HttpListener listener = new HttpListener(this);
+        HttpListener listener = new HttpListener();
 
+        server = HttpServer.create(new InetSocketAddress(5050), 0);
         server.createContext("/swoop", listener);
         server.setExecutor(null);
         server.start();
@@ -38,8 +37,7 @@ public class MultiplayerService {
     }
 
     // sendRequestAsync
-    public void sendHttpRequest(FieldDTO fieldDTO) {
-        System.out.println("adasd");
+    public static void sendHttpRequest(FieldDTO fieldDTO) {
         ClientDriver.simpleAsyncRequestPrintFieldDTO(
                 targetIp,
                 port,
@@ -47,7 +45,7 @@ public class MultiplayerService {
         );
     }
 
-    public void receiveIncomingRequest(FieldDTO dto) {
+    public static void receiveIncomingRequest(FieldDTO dto) {
         oppGameController.updateTile(
                 dto.getX(),
                 dto.getY(),
