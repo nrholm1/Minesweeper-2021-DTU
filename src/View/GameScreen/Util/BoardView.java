@@ -112,7 +112,7 @@ public class BoardView extends StackPane {
         boat.setAlignment(Pos.CENTER_LEFT);
 
         Text boatText = new Text("Help me get through!\nFind all the mines!");
-        Font pixelFont = Font.loadFont(ExternalResources.pixelFontResource, 10);
+        Font pixelFont = ExternalResources.pixelFont10;
         boatText.setLineSpacing(5);
         boatText.setFont(pixelFont);
         boatText.setFill(Color.WHITE);

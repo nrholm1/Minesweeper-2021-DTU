@@ -3,10 +3,8 @@ package View.Components;
 import Model.Field;
 import Services.ExternalResources;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -74,7 +72,7 @@ public class HexTile extends StackPane {
     public void setupText(){
         adjacentMinesText = new Text();
 
-        Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource, 16);
+        Font pixelfont = ExternalResources.pixelFont16;
         adjacentMinesText.setFont(pixelfont);
         adjacentMinesText.setFill(Color.WHITE);
         adjacentMinesText.setStyle("-fx-background-color: null;");

@@ -7,6 +7,7 @@
 
 #gameback {
     -fx-background-color: #306082;
+    -fx-text-fill: aliceblue;
 }
 
 #newgame-button:hover {

@@ -86,7 +86,7 @@ public class MultiPlayerMenuView extends Scene {
         wholeIp.setAlignment(Pos.CENTER);
 
         Text ipText = new Text("Enter partner IP:");
-        Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource, 16);
+        Font pixelfont = ExternalResources.pixelFont16;
         ipText.setFont(pixelfont);
         ipText.setFill(Color.WHITE);
 

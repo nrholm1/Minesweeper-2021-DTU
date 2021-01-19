@@ -49,7 +49,7 @@ public class VictoryView extends Scene {
     }
 
     public void setTextType (Text text, int size) {
-        Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource,16);
+        Font pixelfont = ExternalResources.pixelFont16;
         text.setTextAlignment(TextAlignment.CENTER);
         text.setFont(pixelfont);
         text.setFill(Color.WHITE);

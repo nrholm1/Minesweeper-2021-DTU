@@ -1,6 +1,5 @@
 package View.MultiPlayerGameScreen;
 
-import Model.Board;
 import Services.ExternalResources;
 import View.Components.TopMenuView;
 import View.GameScreen.Util.BoardView;
@@ -18,7 +17,7 @@ public class MultiPlayerView extends Scene {
     private BorderPane whole;
 
     private TopMenuView topMenu;
-    private final Font pixelfont = Font.loadFont(ExternalResources.pixelFontResource,16);
+    private final Font pixelfont = ExternalResources.pixelFont16;
 
     private HBox boards;
     private VBox player1Screen, player2Screen;
