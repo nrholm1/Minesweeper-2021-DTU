@@ -118,8 +118,8 @@ public class BoardView extends StackPane {
         boatText.setFill(Color.WHITE);
 
         ImageView boatImage = new ImageView(ExternalResources.submarine);
-        boatImage.setFitWidth(160);
-        boatImage.setFitHeight(75);
+        boatImage.setFitWidth(480);
+        boatImage.setFitHeight(225);
 
         boat.getChildren().addAll(boatText, boatImage);
     }

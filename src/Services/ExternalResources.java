@@ -5,7 +5,7 @@ import javafx.scene.text.Font;
 
 import java.io.InputStream;
 
-// This class holds all of the extern resources, so the program wont need to load new files every time they're needed
+// This class holds all of the external resources, so the program wont need to load new files every time they're needed
 public abstract class ExternalResources {
   public static Font pixelFont10;
   public static Font pixelFont16;
@@ -25,7 +25,6 @@ public abstract class ExternalResources {
   public static Image topmenuNewGame;
   public static Image topMenuTitle;
   public static Image submarine;
-
 
   public static void createResources() {
     topmenuNewGame = new Image("Images/pre-new-game.png");
