@@ -12,7 +12,7 @@ public class GameController {
   private Board board; // board data - states, etc.
   private final BoardView boardView; // graphical representation of board - for updating view on state changes
   private MultiplayerService mpService; // only set in multiplayer contexts. Can be either receiver or sender of http requests.
-  private boolean multiplayerSession = false;
+  private boolean multiplayerSession = false; // Whether or not to send own position to enemy
 
   public GameController(Board b, BoardView bv) {
     this.board = b;

@@ -8,10 +8,11 @@ public class BoardViewBuilder {
     private int size;
     private TopMenuView topMenu;
     private boolean disableTiles = false;
+    private boolean withBoat = true;
 
     public BoardView build() {
         if (stageDims[1] > 0 && inset > 0 && size > 0)
-            return new BoardView(stageDims, inset, size, topMenu, disableTiles);
+            return new BoardView(stageDims, inset, size, topMenu, disableTiles, withBoat);
         else
             throw new IllegalArgumentException("Please enter a positive value for all params");
     }
@@ -38,6 +39,11 @@ public class BoardViewBuilder {
 
     public BoardViewBuilder withSize(int _size) {
         size = _size;
+        return this;
+    }
+
+    public BoardViewBuilder noBoat() {
+        withBoat = false;
         return this;
     }
 }

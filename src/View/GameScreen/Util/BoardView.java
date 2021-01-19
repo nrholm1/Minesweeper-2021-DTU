@@ -30,7 +30,7 @@ public class BoardView extends StackPane {
     private TopMenuView topMenu;
     private boolean disableTiles;
 
-    public BoardView(int[] stageDimensions, int inset, int size, TopMenuView topMenu, boolean disableTiles) {
+    public BoardView(int[] stageDimensions, int inset, int size, TopMenuView topMenu, boolean disableTiles, boolean withBoat) {
         super();
 
         this.inset = inset;
@@ -42,9 +42,12 @@ public class BoardView extends StackPane {
 
         createNewTileField();
         createTileFieldVisual();
-        createBoatDecoration();
 
-        super.getChildren().addAll(boat, board);
+        if(withBoat) {
+            createBoatDecoration();
+            super.getChildren().add(boat);
+        }
+        super.getChildren().add(board);
     }
 
     int calculateSideLength(int[] stageDimensions) {
