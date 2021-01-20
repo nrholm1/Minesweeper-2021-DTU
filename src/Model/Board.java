@@ -86,7 +86,7 @@ public class Board {
         }
         total++;//We also have to count the center point
 
-        return total - amountMines; //We have to subtract the number of mines
+        return total; //We have to subtract the number of mines
     }
 
     private void setAdjacentMineCounters() {
@@ -175,8 +175,9 @@ public class Board {
     }
 
     public Boolean isGameWon(){
+        System.out.println(openedFields);
         return
                 (flaggedMines == amountMines && flaggedNonMines == 0)
-                        || (amountFields == openedFields);
+                        || (amountFields == openedFields + amountMines);
     }
 }

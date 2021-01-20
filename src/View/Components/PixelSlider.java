@@ -20,11 +20,6 @@ public class PixelSlider extends VBox{
         slider.setMaxWidth(stageDims[0]/4.0);
 
         slider.setValue(vals[1]);
-        if (type.equals("Size")) {
-            setGameSize(vals[1]);
-        } else if(type.equals("Difficulty")){
-            setDifficulty(vals[1]);
-        }
 
         String initialText = type + ": " + slider.getValue();
         Text sliderText = new Text(initialText.substring(0,initialText.length() -2));
@@ -35,10 +30,8 @@ public class PixelSlider extends VBox{
         slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             if (type.equals("Size")) {
                 sliderText.setText("Size: " + newValue.intValue());
-                setGameSize(newValue.intValue());
             } else if(type.equals("Difficulty")){
                 sliderText.setText("Difficulty: " + newValue.intValue());
-                setDifficulty(newValue.intValue());
             }
         });
 
@@ -47,13 +40,6 @@ public class PixelSlider extends VBox{
     }
 
 
-    private void setDifficulty(int val) {
-        System.out.println("Difficulty set to " + val);
-    }
-
-    private void setGameSize(int val) {
-        System.out.println("Game size set to " + val);
-    }
 
     public int getSize() { return (int)slider.getValue(); }
 }
