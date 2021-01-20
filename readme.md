@@ -7,22 +7,51 @@ Software project for DTU02121, Jan 2021
 - Massimo
 - Simon
 
-## Idea for architecture
-
-##### MVC (model-view-controller)
-
-<b>Model:</b>
-Field class for representing each individual field + state, 
-Board class for representing the entire board of fields. 
- 
- 
-<b>View:</b>
-GameWindow for containing <em>just</em> a 
-graphical representation of the board-class with all its fields:
-![Board drawing](./PresentationAssets/Minesweeper2021.png?raw=true)
-
-MainMenu for all menu stuff - basically the stuff around the GameWindow.
-
-<b>Controller:</b>
-Class containing methods for EventHandlers in the views, 
-modifying data in the models and interfacing between the views and models.
+## Overview of the project structure:
+```bash
+├── Controller
+│   ├── GameController
+│   └── NavigationController
+├── Driver
+│   └── Main (!)
+├── Images
+├── Model
+│   ├── Util
+│   │   └── BoardBuilder
+│   ├── Board
+│   └── Field
+├── Networking
+│   ├── ClientDriver
+│   ├── FieldDTO
+│   ├── HttpListener
+│   ├── MultiplayerService
+│   └── Parser
+├── Services
+│   ├── Assets
+│   │   ├── Styles.css
+│   │   ├── ...
+│   │   └── PixelFont.ttf
+│   ├── BlankFieldSolver
+│   ├── ExternalResources
+│   └── ThreadManager
+└── View
+    ├── Components
+    │   ├── Coord
+    │   ├── Kurwe
+    │   ├── Kurwe
+    │   ├── Kurwe
+    │   └── Vec2D
+    ├── DefeatScreen
+    │   ├── DefeatMultiplayerView
+    │   └── DefeatView
+    ├── Util
+    │   ├── BoardView
+    │   ├── BoardViewBuilder
+    │   └── SingleplayerViewBuilder
+    ├── MainMenuView
+    ├── MultiplayerMenuView
+    ├── MultiplayerView
+    ├── SingleplayerMenuView
+    ├── SingleplayerView
+    └── VictoryView
+```
