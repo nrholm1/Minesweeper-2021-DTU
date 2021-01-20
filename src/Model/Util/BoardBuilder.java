@@ -27,14 +27,14 @@ public class BoardBuilder {
     }
 
     // has to be called after size has been set
-    //difficulty goes from 1 - 10. min is 4% mines, max is 20% mines
+    //difficulty goes from 1 - 10. min is 6% mines, max is 25% mines
     public BoardBuilder withDifficulty(int diff) {
         // Calculates amount of fields in the board
         int fieldCount = 6 * ((radius + 1) * (radius/2) +
                 (radius % 2 == 0 ? 0 : (radius + 1)/2)) + 1;
 
         //Calculates percentage. Expression has been made using the "to-punktformel". This is because we want the percentage to gradually increase as the difficulty increases.
-        double percentage =  ((16.0/9.0 * (double)diff + (20.0/9.0)) / 100.0);
+        double percentage =  ((19.0/9.0 * (double)diff + (35.0/9.0)) / 100.0);
 
         this.amountMines = (int)(fieldCount * percentage);
         return this;
