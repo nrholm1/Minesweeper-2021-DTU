@@ -12,7 +12,7 @@ public class Board {
     private int flaggedMines;
     private int flaggedNonMines;
     private int openedFields;
-    private int amountFields;
+    private final int amountFields;
 
     public Board(int radius, int _amountMines) {
         System.out.println("with amountMines");
@@ -79,7 +79,7 @@ public class Board {
         int n = radius;
         int total = 0;
 
-        //We count them in hexagonal rings, starting from the outmost ring
+        //We count them in hexagonal rings, starting from the outermost ring
         while(n > 0){ //When we hit n = 0, we have reached the center point
             total += 6*n; //Every ring has 6n hexagons
             n--; //Go to next ring
@@ -175,9 +175,8 @@ public class Board {
     }
 
     public Boolean isGameWon(){
-        if((flaggedMines == amountMines && flaggedNonMines == 0) || (amountFields == openedFields)){
-            return true;
-        }
-        return false;
+        return
+                (flaggedMines == amountMines && flaggedNonMines == 0)
+                        || (amountFields == openedFields);
     }
 }

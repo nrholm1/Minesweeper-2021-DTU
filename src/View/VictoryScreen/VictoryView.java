@@ -33,7 +33,7 @@ public class VictoryView extends Scene {
         time = new Text("You did it in only " + seconds + " seconds!");
         setTextType(time, stagedims[0]/60);
 
-        next = new PixelButton(ExternalResources.topmenuNewGame, stagedims[0]/4, stagedims[0]/18);
+        next = new PixelButton(ExternalResources.topMenuNewGame, stagedims[0]/4, stagedims[0]/18);
         next.setId("pixelbutton");
         next.setOnMouseClicked(e -> NavigationController.gotoMainMenuView());
 

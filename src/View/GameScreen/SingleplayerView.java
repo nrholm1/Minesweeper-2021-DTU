@@ -30,7 +30,7 @@ public class SingleplayerView extends Scene {
 
     super.setRoot(gameView);
     super.getStylesheets()
-         .add(ExternalResources.gamestyleSheet);
+         .add(ExternalResources.gameStyleSheet);
   }
 
   public void initializeGameView() {

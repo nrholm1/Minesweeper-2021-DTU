@@ -14,7 +14,7 @@ public class HexTile extends StackPane {
     private final Polygon hexagon;
     private Text adjacentMinesText;
 
-    public HexTile(int x, int y, double sideLength) {
+    public HexTile(double sideLength) {
         super();
         setupText();
 

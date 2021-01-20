@@ -33,7 +33,7 @@ public class MultiPlayerView extends Scene {
 
         super.setRoot(whole);
         super.getStylesheets()
-                .add(ExternalResources.gamestyleSheet);
+                .add(ExternalResources.gameStyleSheet);
     }
 
     public void assembleView(int stageWidth, int stageHeight){

@@ -3,11 +3,11 @@ package Networking;
 import Model.Field;
 
 public class FieldDTO {
-    private int x; // row index
-    private int y; // col index
-    private Field.State action; // change state to
-    private String tileText;
-    private String gameState;
+    private final int x; // row index
+    private final int y; // col index
+    private final Field.State action; // change state to
+    private final String tileText;
+    private final String gameState;
 
     public FieldDTO(int _x, int _y, Field.State _action, String _tileText, String _gameState) {
         x = _x;

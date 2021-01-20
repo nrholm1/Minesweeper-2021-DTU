@@ -35,7 +35,7 @@ public class SingleplayerMenuView extends Scene{
 
         size = new PixelSlider(stageDims, new int[]{4,8,12}, "Size");
         difficulty = new PixelSlider(stageDims, new int[]{1,5,10}, "Difficulty");
-        startButton = new PixelButton(ExternalResources.startgameText, stageDims[0]/4, stageDims[0]/16);
+        startButton = new PixelButton(ExternalResources.startGameText, stageDims[0]/4, stageDims[0]/16);
 
         startButton.setOnMouseClicked(e -> {
             NavigationController.createSingleplayerGame();

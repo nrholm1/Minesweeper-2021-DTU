@@ -65,7 +65,7 @@ public class MultiPlayerMenuView extends Scene {
         title.setFitHeight(stageDims[0]/15.0);
 
         //StartButton
-        startButton = new PixelButton(ExternalResources.startgameText, stageDims[0]/4, stageDims[0]/16);
+        startButton = new PixelButton(ExternalResources.startGameText, stageDims[0]/4, stageDims[0]/16);
         startButton.setOnMouseClicked(e -> {
             try {
                 NavigationController.createMultiplayerGame();

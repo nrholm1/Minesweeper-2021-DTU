@@ -14,8 +14,8 @@ import javafx.scene.shape.Rectangle;
 public class TopMenuView<calcTimeString> extends HBox{
     private GameController controller;
 
-    private Rectangle newGame;
-    private TimeCounter timeCounter;
+    private final Rectangle newGame;
+    private final TimeCounter timeCounter;
 
     public TopMenuView(int stagewidth, int inset) {
         super(stagewidth/8.0);
@@ -29,7 +29,7 @@ public class TopMenuView<calcTimeString> extends HBox{
         title.setFitHeight(stagewidth/22.0);
 
         newGame = new Rectangle(stagewidth/6.0,stagewidth/27.0);
-        newGame.setFill(new ImagePattern(ExternalResources.topmenuNewGame));
+        newGame.setFill(new ImagePattern(ExternalResources.topMenuNewGame));
         newGame.setId("newgame-button");
         newGame.setOnMouseClicked(e -> {
             NavigationController.gotoMainMenuView();

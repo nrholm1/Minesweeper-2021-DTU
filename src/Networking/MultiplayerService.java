@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 public abstract class MultiplayerService {
-    private static int port = 5050;
+    private static final int port = 5050;
     private static String targetIp;
     private static HttpServer server;
     private static GameController oppGameController;
@@ -31,7 +31,7 @@ public abstract class MultiplayerService {
 
         HttpListener listener = new HttpListener();
 
-        server = HttpServer.create(new InetSocketAddress(5050), 0);
+        server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/swoop", listener);
         server.setExecutor(null);
         server.start();

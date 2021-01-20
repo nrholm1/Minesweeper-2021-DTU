@@ -9,7 +9,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class PixelSlider extends VBox{
-    private Slider slider;
+    private final Slider slider;
 
     public PixelSlider(int[] stageDims, int[] vals, String type){
         super(12);
@@ -28,8 +28,8 @@ public class PixelSlider extends VBox{
 
         String initialText = type + ": " + slider.getValue();
         Text sliderText = new Text(initialText.substring(0,initialText.length() -2));
-        Font pixelfont = ExternalResources.pixelFont16;
-        sliderText.setFont(pixelfont);
+        Font pixelFont = ExternalResources.pixelFont16;
+        sliderText.setFont(pixelFont);
         sliderText.setFill(Color.WHITE);
 
         slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {

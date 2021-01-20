@@ -65,7 +65,7 @@ public class BoardView extends StackPane {
             tileField[col] = new HexTile[boardDiameter - Math.abs(col - boardRadius)];
 
             for(int row = 0; row < tileField[col].length; row++){
-                HexTile currentTile = new HexTile(col, row, sideLength);
+                HexTile currentTile = new HexTile(sideLength);
                 int x = col;
                 int y = row;
 

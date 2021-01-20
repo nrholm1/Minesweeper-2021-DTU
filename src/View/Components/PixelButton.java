@@ -9,9 +9,5 @@ public class PixelButton extends Rectangle {
         super(width, height);
         setFill(new ImagePattern(pic));
         setId("pixelbutton");
-
-        setOnMouseClicked(e -> {
-            System.out.println("Button pressed");
-        });
     }
 }

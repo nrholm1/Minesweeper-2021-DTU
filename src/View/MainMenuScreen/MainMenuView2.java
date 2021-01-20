@@ -25,7 +25,7 @@ public class MainMenuView2 extends Scene {
         title.setFitWidth(stagedims[0]/2.0);
         title.setFitHeight(stagedims[0]/15.0);
 
-        PixelButton spButton = new PixelButton(ExternalResources.singeplayerText,
+        PixelButton spButton = new PixelButton(ExternalResources.singleplayerText,
                 stagedims[0]/4,
                 stagedims[0]/24);
 
