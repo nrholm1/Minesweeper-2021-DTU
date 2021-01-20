@@ -29,9 +29,11 @@ public class BoardBuilder {
     // has to be called after size has been set
     //difficulty goes from 1 - 10. min is 4% mines, max is 20% mines
     public BoardBuilder withDifficulty(int diff) {
-        int amountField = 6 * ((radius + 1)*(int)(radius/2) + (radius % 2 == 0? 0 : (radius + 1)/2)) + 1; // Calculates amount of fields from size
-        double percent =  ((16.0/9.0 * (double)diff + 20.0/9.0) / 100.0);
-        this.amountMines = (int)(amountField * percent);
+        int fieldCount = 6 * ((radius + 1) * (radius/2) +
+                (radius % 2 == 0 ? 0 : (radius + 1)/2)) + 1;
+        double percentage =  ((16.0/9.0 * (double)diff + (20.0/9.0)) / 100.0);
+
+        this.amountMines = (int)(fieldCount * percentage);
         return this;
     }
 
