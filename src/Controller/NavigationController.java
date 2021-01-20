@@ -71,7 +71,7 @@ public abstract class NavigationController {
 
         Board b = new BoardBuilder()
                 .withSize(spMenuView.getSize())
-                .withAmountMines(spMenuView.getDifficulty() * 5)
+                .withDifficulty(spMenuView.getDifficulty())
                 .build();
 
         GameController gameController = new GameController(b , singleplayerView.getBoardView());
@@ -83,7 +83,7 @@ public abstract class NavigationController {
         MultiPlayerView multiPlayerView = new MultiPlayerView(stageDims);
 
         Board board = new BoardBuilder()
-                .withSize(10)
+                .withSize(10) // Multiplayer size always 10
                 .withAmountMines(50)
                 .build();
 

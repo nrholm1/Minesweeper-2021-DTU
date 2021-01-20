@@ -78,9 +78,7 @@ public class Board {
         if (!isInLowerBound)
             return false;
 
-        boolean isInUpperBound = x < minefield.length &&
-                y < minefield[x].length;
-        return isInUpperBound;
+        return x < minefield.length && y < minefield[x].length;
     }
 
     public void incrementAdjacentMineCounters(int col, int row){
@@ -134,9 +132,6 @@ public class Board {
         Field field = minefield[x][y];
 
         if(!field.isMine()){ openedFields++; }
-        else {
-            //LOSE
-        }
 
         field.press();
     }
