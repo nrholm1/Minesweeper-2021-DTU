@@ -15,7 +15,6 @@ public class Board {
     private final int amountFields;
 
     public Board(int radius, int _amountMines) {
-        System.out.println("with amountMines");
         this.amountMines = _amountMines;
         this.radius = radius;
         this.diameter = 2* radius + 1;
@@ -26,7 +25,6 @@ public class Board {
 
     //difficulty goes from 1 - 10. min is 6% mines, max is 25% mines
     public Board(int radius, double _difficulty) {
-        System.out.print("with difficulty");
         this.radius = radius;
         this.diameter = 2*radius + 1;
         this.amountFields = getAmountFields();
@@ -175,7 +173,6 @@ public class Board {
     }
 
     public Boolean isGameWon(){
-        System.out.println(openedFields);
         return
                 (flaggedMines == amountMines && flaggedNonMines == 0)
                         || (amountFields == openedFields + amountMines);

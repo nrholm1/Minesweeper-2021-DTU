@@ -23,8 +23,6 @@ public abstract class Parser {
         String tileText = dataParams[3];
         String gameState = dataParams[4];
 
-        System.out.println(new FieldDTO(r,c,action,tileText,gameState));
-
         return new FieldDTO(r, c, action, tileText, gameState);
     }
 

@@ -48,11 +48,10 @@ public class MultiPlayerMenuView extends Scene {
         super.getStylesheets().add(ExternalResources.multiplayerMenuStyleSheet);
     }
 
-    public String getIp() {
+    public String getTargetIp() {
         return ipField.getText();
     }
 
-    // TODO works as intended, but should be
     public String getLocalIp() throws UnknownHostException {
         InetAddress addr = InetAddress.getLocalHost();
         return addr.getHostAddress();
