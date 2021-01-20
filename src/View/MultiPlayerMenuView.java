@@ -25,11 +25,8 @@ public class MultiPlayerMenuView extends Scene {
     private StackPane whole;
 
     private VBox createGameMenu;
-    private VBox joinGamemenu;
 
     private ImageView title;
-    private PixelSlider size;
-    private PixelSlider difficulty;
     private PixelButton startButton;
     TextField ipField;
 

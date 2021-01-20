@@ -11,7 +11,6 @@ import View.Components.PixelButton;
 
 public class MainMenuView extends Scene {
     static private VBox menu;
-    static private VBox back;
     static private StackPane whole;
 
     public MainMenuView(int[] stageDims){

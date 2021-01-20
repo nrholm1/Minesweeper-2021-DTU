@@ -24,9 +24,6 @@ public class Main extends Application {
     SingleplayerMenuView singleplayerMenuView;
     MultiPlayerMenuView multiplayerMenuView;
 
-    // Controllers
-    GameController gameController;
-
     @Override
     public void start(Stage root) throws UnknownHostException {
         root.setTitle("MineSweeper");
