@@ -1,4 +1,4 @@
-package View.MainMenuScreen;
+package View;
 
 import Controller.NavigationController;
 import Services.ExternalResources;
@@ -53,7 +53,7 @@ public class MainMenuView2 extends Scene {
         super.setRoot(whole);
         super.getStylesheets()
                 .add(this.getClass()
-                .getResource("./MainStyles.css")
+                .getResource("./Assets/MainStyles.css")
                 .toExternalForm());
     }
 }

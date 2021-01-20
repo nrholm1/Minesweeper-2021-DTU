@@ -1,4 +1,4 @@
-package View.GameScreen.Util;
+package View.Util;
 
 import Controller.GameController;
 import Services.ExternalResources;

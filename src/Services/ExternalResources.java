@@ -38,10 +38,10 @@ public abstract class ExternalResources {
     startGameText = new Image("Images/pre-start-game.png");
     backButton = new Image("Images/back-icon.png");
 
-    gameStyleSheet = ExternalResources.class.getResource("../View/GameScreen/Util/GameStyles.css").toExternalForm();
-    victoryStyleSheet = ExternalResources.class.getResource("../View/VictoryScreen/VictoryStyles.css").toExternalForm();
-    multiplayerStyleSheet = ExternalResources.class.getResource("../View/MultiPlayerGameScreen/MultiStyles.css").toExternalForm();
-    multiplayerMenuStyleSheet = ExternalResources.class.getResource("../View/MultiPlayerMenu/MultiStyles.css").toExternalForm();
+    gameStyleSheet = ExternalResources.class.getResource("../View/Assets/GameStyles.css").toExternalForm();
+    victoryStyleSheet = ExternalResources.class.getResource("../View/Assets/VictoryStyles.css").toExternalForm();
+    multiplayerStyleSheet = ExternalResources.class.getResource("../View/Assets/MultiplayerStyles.css").toExternalForm();
+    multiplayerMenuStyleSheet = ExternalResources.class.getResource("../View/Assets/MultiStyles.css").toExternalForm();
 
     pixelFont10 = Font.loadFont(getPixelFontResourceStream(), 10);
     pixelFont16 = Font.loadFont(getPixelFontResourceStream(), 16);
@@ -50,6 +50,6 @@ public abstract class ExternalResources {
   // make new inputStream each time - workaround for space chars ' ' in font path
   public static InputStream getPixelFontResourceStream() {
     return ExternalResources.class
-            .getResourceAsStream("../View/PressStart2P-Regular.ttf");
+            .getResourceAsStream("../View/Assets/PressStart2P-Regular.ttf");
   }
 }

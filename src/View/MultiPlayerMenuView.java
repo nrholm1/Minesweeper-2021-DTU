@@ -1,4 +1,4 @@
-package View.MultiPlayerMenu;
+package View;
 
 import Controller.NavigationController;
 import Services.ExternalResources;

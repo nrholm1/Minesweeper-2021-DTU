@@ -1,6 +1,6 @@
-package View.GameScreen.Util;
+package View.Util;
 
-import View.GameScreen.SingleplayerView;
+import View.Assets.SingleplayerView;
 
 public class SingleplayerViewBuilder {
     int[] stageDims;

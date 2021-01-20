@@ -1,4 +1,4 @@
-package View.SinglePlayerMenu;
+package View;
 
 import Controller.NavigationController;
 import Services.ExternalResources;
@@ -69,7 +69,7 @@ public class SingleplayerMenuView extends Scene{
         super.setRoot(whole);
         super.getStylesheets()
                 .add(this.getClass()
-                      .getResource("./SingleStyles.css")
+                      .getResource("./Assets/SingleStyles.css")
                       .toExternalForm());
     }
 

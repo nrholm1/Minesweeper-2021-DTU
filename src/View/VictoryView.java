@@ -1,4 +1,4 @@
-package View.VictoryScreen;
+package View;
 
 import Controller.NavigationController;
 import Services.ExternalResources;

@@ -1,10 +1,10 @@
-package View.GameScreen;
+package View.Assets;
 
 import Controller.GameController;
 import Services.ExternalResources;
 import View.Components.TopMenuView;
-import View.GameScreen.Util.BoardView;
-import View.GameScreen.Util.BoardViewBuilder;
+import View.Util.BoardView;
+import View.Util.BoardViewBuilder;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 

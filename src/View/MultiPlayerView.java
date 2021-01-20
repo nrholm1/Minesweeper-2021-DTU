@@ -1,9 +1,9 @@
-package View.MultiPlayerGameScreen;
+package View;
 
 import Services.ExternalResources;
 import View.Components.TopMenuView;
-import View.GameScreen.Util.BoardView;
-import View.GameScreen.Util.BoardViewBuilder;
+import View.Util.BoardView;
+import View.Util.BoardViewBuilder;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;

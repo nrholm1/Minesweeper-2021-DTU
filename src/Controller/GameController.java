@@ -4,9 +4,8 @@ import Model.Board;
 import Model.Field;
 import Networking.MultiplayerService;
 import Services.BlankFieldSolver;
-import View.GameScreen.Util.BoardView;
+import View.Util.BoardView;
 import View.Components.HexTile;
-import javafx.application.Platform;
 
 public class GameController {
   private Board board; // board data - states, etc.
