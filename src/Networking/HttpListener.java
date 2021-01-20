@@ -15,7 +15,7 @@ public class HttpListener implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        String response = "Response from server | ";
+        String response = "Response from server: ";
 
         long start = System.nanoTime();
         byte[] receivedBytes = exchange
@@ -31,6 +31,9 @@ public class HttpListener implements HttpHandler {
         response += " | time elapsed: " + (end - start) + " ns";
 
         exchange.sendResponseHeaders(200, response.length());
+        OutputStream os = exchange.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
     }
 
 }

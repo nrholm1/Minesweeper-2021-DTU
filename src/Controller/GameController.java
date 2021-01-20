@@ -2,17 +2,17 @@ package Controller;
 
 import Model.Board;
 import Model.Field;
-import Networking.FieldDTO;
 import Networking.MultiplayerService;
 import Services.BlankFieldSolver;
 import View.GameScreen.Util.BoardView;
 import View.Components.HexTile;
+import javafx.application.Platform;
 
 public class GameController {
   private Board board; // board data - states, etc.
   private final BoardView boardView; // graphical representation of board - for updating view on state changes
-  private MultiplayerService mpService; // only set in multiplayer contexts. Can be either receiver or sender of http requests.
   private boolean multiplayerSession = false; // Whether or not to send own position to enemy
+  private String mpGameState;
 
   public GameController(Board b, BoardView bv) {
     this.board = b;
@@ -51,14 +51,20 @@ public class GameController {
     board.firstClick(x, y);
     BlankFieldSolver.recursiveSolve(x, y, this);
 
-    if(board.getField(x,y).isMine()) NavigationController.goToDefeatScreen();
-    if(board.gameWon()) NavigationController.goToVictoryScreen(boardView.getTime());
+    if(board.getField(x,y).isMine())
+      NavigationController
+              .goToDefeatScreen();
+    if(board.isGameWon())
+      NavigationController
+              .goToVictoryScreen(getWinTime());
   }
 
   public void flagField(int x, int y) {
     board.flagField(x,y);
 
-    if(board.gameWon()) NavigationController.goToVictoryScreen(boardView.getTime());
+    if(board.isGameWon())
+      NavigationController
+              .goToVictoryScreen(getWinTime());
   }
 
   public void updateTile(int x, int y) {
@@ -67,13 +73,10 @@ public class GameController {
     tile.setTileText(field.getTileText());
     tile.render(field.getState());
 
-    if (multiplayerSession) {
-      MultiplayerService.sendHttpRequest(new FieldDTO(
-              field.getX(),
-              field.getY(),
-              field.getState(),
-              field.getTileText()));
-    }
+    if (multiplayerSession)
+      MultiplayerService
+              .sendHttpRequest(MultiplayerService
+                      .createPayload(board.isGameWon(), field));
   }
 
   public void updateTile(int x,
@@ -85,7 +88,15 @@ public class GameController {
     tile.render(action);
   }
 
+  public void updateGameState(String gameState) {
+    this.mpGameState = gameState;
+  }
+
   public void toggleMultiplayer() {
     multiplayerSession = !multiplayerSession;
+  }
+
+  public int getWinTime() {
+    return boardView.getTime();
   }
 }

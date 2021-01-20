@@ -9,18 +9,14 @@ public class FieldDTO {
     private int y; // col index
     private Field.State action; // change state to
     private String tileText;
+    private String gameState;
 
-    public FieldDTO(Field alteredField) {
-        new FieldDTO(alteredField.getX(),
-                alteredField.getY(),
-                alteredField.getState(), tileText);
-    }
-
-    public FieldDTO(int _x, int _y, Field.State _action, String _tileText) {
+    public FieldDTO(int _x, int _y, Field.State _action, String _tileText, String _gameState) {
         x = _x;
         y = _y;
         action = _action;
         tileText = _tileText;
+        gameState = _gameState;
     }
 
     public Field.State getAction() {
@@ -37,6 +33,10 @@ public class FieldDTO {
 
     public String getTileText() {
         return tileText;
+    }
+
+    public String getGameState() {
+        return gameState;
     }
 
     public byte[] toBytes() {
@@ -57,10 +57,12 @@ public class FieldDTO {
                 "|" +
                 this.y +
                 "|" +
-                this.tileText;
+                this.tileText+
+                "|" +
+                this.gameState;
     }
 
     public String toString() {
-        return ""+  action + " (" + x + ", " + y + ") " + tileText;
+        return ""+  action + " (" + x + ", " + y + ") " + tileText + " " + gameState;
     }
 }

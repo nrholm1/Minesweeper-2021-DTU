@@ -21,9 +21,11 @@ public abstract class Parser {
         int r = Integer.parseInt(dataParams[1]);
         int c = Integer.parseInt(dataParams[2]);
         String tileText = dataParams[3];
+        String gameState = dataParams[4];
 
+        System.out.println(new FieldDTO(r,c,action,tileText,gameState));
 
-        return new FieldDTO(r, c, action, tileText);
+        return new FieldDTO(r, c, action, tileText, gameState);
     }
 
     public static String[] getParamArray(String s) {
@@ -31,6 +33,7 @@ public abstract class Parser {
         StringBuilder r = new StringBuilder();
         StringBuilder c = new StringBuilder();
         StringBuilder tileText = new StringBuilder();
+        StringBuilder gameState = new StringBuilder();
 
         int counter = 0;
         for(char ch : s.toCharArray()) {
@@ -42,12 +45,15 @@ public abstract class Parser {
                 c.append(ch);
             if (counter == 3 && ch != '|')
                 tileText.append(ch);
+            if (counter == 4 && ch != '|')
+                gameState.append(ch);
         }
 
         return new String[] {action,
                              r.toString(),
                              c.toString(),
-                             tileText.toString()};
+                             tileText.toString(),
+                             gameState.toString()};
     }
 
     public static String deserializeFieldDTO(byte[] dataBytes) {

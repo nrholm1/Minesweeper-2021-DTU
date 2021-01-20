@@ -174,7 +174,7 @@ public class Board {
         field.toggleFlag();
     }
 
-    public Boolean gameWon(){
+    public Boolean isGameWon(){
         if((flaggedMines == amountMines && flaggedNonMines == 0) || (amountFields == openedFields)){
             return true;
         }

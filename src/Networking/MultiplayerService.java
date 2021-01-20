@@ -3,8 +3,12 @@ package Networking;
 // methods for connecting to other person and sending / receiving requests
 
 import Controller.GameController;
+import Controller.NavigationController;
+import Model.Field;
 import Services.ThreadManager;
 import com.sun.net.httpserver.HttpServer;
+import javafx.application.Platform;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -44,7 +48,30 @@ public abstract class MultiplayerService {
         );
     }
 
+    public static FieldDTO createPayload(boolean gameWon, Field field) {
+        String gameState = gameWon ? "W" :
+                field.isMine() &&
+                field.getState() == Field.State.PRESSED ? "L" :
+                        " ";
+
+        return new FieldDTO(
+                field.getX(),
+                field.getY(),
+                field.getState(),
+                field.getTileText(),
+                gameState);
+    }
+
     public static void receiveIncomingRequest(FieldDTO dto) {
+        oppGameController.updateGameState(dto.getGameState());
+        String mpGameState = dto.getGameState();
+
+        if (mpGameState.equals("W")) // opponent won
+            Platform.runLater(NavigationController::goToDefeatScreen);
+        if (mpGameState.equals("L")) // opponent lost
+            Platform.runLater(() -> NavigationController
+                    .goToVictoryScreen(oppGameController.getWinTime()));
+
         oppGameController.updateTile(
                 dto.getX(),
                 dto.getY(),
