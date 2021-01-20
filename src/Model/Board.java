@@ -15,11 +15,34 @@ public class Board {
     private int amountFields;
 
     public Board(int radius, int _amountMines) {
+        System.out.println("with amountMines");
         this.amountMines = _amountMines;
         this.radius = radius;
         this.diameter = 2* radius + 1;
         this.amountFields = getAmountFields();
         makeMinefieldWithDimensions();
+    }
+
+
+    //difficulty goes from 1 - 10. min is 6% mines, max is 25% mines
+    public Board(int radius, double _difficulty) {
+        System.out.print("with difficulty");
+        this.radius = radius;
+        this.diameter = 2*radius + 1;
+        this.amountFields = getAmountFields();
+        this.amountMines = calculateAmountMines(_difficulty);
+        makeMinefieldWithDimensions();
+    }
+
+    int calculateAmountMines(double difficulty) {
+        int fieldCount = getAmountFields();
+
+        // Calculates percentage. Uses "topunktsformlen".
+        // This is because we want the percentage to increase linearly as the difficulty increases.
+        double percentage =  ((19.0/9.0 * difficulty
+                            + (35.0/9.0)) / 100.0);
+
+        return (int)(fieldCount * percentage);
     }
 
     public void makeMinefieldWithDimensions() {

@@ -4,13 +4,19 @@ import Model.Board;
 
 public class BoardBuilder {
     int amountMines;
+    double difficulty;
     int radius;
+    boolean setWithDifficulty;
 
     public Board build() {
-        return new Board(this.radius, this.amountMines);
+        if (setWithDifficulty)
+            return new Board(this.radius, this.difficulty);
+        else
+            return new Board(this.radius, this.amountMines);
     }
 
     public BoardBuilder withAmountMines(int _amountMines) {
+        setWithDifficulty = false;
         if (_amountMines < 0)
             throw new IllegalArgumentException("Amount of mines must be greater than or equal to 0");
         this.amountMines = _amountMines;
@@ -26,19 +32,9 @@ public class BoardBuilder {
         return this;
     }
 
-    // has to be called after size has been set
-    //difficulty goes from 1 - 10. min is 6% mines, max is 25% mines
-    public BoardBuilder withDifficulty(int diff) {
-        // Calculates amount of fields in the board
-        int fieldCount = 6 * ((radius + 1) * (radius/2) +
-                (radius % 2 == 0 ? 0 : (radius + 1)/2)) + 1;
-
-        //Calculates percentage. Expression has been made using the "to-punktformel". This is because we want the percentage to gradually increase as the difficulty increases.
-        double percentage =  ((19.0/9.0 * (double)diff + (35.0/9.0)) / 100.0);
-
-        this.amountMines = (int)(fieldCount * percentage);
+    public BoardBuilder withDifficulty(int _difficulty) {
+        setWithDifficulty = true;
+        this.difficulty = _difficulty;
         return this;
     }
-
-    public BoardBuilder() {}
 }
