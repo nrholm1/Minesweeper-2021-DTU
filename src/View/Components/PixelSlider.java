@@ -39,7 +39,5 @@ public class PixelSlider extends VBox{
         getChildren().addAll(sliderText, slider);
     }
 
-
-
     public int getSize() { return (int)slider.getValue(); }
 }
