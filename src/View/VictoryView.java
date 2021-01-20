@@ -14,7 +14,6 @@ import javafx.scene.text.TextAlignment;
 
 
 public class VictoryView extends Scene {
-
     StackPane whole;
     VBox content;
 

@@ -81,14 +81,14 @@ public class MultiPlayerView extends Scene {
         whole.setCenter(boards);
     }
 
-    VBox createPlayerScreen(double screenHeight) {
+    private VBox createPlayerScreen(double screenHeight) {
         VBox playerScreen = new VBox(screenHeight);
         playerScreen.setAlignment(Pos.CENTER);
 
         return playerScreen;
     }
 
-    Text createPlayerText(String text) {
+    private Text createPlayerText(String text) {
         Text playerText = new Text(text);
         playerText.setFont(pixelfont);
 

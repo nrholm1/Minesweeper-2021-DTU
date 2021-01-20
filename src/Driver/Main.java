@@ -41,7 +41,7 @@ public class Main extends Application {
         root.show();
     }
 
-    void initializeNavigation(Stage root) {
+    private void initializeNavigation(Stage root) {
         NavigationController.setRoot(root);
         NavigationController.setStageDims(getStageDims());
         NavigationController.setMainMenuView(mainMenuView);
