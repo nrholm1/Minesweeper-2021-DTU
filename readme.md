@@ -36,11 +36,11 @@ Software project for DTU02121, Jan 2021
 │   └── ThreadManager
 └── View
     ├── Components
-    │   ├── Coord
-    │   ├── Kurwe
-    │   ├── Kurwe
-    │   ├── Kurwe
-    │   └── Vec2D
+    │   ├── HexTile
+    │   ├── PixelButton
+    │   ├── PixelSlider
+    │   ├── TimeCounter
+    │   └── TopMenuView
     ├── DefeatScreen
     │   ├── DefeatMultiplayerView
     │   └── DefeatView
