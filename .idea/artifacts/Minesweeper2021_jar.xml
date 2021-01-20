@@ -13,7 +13,7 @@
       <element id="extracted-dir" path="D:/dev/JavaLibraries/javafx-sdk-15/lib/javafx.controls.jar" path-in-jar="/" />
       <element id="extracted-dir" path="D:/dev/JavaLibraries/javafx-sdk-15/lib/javafx.graphics.jar" path-in-jar="/" />
       <element id="dir-copy" path="$PROJECT_DIR$/src/Images" />
-      <element id="dir-copy" path="$PROJECT_DIR$/src/View/Assets" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/Services/Assets" />
     </root>
   </artifact>
 </component>

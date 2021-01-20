@@ -68,9 +68,7 @@ public class SingleplayerMenuView extends Scene{
 
         super.setRoot(whole);
         super.getStylesheets()
-                .add(this.getClass()
-                      .getResource("./Assets/SingleStyles.css")
-                      .toExternalForm());
+                .add(ExternalResources.singePlayerMenuStyleSheet);
     }
 
     public int getSize() {

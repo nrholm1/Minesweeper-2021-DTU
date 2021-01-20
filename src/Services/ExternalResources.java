@@ -14,6 +14,8 @@ public abstract class ExternalResources {
   public static String victoryStyleSheet;
   public static String multiplayerStyleSheet;
   public static String multiplayerMenuStyleSheet;
+  public static String mainStyleStyleSheet;
+  public static String singePlayerMenuStyleSheet;
 
   public static Image menuTitle;
   public static Image singleplayerText;
@@ -38,10 +40,12 @@ public abstract class ExternalResources {
     startGameText = new Image("Images/pre-start-game.png");
     backButton = new Image("Images/back-icon.png");
 
-    gameStyleSheet = ExternalResources.class.getResource("../View/Assets/GameStyles.css").toExternalForm();
-    victoryStyleSheet = ExternalResources.class.getResource("../View/Assets/VictoryStyles.css").toExternalForm();
-    multiplayerStyleSheet = ExternalResources.class.getResource("../View/Assets/MultiplayerStyles.css").toExternalForm();
-    multiplayerMenuStyleSheet = ExternalResources.class.getResource("../View/Assets/MultiStyles.css").toExternalForm();
+    gameStyleSheet = ExternalResources.class.getResource("Assets/GameStyles.css").toExternalForm();
+    mainStyleStyleSheet = ExternalResources.class.getResource("Assets/MainStyles.css").toExternalForm();
+    victoryStyleSheet = ExternalResources.class.getResource("Assets/VictoryStyles.css").toExternalForm();
+    multiplayerMenuStyleSheet = ExternalResources.class.getResource("Assets/MultiStyles.css").toExternalForm();
+    singePlayerMenuStyleSheet = ExternalResources.class.getResource("Assets/SingleStyles.css").toExternalForm();
+    multiplayerStyleSheet = ExternalResources.class.getResource("Assets/MultiplayerStyles.css").toExternalForm();
 
     pixelFont10 = Font.loadFont(getPixelFontResourceStream(), 10);
     pixelFont16 = Font.loadFont(getPixelFontResourceStream(), 16);
@@ -50,6 +54,6 @@ public abstract class ExternalResources {
   // make new inputStream each time - workaround for space chars ' ' in font path
   public static InputStream getPixelFontResourceStream() {
     return ExternalResources.class
-            .getResourceAsStream("../View/Assets/PressStart2P-Regular.ttf");
+            .getResourceAsStream("Assets/PressStart2P-Regular.ttf");
   }
 }

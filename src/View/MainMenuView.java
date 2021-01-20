@@ -50,8 +50,6 @@ public class MainMenuView extends Scene {
 
         super.setRoot(whole);
         super.getStylesheets()
-                .add(this.getClass()
-                .getResource("./Assets/MainStyles.css")
-                .toExternalForm());
+                .add(ExternalResources.mainStyleStyleSheet);
     }
 }
