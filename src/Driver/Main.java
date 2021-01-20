@@ -1,3 +1,5 @@
+package Driver;
+
 import Controller.GameController;
 import Controller.NavigationController;
 import Services.ExternalResources;
@@ -11,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.net.UnknownHostException;
 
-// Main class containing startup logic
+// Driver.Main class containing startup logic
 // Goal is to initialize FX main thread and provide a base context for MVC and "plug in" the various
 // components through dependency injection
 
