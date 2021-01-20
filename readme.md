@@ -9,6 +9,7 @@ Software project for DTU02121, Jan 2021
 
 ## Overview of the project structure:
 ```bash
+src
 ├── Controller
 │   ├── GameController
 │   └── NavigationController
