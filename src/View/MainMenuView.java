@@ -9,29 +9,28 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import View.Components.PixelButton;
 
-// new -> Massimo's class
-public class MainMenuView2 extends Scene {
+public class MainMenuView extends Scene {
     static private VBox menu;
     static private VBox back;
     static private StackPane whole;
 
-    public MainMenuView2(int[] stagedims ){
-        super(new StackPane(), stagedims[0], stagedims[1]);
+    public MainMenuView(int[] stageDims){
+        super(new StackPane(), stageDims[0], stageDims[1]);
 
-        menu = new VBox((double) stagedims[1]/20);
+        menu = new VBox((double) stageDims[1]/20);
         menu.setAlignment(Pos.CENTER);
 
         ImageView title = new ImageView(ExternalResources.menuTitle);
-        title.setFitWidth(stagedims[0]/2.0);
-        title.setFitHeight(stagedims[0]/15.0);
+        title.setFitWidth(stageDims[0]/2.0);
+        title.setFitHeight(stageDims[0]/15.0);
 
         PixelButton spButton = new PixelButton(ExternalResources.singleplayerText,
-                stagedims[0]/4,
-                stagedims[0]/24);
+                stageDims[0]/4,
+                stageDims[0]/24);
 
         PixelButton mpButton = new PixelButton(ExternalResources.multiplayerText,
-                stagedims[0]/4,
-                stagedims[0]/24);
+                stageDims[0]/4,
+                stageDims[0]/24);
 
         spButton.setOnMouseClicked(e -> {
             NavigationController.gotoSingleplayerMenuView();

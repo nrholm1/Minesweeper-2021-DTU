@@ -4,7 +4,7 @@ import Controller.GameController;
 import Controller.NavigationController;
 import Services.ExternalResources;
 import Services.ThreadManager;
-import View.MainMenuView2;
+import View.MainMenuView;
 import View.MultiPlayerMenuView;
 import View.SingleplayerMenuView;
 import javafx.application.Application;
@@ -20,7 +20,7 @@ import java.net.UnknownHostException;
 public class Main extends Application {
 
     // Views
-    MainMenuView2 mainMenuView;
+    MainMenuView mainMenuView;
     SingleplayerMenuView singleplayerMenuView;
     MultiPlayerMenuView multiplayerMenuView;
 
@@ -33,7 +33,7 @@ public class Main extends Application {
 
         ExternalResources.createResources();
 
-        mainMenuView = new MainMenuView2(getStageDims());
+        mainMenuView = new MainMenuView(getStageDims());
         singleplayerMenuView = new SingleplayerMenuView(getStageDims());
         multiplayerMenuView = new MultiPlayerMenuView(getStageDims());
 

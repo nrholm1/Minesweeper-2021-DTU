@@ -1,4 +1,4 @@
-package View.Assets;
+package View;
 
 import Controller.GameController;
 import Services.ExternalResources;

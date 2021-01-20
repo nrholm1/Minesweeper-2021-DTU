@@ -1,6 +1,6 @@
 package View.Util;
 
-import View.Assets.SingleplayerView;
+import View.SingleplayerView;
 
 public class SingleplayerViewBuilder {
     int[] stageDims;

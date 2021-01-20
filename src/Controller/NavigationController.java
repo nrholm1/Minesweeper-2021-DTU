@@ -4,9 +4,9 @@ import Model.Board;
 import Model.Util.BoardBuilder;
 import Networking.MultiplayerService;
 import View.DefeatScreen.DefeatView;
-import View.Assets.SingleplayerView;
+import View.SingleplayerView;
 import View.Util.SingleplayerViewBuilder;
-import View.MainMenuView2;
+import View.MainMenuView;
 import View.MultiPlayerView;
 import View.MultiPlayerMenuView;
 import View.SingleplayerMenuView;
@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public abstract class NavigationController {
 
-    private static MainMenuView2 mainMenuView;
+    private static MainMenuView mainMenuView;
     private static SingleplayerMenuView spMenuView;
     private static MultiPlayerMenuView mpMenuView;
     private static Stage root;
@@ -48,7 +48,7 @@ public abstract class NavigationController {
         mpMenuView = mpMenuView_;
     }
 
-    public static void setMainMenuView(MainMenuView2 mainMenuView_) {
+    public static void setMainMenuView(MainMenuView mainMenuView_) {
         mainMenuView = mainMenuView_;
     }
 
