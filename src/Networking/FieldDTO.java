@@ -2,8 +2,6 @@ package Networking;
 
 import Model.Field;
 
-import java.util.Arrays;
-
 public class FieldDTO {
     private int x; // row index
     private int y; // col index

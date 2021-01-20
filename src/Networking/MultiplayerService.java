@@ -63,7 +63,6 @@ public abstract class MultiplayerService {
     }
 
     public static void receiveIncomingRequest(FieldDTO dto) {
-        oppGameController.updateGameState(dto.getGameState());
         String mpGameState = dto.getGameState();
 
         if (mpGameState.equals("W")) // opponent won

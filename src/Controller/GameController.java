@@ -12,7 +12,6 @@ public class GameController {
   private Board board; // board data - states, etc.
   private final BoardView boardView; // graphical representation of board - for updating view on state changes
   private boolean multiplayerSession = false; // Whether or not to send own position to enemy
-  private String mpGameState;
 
   public GameController(Board b, BoardView bv) {
     this.board = b;
@@ -86,10 +85,6 @@ public class GameController {
     HexTile tile = boardView.getTile(x,y);
     tile.setTileText(tileText);
     tile.render(action);
-  }
-
-  public void updateGameState(String gameState) {
-    this.mpGameState = gameState;
   }
 
   public void toggleMultiplayer() {

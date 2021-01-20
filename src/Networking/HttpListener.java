@@ -10,9 +10,6 @@ import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 public class HttpListener implements HttpHandler {
-    MultiplayerService mpService;
-
-
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String response = "Response from server: ";

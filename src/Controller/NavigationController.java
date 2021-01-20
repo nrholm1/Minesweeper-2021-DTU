@@ -23,7 +23,6 @@ public abstract class NavigationController {
     private static MultiPlayerMenuView mpMenuView;
     private static Stage root;
     private static int[] stageDims;
-    private static MultiplayerService mpService;
 
     public static void setRoot(Stage _root) {
         root = _root;
