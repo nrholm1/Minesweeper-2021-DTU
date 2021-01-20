@@ -69,7 +69,7 @@ public abstract class MultiplayerService {
             Platform.runLater(NavigationController::goToDefeatScreen);
         if (mpGameState.equals("L")) // opponent lost
             Platform.runLater(() -> NavigationController
-                    .goToVictoryScreen(oppGameController.getWinTime()));
+                    .goToVictoryScreen(oppGameController.getWinTime(), false));
 
         oppGameController.updateTile(
                 dto.getX(),

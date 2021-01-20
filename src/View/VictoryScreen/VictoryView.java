@@ -21,16 +21,16 @@ public class VictoryView extends Scene {
     Text congratulations, extra, time;
     PixelButton next;
 
-    public VictoryView (int[] stagedims, int seconds) {
+    public VictoryView (int[] stagedims, int seconds, String victoryText) {
         super(new StackPane(), stagedims[0], stagedims[1]);
 
         congratulations = new Text("Congratulations!");
         setTextType(congratulations, stagedims[0]/30);
 
-        extra = new Text("You've cleared all the mines,\nand now the submarine can pass...");
+        extra = new Text(victoryText);
         setTextType(extra, stagedims[0]/60);
 
-        time = new Text("You did it in only " + seconds + " seconds!");
+        time = new Text("You won in only " + seconds + " seconds!");
         setTextType(time, stagedims[0]/60);
 
         next = new PixelButton(ExternalResources.topMenuNewGame, stagedims[0]/4, stagedims[0]/18);
@@ -49,9 +49,9 @@ public class VictoryView extends Scene {
     }
 
     public void setTextType (Text text, int size) {
-        Font pixelfont = ExternalResources.pixelFont16;
+        Font pixelFont = ExternalResources.pixelFont16;
         text.setTextAlignment(TextAlignment.CENTER);
-        text.setFont(pixelfont);
+        text.setFont(pixelFont);
         text.setFill(Color.WHITE);
         text.setStyle("-fx-font-size: " + size + "px;");
     }

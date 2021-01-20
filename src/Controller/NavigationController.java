@@ -96,8 +96,11 @@ public abstract class NavigationController {
     }
 
 
-    public static void goToVictoryScreen(int seconds) {
-        VictoryView victory = new VictoryView(stageDims, seconds);
+    public static void goToVictoryScreen(int seconds, boolean clearedMines) {
+        String victoryText = clearedMines ?
+                "You've cleared all the mines,\nand now the submarine can pass..." :
+                "Your opponent blew themselves up!";
+        VictoryView victory = new VictoryView(stageDims, seconds, victoryText);
         changeView(victory);
     }
 

@@ -55,7 +55,7 @@ public class GameController {
               .goToDefeatScreen();
     if(board.isGameWon())
       NavigationController
-              .goToVictoryScreen(getWinTime());
+              .goToVictoryScreen(getWinTime(), true);
   }
 
   public void flagField(int x, int y) {
@@ -63,7 +63,7 @@ public class GameController {
 
     if(board.isGameWon())
       NavigationController
-              .goToVictoryScreen(getWinTime());
+              .goToVictoryScreen(getWinTime(), true);
   }
 
   public void updateTile(int x, int y) {
