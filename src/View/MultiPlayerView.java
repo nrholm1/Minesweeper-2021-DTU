@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -43,7 +44,7 @@ public class MultiPlayerView extends Scene {
 
         topMenu = new TopMenuView(stageWidth, 30);
 
-        player1Screen = createPlayerScreen(screenHeight);
+        player1Screen = createPlayerScreen(20);
         player1Text = createPlayerText("Player 1: You");
         player1View = new BoardViewBuilder()
                 .withStageDims(stageDims)
@@ -56,7 +57,7 @@ public class MultiPlayerView extends Scene {
         player1Screen.getChildren()
                 .addAll(player1Text, player1View);
 
-        player2Screen = createPlayerScreen(screenHeight);
+        player2Screen = createPlayerScreen(20);
         player2Text = createPlayerText("Player 2: Opponent");
         player2View = new BoardViewBuilder()
                 .withStageDims(stageDims)
@@ -91,6 +92,7 @@ public class MultiPlayerView extends Scene {
     private Text createPlayerText(String text) {
         Text playerText = new Text(text);
         playerText.setFont(pixelfont);
+        playerText.setFill(Color.WHITE);
 
         return playerText;
     }

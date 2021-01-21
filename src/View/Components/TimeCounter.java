@@ -21,7 +21,7 @@ public class TimeCounter extends HBox{
         super();
         super.setAlignment(Pos.CENTER);
 
-        Text counterText = new Text("00:00");
+        Text counterText = new Text("Time: 00:00");
         Font pixelFont = ExternalResources.pixelFont16;
         counterText.setFont(pixelFont);
         counterText.setFill(Color.WHITE);
@@ -40,7 +40,7 @@ public class TimeCounter extends HBox{
     }
 
     private String calcTimeString(int time) {
-        String stringTime = "";
+        String stringTime = "Time: ";
         int secs = time;
         int mins = 0;
 
