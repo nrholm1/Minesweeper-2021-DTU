@@ -46,15 +46,18 @@ public class GameController {
 
   public void pressField(int x, int y) {
     board.pressField(x, y);
-    board.firstClick(x, y);
-    BlankFieldSolver.recursiveSolve(x, y, this);
 
-    if(board.getField(x,y).isMine())
-      NavigationController
-              .goToDefeatScreen();
-    if(board.isGameWon())
-      NavigationController
-              .goToVictoryScreen(getWinTime(), true);
+    if(board.getField(x,y).getState() == Field.State.PRESSED) {
+      board.firstClick(x, y);
+      BlankFieldSolver.recursiveSolve(x, y, this);
+
+      if (board.getField(x, y).isMine())
+        NavigationController
+                .goToDefeatScreen();
+      if (board.isGameWon())
+        NavigationController
+                .goToVictoryScreen(getWinTime(), true);
+    }
   }
 
   public void flagField(int x, int y) {
