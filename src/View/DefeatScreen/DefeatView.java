@@ -23,6 +23,16 @@ public class DefeatView extends Scene{
     public DefeatView (int[] stagedims) {
         super(new StackPane(), stagedims[0], stagedims[1]);
 
+        createContent(stagedims);
+
+        whole = new StackPane();
+        whole.setId("whole");
+        whole.getChildren().addAll(content);
+        super.setRoot(whole);
+        super.getStylesheets().add(ExternalResources.victoryStyleSheet);
+    }
+
+    public void createContent(int[] stagedims){
         toobad = new Text("Thats too bad!");
         setTextType(toobad, stagedims[0]/30);
 
@@ -36,12 +46,6 @@ public class DefeatView extends Scene{
         content = new VBox(stagedims[1]/12.0);
         content.setAlignment(Pos.CENTER);
         content.getChildren().addAll(toobad,extra,next);
-
-        whole = new StackPane();
-        whole.setId("whole");
-        whole.getChildren().addAll(content);
-        super.setRoot(whole);
-        super.getStylesheets().add(ExternalResources.victoryStyleSheet);
     }
 
     public void setTextType (Text text, int size) {

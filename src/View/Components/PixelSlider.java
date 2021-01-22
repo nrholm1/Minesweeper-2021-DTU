@@ -14,20 +14,21 @@ public class PixelSlider extends VBox{
 
     public PixelSlider(int[] stageDims, int[] vals, String type){
         super(12);
-        //Size
+
         slider = new Slider();
         slider.setMin(vals[0]);
+        slider.setValue(vals[1]);
         slider.setMax(vals[2]);
         slider.setMaxWidth(stageDims[0]/4.0);
 
-        slider.setValue(vals[1]);
-
+        //Creates the text on top of slider
         String initialText = type + ": " + slider.getValue();
         Text sliderText = new Text(initialText.substring(0,initialText.length() -2));
         Font pixelFont = ExternalResources.pixelFont16;
         sliderText.setFont(pixelFont);
         sliderText.setFill(Color.WHITE);
 
+        //Get value from slider
         slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             if (type.equals("Size")) {
                 sliderText.setText("Size: " + newValue.intValue());

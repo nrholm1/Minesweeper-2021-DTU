@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-//Skrevet af s204508 Massimo Hansen
+//Written by s204508 Massimo Hansen, s204503 Niels Raunkjær
 public class MultiPlayerMenuView extends Scene {
 
     private VBox back;
@@ -56,12 +56,12 @@ public class MultiPlayerMenuView extends Scene {
     }
 
     public void assembleSharedComponents(int[] stageDims){
-        //Title
+        //Create title
         title = new ImageView(ExternalResources.menuTitle);
         title.setFitWidth(stageDims[0]/2.0);
         title.setFitHeight(stageDims[0]/15.0);
 
-        //StartButton
+        //Create startButton
         startButton = new PixelButton(ExternalResources.startGameText, stageDims[0]/4, stageDims[0]/16);
         startButton.setOnMouseClicked(e -> {
             try {
@@ -73,12 +73,15 @@ public class MultiPlayerMenuView extends Scene {
     }
 
     public void assembleMenu(int[] stageDims) throws UnknownHostException {
+        //Initiate the menu
         createGameMenu = new VBox((double) stageDims[1]/20);
         createGameMenu.setAlignment(Pos.CENTER);
+
+        //Ensure that you can click through
         createGameMenu.setStyle("-fx-background-color: null;");
         createGameMenu.setPickOnBounds(false);
 
-        //Ip-address
+        //Create the ip-address field
         VBox wholeIp = new VBox(12);
         wholeIp.setAlignment(Pos.CENTER);
 
@@ -101,6 +104,7 @@ public class MultiPlayerMenuView extends Scene {
     }
 
     public void assembleBack(int[] stageDims){
+        //Create the space for the back-button
         back = new VBox();
         int inset = stageDims[0]/40;
         back.setPadding(new Insets(inset,inset,inset,inset));

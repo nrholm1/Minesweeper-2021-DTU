@@ -16,7 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-//Skrevet af s204508 Massimo Hansen, s204503 Niels Raunkjær
+//Written by s204508 Massimo Hansen, s204503 Niels Raunkjær
 public class BoardView extends StackPane {
     private final double sideLength;
     private final int inset;
@@ -52,10 +52,8 @@ public class BoardView extends StackPane {
     }
 
     int calculateSideLength(int[] stageDimensions) {
-        return (int)
-                ((stageDimensions[1]-2*inset)
-                /
-                (2*boardRadius*(2*Math.sqrt(3)) + 2*Math.sqrt(3)));
+        //Calculates the sidelength of the hexagon, so that they will fit perfectly in the screen
+        return (int) ((stageDimensions[1]-2*inset) / (2*boardRadius*(2*Math.sqrt(3)) + 2*Math.sqrt(3)));
     }
 
     public void createNewTileField(){
@@ -70,6 +68,7 @@ public class BoardView extends StackPane {
                 int x = col;
                 int y = row;
 
+                //If the tiles arent disabled, give them functionality
                 if(!disableTiles) {
                     currentTile.setOnMouseClicked(e -> {
                         if (e.getButton() == MouseButton.PRIMARY)
@@ -93,7 +92,7 @@ public class BoardView extends StackPane {
 
             VBox currCol = new VBox(sideLength / 2);
 
-            //Skaber pladsen der forskyder kolonnerne fra hinanden
+            //Create the spaces, that move the columns into a hexagonal shape
             for (int row = 0; row < boardDiameter - hexTiles.length; row++)
                 currCol.getChildren()
                        .add(new Rectangle(0, Math.sqrt(3) * sideLength / 2 - sideLength / 4));

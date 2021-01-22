@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-//Skrevet af s204508 Massimo Hansen
+//Written by s204508 Massimo Hansen
 public class MultiPlayerView extends Scene {
 
     private BorderPane whole;
@@ -45,38 +45,27 @@ public class MultiPlayerView extends Scene {
 
         topMenu = new TopMenuView(stageWidth, 30);
 
+        //Creating your gamescreen
         player1Screen = createPlayerScreen(20);
         player1Text = createPlayerText("Player 1: You");
-        player1View = new BoardViewBuilder()
-                .withStageDims(stageDims)
-                .withInsetSize(30)
-                .withSize(10)
-                .withTopview(topMenu)
-                .noBoat()
-                .build();
+        player1View = new BoardViewBuilder().withStageDims(stageDims).withInsetSize(30).withSize(10).withTopview(topMenu).noBoat().build();
 
-        player1Screen.getChildren()
-                .addAll(player1Text, player1View);
+        player1Screen.getChildren().addAll(player1Text, player1View);
 
+        //Create opponent gamescreen
         player2Screen = createPlayerScreen(20);
         player2Text = createPlayerText("Player 2: Opponent");
-        player2View = new BoardViewBuilder()
-                .withStageDims(stageDims)
-                .withInsetSize(30)
-                .withSize(10)
-                .withTopview(topMenu)
-                .disableTiles() // Disables tiles for opponent, since the client isn't supposed to be able to press them
-                .noBoat()
-                .build();
+        player2View = new BoardViewBuilder().withStageDims(stageDims).withInsetSize(30).withSize(10).withTopview(topMenu).disableTiles().noBoat().build();
 
         player2Screen.getChildren()
                 .addAll(player2Text, player2View);
 
+        //Assemble the boards
         boards = new HBox(screenWidth);
         boards.setAlignment(Pos.CENTER);
-        boards.getChildren()
-                .addAll(player1Screen, player2Screen);
+        boards.getChildren().addAll(player1Screen, player2Screen);
 
+        //Assemble whole gamescreen
         whole = new BorderPane();
         whole.setId("gameback");
         whole.setTop(topMenu);

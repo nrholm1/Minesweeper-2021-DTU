@@ -2,7 +2,7 @@ package View.Util;
 
 import View.SingleplayerView;
 
-//Skrevet af s204503 Niels Raunkjær
+//Written by s204503 Niels Raunkjær
 public class SingleplayerViewBuilder {
     int[] stageDims;
     int inset;

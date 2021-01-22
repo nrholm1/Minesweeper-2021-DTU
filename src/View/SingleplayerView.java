@@ -8,7 +8,7 @@ import View.Util.BoardViewBuilder;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-//Skrevet af s204508 Massimo Hansen
+//Written by s204508 Massimo Hansen
 public class SingleplayerView extends Scene {
   private BorderPane gameView;
   private final BoardView boardView;
@@ -20,21 +20,16 @@ public class SingleplayerView extends Scene {
     super(new BorderPane(), stageDims[0], stageDims[1]);
 
     topMenu = new TopMenuView(stageDims[0], inset);
-    boardView = new BoardViewBuilder()
-            .withStageDims(stageDims)
-            .withInsetSize(inset)
-            .withSize(size)
-            .withTopview(topMenu)
-            .build();
+    boardView = new BoardViewBuilder().withStageDims(stageDims).withInsetSize(inset).withSize(size).withTopview(topMenu).build();
 
     initializeGameView();
 
     super.setRoot(gameView);
-    super.getStylesheets()
-         .add(ExternalResources.gameStyleSheet);
+    super.getStylesheets().add(ExternalResources.gameStyleSheet);
   }
 
   public void initializeGameView() {
+    //Using a border pane, we set the top of the window and the center
     gameView = new BorderPane();
     gameView.setTop(topMenu);
     gameView.setCenter(boardView);
@@ -44,7 +39,7 @@ public class SingleplayerView extends Scene {
   public void setController(GameController _controller) {
     controller = _controller;
 
-    // also set controller refs in children
+    //Also set controller refs in children
     boardView.setController(controller);
     topMenu.setController(controller);
   }
