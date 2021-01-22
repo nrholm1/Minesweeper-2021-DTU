@@ -4,6 +4,9 @@ import com.sun.net.httpserver.HttpServer;
 import java.util.ArrayList;
 import java.util.Timer;
 
+// By Magnus Meyer, s204509 & Niels Raunkjær Holm, s204503
+// This class keeps track of all the threads running, such as timers and multiplayer servers.
+// Everytime a thread is made, it is added to this class, which stops the threads when the window is closed
 public abstract class ThreadManager {
     private static HttpServer server;
     private static final ArrayList<Timer> timers = new ArrayList<>();

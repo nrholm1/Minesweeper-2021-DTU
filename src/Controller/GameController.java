@@ -7,6 +7,12 @@ import Services.BlankFieldSolver;
 import View.Util.BoardView;
 import View.Components.HexTile;
 
+// By Magnus Meyer, s204509 & Niels Raunkjær Holm, s204503 & Massimo Hansen, s204508 & Simon Buk-Mortensen, s204497
+// We have all added to the controller, since the controller includes many aspects of the project
+// The game controller is the main constroller. It receives events them the user and updates the models accordingly.
+// Meanwhile it updates the views, so they are in alignment with the states of the models
+// It has helper methods to get certain values from the views or the models, which is needed in other parts of the project.
+// Notice the class isn't abstract, and it has been designed to be initiated with a Board model and Board view, in order to allow multiple games in the same session.
 public class GameController {
   private Board board; // board data - states, etc.
   private final BoardView boardView; // graphical representation of board - for updating view on state changes
