@@ -16,6 +16,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// By Magnus Meyer, s204509 & Niels Raunkjær Holm, s204503 & Massimo Hansen, s204508
+// This controller is abstract, since only one is needed for each game session.
+// It keeps track of the different menu views, and is the class which is called when the view should change to another scene.
+// It is also called to create the singleplayer and multiplayer game.
+// Notice how it is within this class that the gamecontroller, models and views are combined to a complete MVC structure.
+// When the MVC structure is combined, the game is also ready to be played.
 public abstract class NavigationController {
 
     private static MainMenuView mainMenuView;

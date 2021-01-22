@@ -5,7 +5,9 @@ import javafx.scene.text.Font;
 
 import java.io.InputStream;
 
+// By Magnus Meyer, s204509
 // This class holds all of the external resources, so the program wont need to load new files every time they're needed
+// These files are loaded by calling the createResources-method, which is called in the Main-class
 public abstract class ExternalResources {
   public static Font pixelFont10;
   public static Font pixelFont16;
