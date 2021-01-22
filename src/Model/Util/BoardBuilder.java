@@ -1,6 +1,7 @@
 package Model.Util;
-
 import Model.Board;
+//This Class builds the board.
+//By Niels Raunkjær Holm (s204503).
 
 public class BoardBuilder {
     int amountMines;

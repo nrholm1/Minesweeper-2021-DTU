@@ -1,8 +1,8 @@
 package Services;
-
 import Controller.GameController;
-
-public abstract class BlankFieldSolver {
+//This service clicks on all blank fields until it reach a field, there has a mines as neighbor
+//Made by Simon Buk-Mortensen(S204497) og Niels Raunkjær Holm (s204503)
+public abstract class  BlankFieldSolver {
     public static void recursiveSolve(int col, int row, GameController gameController) {
         if (gameController.getAdjacentMines(col,row) == 0) {
             boolean onLeftSide = col < gameController.getRadius(); // on left side of current index

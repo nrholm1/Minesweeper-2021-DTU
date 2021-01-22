@@ -1,5 +1,6 @@
 package Model;
-
+//This class represent the individual field on the board.
+//By Massimo Hansen (s204508), Magnus Meyer (s204509), Niels Raunkjær Holm (s204503) og Simon Buk-Mortensen(S204497).
 public class Field {
     private boolean isMine;
     private State state;

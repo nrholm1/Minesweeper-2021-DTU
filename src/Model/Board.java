@@ -1,5 +1,8 @@
 package Model;
-
+// This class create all the data to the game.
+// First it creates the minefield.
+// When the user has clicked once, this class will set all the mines on the board and gives each field a mine counter.
+// By Massimo Hansen (s204508), Magnus Meyer (s204509), Niels Raunkjær Holm (s204503) og Simon Buk-Mortensen(S204497).
 public class Board {
     private Field[][] minefield;
     private final int amountMines;
