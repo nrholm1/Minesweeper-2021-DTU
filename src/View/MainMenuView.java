@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import View.Components.PixelButton;
 
+//Skrevet af s204508 Massimo Hansen
 public class MainMenuView extends Scene {
     static private VBox menu;
     static private StackPane whole;

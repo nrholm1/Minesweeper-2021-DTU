@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Skrevet af s204508 Massimo Hansen
 public class TimeCounter extends HBox{
 
     private Timer timer;

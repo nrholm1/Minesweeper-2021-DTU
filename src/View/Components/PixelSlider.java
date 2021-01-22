@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+//Skrevet af s204508 Massimo Hansen
 public class PixelSlider extends VBox{
     private final Slider slider;
 

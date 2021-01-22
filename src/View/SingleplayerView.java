@@ -8,6 +8,7 @@ import View.Util.BoardViewBuilder;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
+//Skrevet af s204508 Massimo Hansen
 public class SingleplayerView extends Scene {
   private BorderPane gameView;
   private final BoardView boardView;

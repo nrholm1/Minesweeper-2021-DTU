@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import View.Components.PixelButton;
 import View.Components.PixelSlider;
 
+//Skrevet af s204508 Massimo Hansen
 public class SingleplayerMenuView extends Scene{
     static VBox menu;
     static VBox back;

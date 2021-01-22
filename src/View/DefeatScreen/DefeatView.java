@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+//Skrevet af s204508 Massimo Hansen
 public class DefeatView extends Scene{
     StackPane whole;
     VBox content;

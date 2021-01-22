@@ -11,6 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
+//Skrevet af s204508 Massimo Hansen
 public class TopMenuView<calcTimeString> extends HBox{
     private GameController controller;
 

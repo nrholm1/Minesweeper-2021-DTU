@@ -2,6 +2,7 @@ package View.Util;
 
 import View.Components.TopMenuView;
 
+//Skrevet af s204503 Niels Raunkjær
 public class BoardViewBuilder {
     private int[] stageDims;
     private int inset;

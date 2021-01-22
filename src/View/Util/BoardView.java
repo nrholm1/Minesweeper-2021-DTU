@@ -16,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+//Skrevet af s204508 Massimo Hansen, s204503 Niels Raunkjær
 public class BoardView extends StackPane {
     private final double sideLength;
     private final int inset;
