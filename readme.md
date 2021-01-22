@@ -1,5 +1,5 @@
 # Minesweeper 2021
-## Demo video: https://youtu.be/P94PLpQrwZM
+## <a href="https://youtu.be/P94PLpQrwZM">Demo video</a>
 
 Software project for DTU02121, Jan 2021
 
