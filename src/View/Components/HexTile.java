@@ -9,6 +9,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+//Skrevet af s204508 Massimo Hansen
 public class HexTile extends StackPane {
 
     private final Polygon hexagon;

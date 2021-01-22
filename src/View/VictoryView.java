@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-
+//Written by s204508 Massimo Hansen
 public class VictoryView extends Scene {
     StackPane whole;
     VBox content;
@@ -23,12 +23,15 @@ public class VictoryView extends Scene {
     public VictoryView (int[] stagedims, int seconds, String victoryText) {
         super(new StackPane(), stagedims[0], stagedims[1]);
 
+        //The next 10 lines are just creating the content of page, including 3 textfields and 1 button
         congratulations = new Text("Congratulations!");
         setTextType(congratulations, stagedims[0]/30);
 
+        //The victory text can be altered
         extra = new Text(victoryText);
         setTextType(extra, stagedims[0]/60);
 
+        //The time it took to finished is passed in
         time = new Text("You won in only " + seconds + " seconds!");
         setTextType(time, stagedims[0]/60);
 

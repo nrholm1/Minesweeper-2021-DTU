@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Skrevet af s204508 Massimo Hansen
 public class TimeCounter extends HBox{
 
     private Timer timer;
@@ -26,6 +27,7 @@ public class TimeCounter extends HBox{
         counterText.setFont(pixelFont);
         counterText.setFill(Color.WHITE);
 
+        //Sets the task
         timer = ThreadManager.getTimer();
         TimerTask task = new TimerTask() {
             @Override
@@ -34,6 +36,7 @@ public class TimeCounter extends HBox{
                 counterText.setText(calcTimeString(timeElapsed));
             }
         };
+        //Repeats task every 1000 milliseconds
         timer.scheduleAtFixedRate(task, 1000L, 1000L);
 
         super.getChildren().addAll(counterText);
@@ -45,7 +48,7 @@ public class TimeCounter extends HBox{
         int mins = 0;
 
         if(secs > 3600) return "TOO LONG!";
-
+        //Converts seconds to minutes
         while(secs >= 60){
             secs -= 60;
             mins++;
