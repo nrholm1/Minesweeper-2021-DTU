@@ -2,6 +2,14 @@ package Networking;
 
 import Model.Field;
 
+// s204503 - Niels Raunkjær Holm
+// Data transfer object, designed to be payload in http requests.
+// Info about which tile is affected, the type of event and whether the game state has changed
+// is contained in this.
+// Object is created and then uses the methods toParsableString to convert itself to a plaintext
+// representation, after which it uses toBytes to serialize itself for being sent via http request.
+// Plaintext version looks like: "action|x|y|tileText|gameState"
+
 public class FieldDTO {
     private final int x; // row index
     private final int y; // col index

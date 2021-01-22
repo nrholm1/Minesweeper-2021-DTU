@@ -4,11 +4,20 @@ import Model.Field;
 
 import java.nio.charset.StandardCharsets;
 
+// s204503 - Niels Raunkjær Holm
+// Parser is basically a class for reversing the operations in FieldDTO's
+// toParsableString and toBytes methods.
+// It parses the bytes into the plaintext representation and converts this
+// into a FieldDTO object.
+
 public abstract class Parser {
+    // Wraps all other methods in one
+    // Serialized plaintext -> FieldDTO POJO
     public static FieldDTO readRequestInput(byte[] dataBytes) {
         return parseFieldDTOString(deserializeFieldDTO(dataBytes));
     }
 
+    // Converts each array index into the corresponding object field on FieldDTO
     public static FieldDTO parseFieldDTOString(String dataString) {
         String[] dataParams = getParamArray(dataString);
 
@@ -26,6 +35,8 @@ public abstract class Parser {
         return new FieldDTO(r, c, action, tileText, gameState);
     }
 
+    // Creates String array from plaintext representation
+    // Each String in the array corresponds to a field on the FieldDTO object.
     public static String[] getParamArray(String s) {
         String action = s.substring(0,1);
         StringBuilder r = new StringBuilder();
@@ -54,6 +65,7 @@ public abstract class Parser {
                              gameState.toString()};
     }
 
+    // creates String from serialized object -> "deserialization"
     public static String deserializeFieldDTO(byte[] dataBytes) {
         return new String(dataBytes, StandardCharsets.UTF_8);
     }

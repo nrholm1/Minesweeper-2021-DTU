@@ -1,7 +1,5 @@
 package Networking;
 
-// methods for connecting to other person and sending / receiving requests
-
 import Controller.GameController;
 import Controller.NavigationController;
 import Model.Field;
@@ -12,12 +10,16 @@ import javafx.application.Platform;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+// s204503 - Niels Raunkjær Holm, s204509 - Magnus Meyer
+// Service class wrapping all networking methods and networking-to-game interfacing methods.
+
 public abstract class MultiplayerService {
     private static final int port = 5050;
     private static String targetIp;
     private static HttpServer server;
     private static GameController oppGameController;
 
+    // Replacement for constructor, since class is abstract
     public static void initiateService(GameController oppGameController_, String ip) throws IOException {
         oppGameController = oppGameController_;
         targetIp = ip;
@@ -25,21 +27,23 @@ public abstract class MultiplayerService {
         startHttpListener();
     }
 
-    // startHttpListener
+    // Start thread for HttpListener and server
     private static void startHttpListener() throws IOException {
         if(server != null) return;
 
         HttpListener listener = new HttpListener();
 
+        // Create server and context for serving the responses
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/swoop", listener);
         server.setExecutor(null);
         server.start();
 
+        // Set reference to server process in the ThreadManager for clean teardown on application close
         ThreadManager.setServer(server);
     }
 
-    // sendRequestAsync
+    // Wrapper method for using ClientDrivers request method with correct target ip and port
     public static void sendHttpRequest(FieldDTO fieldDTO) {
         ClientDriver.simpleAsyncRequestPrintFieldDTO(
                 targetIp,
@@ -48,6 +52,7 @@ public abstract class MultiplayerService {
         );
     }
 
+    // Create a FieldDTO from game event. Called from GameController when playing in multiplayer contexts
     public static FieldDTO createPayload(boolean gameWon, Field field) {
         String gameState = gameWon ? "W" :
                 field.isMine() &&
@@ -62,9 +67,13 @@ public abstract class MultiplayerService {
                 gameState);
     }
 
+    // Interfaces with GameController to handle the contents of the FieldDTO
     public static void receiveIncomingRequest(FieldDTO dto) {
         String mpGameState = dto.getGameState();
 
+        // if game state has changed, go to a different screen
+        // Platform.runLater schedules an action on the UI/FX thread.
+        // This is necessary since the receiveIncomingRequest is called from the server thread
         if (mpGameState.equals("W")) // opponent won
             Platform.runLater(NavigationController::goToDefeatScreen);
         if (mpGameState.equals("L")) // opponent lost
