@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 public abstract class ClientDriver {
     // ASYNC
     // chained methods after sendAsync makes it work async
-    static HttpClient client;
+    private static HttpClient client;
 
     public static void simpleAsyncRequestPrintFieldDTO(String IP, int PORT, FieldDTO fieldDTO) {
         if (client == null)
